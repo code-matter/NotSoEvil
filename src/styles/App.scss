@@ -28,6 +28,7 @@
     }
   }
   border-left: 13px solid #a6f3eb;
+
   @include mobile {
     border-right: 13px solid #c8ebff;
   }
@@ -38,6 +39,7 @@
     top: 0;
     width: 100%;
     height: 13px;
+    z-index: 10;
     background-color: #ffe77b;
   }
   &::after {

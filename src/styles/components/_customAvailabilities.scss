@@ -12,7 +12,7 @@ div {
       position: relative;
       padding: 3px 0;
       span {
-        &.hoverable{
+        &.hoverable {
           &:hover {
             cursor: pointer;
             transform: scale(1.1);

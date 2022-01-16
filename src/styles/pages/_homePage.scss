@@ -11,7 +11,6 @@ div {
     div {
       &.text {
         align-self: flex-start;
-        margin-bottom: 20px;
         p {
           color: rgba(#385cc7, 0.38);
           letter-spacing: 0.2em;
@@ -80,6 +79,7 @@ div {
         flex-wrap: wrap;
         border: 1px solid #fa6790;
         width: 100%;
+        margin-bottom: 10px;
 
         // Destkop
         a {
