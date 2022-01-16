@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import EvilHeader from '../components/EvilHeader'
+import Joy from '../components/Joy'
 
 interface IHovered {
   id: string,
@@ -73,6 +74,7 @@ const HomePage: React.FC = () => {
       {/* <div style={{ height: 10 }}>
         hello
       </div> */}
+      <Joy />
     </div>
   )
 }
