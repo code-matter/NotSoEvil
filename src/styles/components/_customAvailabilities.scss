@@ -1,0 +1,41 @@
+div {
+  &.availabilities-container {
+    margin: 1rem 0;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    overflow: hidden;
+    h3 {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      padding: 3px 0;
+      span {
+        &.hoverable{
+          &:hover {
+            cursor: pointer;
+            transform: scale(1.1);
+          }
+        }
+        transition: transform ease-in-out 0.3s;
+        svg {
+          position: absolute;
+          right: 0;
+          top: -2px;
+          &:hover {
+            cursor: pointer;
+            transform: scale(1.1);
+          }
+        }
+      }
+    }
+    label {
+      margin-left: 8px;
+    }
+    input {
+      transform: scale(1.5);
+      border: none;
+    }
+  }
+}

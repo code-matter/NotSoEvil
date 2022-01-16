@@ -1,0 +1,56 @@
+div {
+  &.title-logo-container {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+    svg {
+      &.logo {
+        &:hover {
+          cursor: pointer;
+        }
+        width: 80%;
+        margin-left: -15px;
+        margin-top: 6px;
+        margin-bottom: 22px;
+        @include not-mobile {
+          max-width: 40%;
+          max-width: 475px;
+          margin-left: -32px;
+          margin-top: 6px;
+          margin-bottom: 30px;
+        }
+      }
+    }
+    div {
+      &.title-logos {
+        svg {
+          position: absolute;
+          &.sun {
+            bottom: -60px;
+            right: 50px;
+            width: 18%;
+            @include mobile {
+              width: 30%;
+              top: -15px;
+              right: 8px;
+            }
+          }
+          &.smiley {
+            bottom: -85px;
+            right: -12px;
+            width: 15%;
+            transform: rotate(12deg);
+            fill: #15b7ff;
+            stroke: #15b7ff;
+            @include mobile {
+              width: 30%;
+              top: 22px;
+              right: -3px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

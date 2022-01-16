@@ -1,0 +1,88 @@
+div {
+  &.custom-intput-container {
+    width: 100%;
+    letter-spacing: 0.1em;
+    h3,
+    h1 {
+      text-transform: uppercase;
+      font-weight: 600;
+      color: $label-color;
+      &.title {
+        font-weight: 700;
+        font-size: 1.8em;
+        letter-spacing: 0.1em;
+        margin: 10px 0;
+        margin-top: 40px;
+      }
+      &.required {
+        &::after {
+          content: "*";
+        }
+      }
+    }
+    p {
+      font-weight: 600;
+      color: $sublabel-color;
+    }
+    textarea {
+      outline: none;
+      width: 100%;
+      resize: vertical;
+      min-height: 15vh;
+    }
+    input,
+    textarea {
+      &[type="text"] {
+        width: 100%;
+        padding: 10px 10px;
+      }
+      background-color: $light-gray;
+      color: $sublabel-color;
+      border: none;
+      outline: none;
+      padding: 5px 10px;
+      margin: 8px 0;
+      border-radius: 6px;
+      &:focus {
+        background-color: rgba(#4253aa, 0.2);
+        color: $label-color;
+      }
+    }
+
+    div {
+      &.checkbox {
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        width: fit-content;
+        margin: 8px 0;
+        input {
+          margin-right: 4px;
+          min-width: 25px;
+        }
+        label {
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          color: #201262;
+          font-weight: 500;
+        }
+      }
+      &.authorization {
+        display: flex;
+        label {
+          text-transform: unset;
+          &.required {
+            &::after {
+              content: "*";
+            }
+          }
+        }
+        input {
+          min-width: 25px;
+          align-self: baseline;
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+}

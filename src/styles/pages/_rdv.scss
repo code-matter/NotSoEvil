@@ -1,0 +1,128 @@
+div {
+  &.rdv {
+    width: 100%;
+    padding: 5% 7%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @include mobile {
+      margin-top: 45px;
+    }
+    div {
+      &.text {
+        p {
+          &.title-text {
+            flex-grow: 1;
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: 0.2em;
+            color: rgba(56, 92, 199, 0.38);
+            margin: 10px 0;
+            margin-top: -5px;
+            @include mobile {
+              font-size: 16px;
+            }
+          }
+          &.paragraph {
+            text-align: justify;
+            font-size: 18px;
+            letter-spacing: 0;
+            color: #4169df;
+            font-weight: unset;
+            line-height: 1.4rem !important;
+            margin-bottom: 30px;
+
+            @include mobile {
+              width: 100% !important;
+              letter-spacing: 0 !important;
+            }
+          }
+          &.special {
+            width: 75% !important;
+            min-width: 240px;
+            font-weight: 600;
+            z-index: 999;
+            &::before {
+              content: "";
+              z-index: -1;
+              position: absolute;
+              width: 100%;
+              @include not-mobile {
+                width: 30%;
+              }
+              height: 13px;
+              top: 11px;
+              left: 13px;
+              background-color: rgba(#2bd7c5, 0.45);
+            }
+            position: relative;
+          }
+        }
+        h3 {
+          &.title-header {
+            font-weight: bold;
+            font-size: 25px;
+            line-height: 35px;
+            letter-spacing: 0.2em;
+            color: #4169df;
+            margin-bottom: 35px;
+            position: relative;
+            @include mobile {
+              font-size: 18px;
+              line-height: unset;
+            }
+            span {
+              position: relative;
+              &.blue {
+                &::before {
+                  content: "";
+                  position: absolute;
+                  width: 98%;
+                  height: 13px;
+                  top: 15px;
+                  left: 20px;
+                  background-color: rgba(#069ff6, 0.3);
+                  @include mobile {
+                    top: 9px;
+                    left: 16px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    button {
+      text-transform: uppercase;
+      color: white;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+      font-size: 2rem;
+      width: 100%;
+      background-color: #ffcc18;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      outline: none;
+      border-radius: 16px;
+      padding: 20px 15px;
+      margin: 20px;
+      margin-bottom: 75px;
+      &:hover {
+        background-color: #e1c3ff;
+        cursor: pointer;
+      }
+      @include mobile {
+        font-size: 1rem;
+      }
+      &.disabled {
+        opacity: 0.2;
+        cursor: none;
+        pointer-events: none;
+      }
+    }
+  }
+}

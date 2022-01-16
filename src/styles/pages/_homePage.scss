@@ -1,0 +1,135 @@
+div {
+  &.homepage {
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    @include mobile {
+      border-right: none;
+      margin-top: 45px;
+    }
+
+    div {
+      &.text {
+        align-self: flex-start;
+        margin-bottom: 20px;
+        p {
+          color: rgba(#385cc7, 0.38);
+          letter-spacing: 0.2em;
+          font-weight: 700;
+          font-size: 20px;
+          margin: 10px 0;
+          margin-top: -5px;
+          @include mobile {
+            font-size: 16px;
+          }
+        }
+        h3 {
+          font-weight: bold;
+          font-size: 25px;
+          letter-spacing: 0.2em;
+          line-height: 35px;
+          color: #4169df;
+          margin-bottom: 35px;
+          position: relative;
+          @include mobile {
+            font-size: 18px;
+            line-height: unset;
+          }
+
+          span {
+            position: relative;
+            &:last-child {
+              letter-spacing: 0.25em;
+            }
+            &.teal {
+              &::before {
+                content: "";
+                position: absolute;
+                width: 106%;
+                height: 13px;
+                top: 11px;
+                left: 13px;
+                background-color: rgba(#2bd7c5, 0.45);
+                @include mobile {
+                  width: 100%;
+                  left: 5px;
+                }
+              }
+            }
+            &.mauve {
+              &::before {
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 13px;
+                top: 11px;
+                left: 13px;
+                background-color: rgba(#c183ff, 0.35);
+                @include mobile {
+                  width: 100%;
+                  left: 20px;
+                  top: 9px;
+                }
+              }
+            }
+          }
+        }
+      }
+      &.homepage-links {
+        display: flex;
+        flex-wrap: wrap;
+        border: 1px solid #fa6790;
+        width: 100%;
+
+        // Destkop
+        a {
+          @include flex-center {
+            outline: 0.5px solid #fa6790;
+            width: 50%;
+            font-size: 22px;
+            font-weight: 700;
+            color: #fa6790;
+            letter-spacing: 0.2em;
+            padding: 2rem;
+            &.hovered {
+              color: #fbfbfd;
+              border: none;
+              z-index: 999;
+            }
+            &.disabled {
+              opacity: 0.6;
+              pointer-events: none;
+            }
+          }
+        }
+
+        // Mobile
+        @include mobile {
+          border: none;
+          a {
+            @include flex-center {
+              background-color: #fa6790;
+              width: 100%;
+              height: 20%;
+              font-size: 18px;
+              font-weight: 700;
+              color: white;
+              letter-spacing: 0.2em;
+              padding: 2rem;
+              margin: 0.5rem 0;
+              &.hovered {
+                color: #fbfbfd;
+                border: none;
+                z-index: 999;
+              }
+              &.disabled {
+                opacity: 0.1;
+                pointer-events: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
