@@ -1,0 +1,41 @@
+div {
+  &.joy {
+    background-color: $mauve;
+    display: flex;
+    width: 80vw !important;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 4em 0;
+    @include mobile {
+      padding: 1.5em;
+    }
+    letter-spacing: 0.1em;
+    h2 {
+      color: $white;
+      font-size: 30px;
+      margin: 4% 0;
+      // margin: 40px 0;
+    }
+
+    div {
+      &.paragraph {
+        display: flex;
+        align-items: center;
+        @include mobile {
+          flex-wrap: wrap;
+        }
+        color: $white;
+      }
+      p {
+        // width: 40%;
+        @include mobile {
+          margin: 20px 0;
+        }
+        font-size: 20px;
+        line-height: 1.3em;
+      }
+    }
+  }
+}

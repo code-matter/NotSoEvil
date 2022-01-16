@@ -3,9 +3,24 @@ div {
     flex-direction: column;
     height: 100%;
     justify-content: space-between;
+    align-items: center;
     @include mobile {
       border-right: none;
       margin-top: 45px;
+    }
+
+    section {
+      width: $APP_WIDTH;
+      &.top {
+        height: calc(100vh - 13px);
+      }
+      &.joy {
+        width: 100%;
+        background-color: $mauve;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     }
 
     div {
@@ -113,7 +128,7 @@ div {
               height: 20%;
               font-size: 18px;
               font-weight: 700;
-              color: white;
+              color: $white;
               letter-spacing: 0.2em;
               padding: 2rem;
               margin: 0.5rem 0;
