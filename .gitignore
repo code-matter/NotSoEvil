@@ -12,6 +12,8 @@
 /build
 
 # misc
+secrets
+screts.js
 .DS_Store
 .env
 .env.local

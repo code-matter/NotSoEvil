@@ -8,6 +8,7 @@ import emailjs from '@emailjs/browser';
 import CustomAvailabilities from '../components/CustomAvailabilities'
 import { useNavigate } from 'react-router-dom'
 import EvilHeader from '../components/EvilHeader'
+import { SECRETS } from '../secrets'
 
 export interface IForm {
   firstName: string,
@@ -35,7 +36,7 @@ const RDV = () => {
       }
     })
     if (process.env.NODE_ENV === 'production') {
-      emailjs.send(process.env.SERVICE_ID as string, process.env.TEMPLATE_ID as string, form, process.env.USER_ID as string).then(() => alert(`
+      emailjs.send(SECRETS.SERVICE_ID, SECRETS.TEMPLATE_ID, form, SECRETS.USER_ID).then(() => alert(`
       YOUPII!! Ta demande de rendez-vous est belle et bien partie, assures-toi de vérifier tes courriels. À BIENTÔT !!
       `)).then(() => navigate('/'))
     }
