@@ -33,7 +33,7 @@ const HomePage: React.FC = () => {
           D’LA <span className='mauve'>BONNE HUMEUR</span></h3>
       </div>
       <div className='homepage-links' >
-        <Link className={`${hovered.id === 'rdv' ? 'hovered' : ''} disabled`}
+        <Link className={`${hovered.id === 'rdv' ? 'hovered' : ''}`}
           style={{
             backgroundColor: hovered.id === 'rdv' ? hovered.color : '',
             outline: hovered.id === 'rdv' ? `1px solid ${hovered.color}` : ''
