@@ -15,11 +15,47 @@ div {
         height: calc(100vh - 13px);
       }
       &.joy {
-        width: 100%;
+        width: 100vw;
         background-color: $mauve;
         display: flex;
         justify-content: center;
         align-items: center;
+      }
+      &.rabbits-photos {
+        width: 100%;
+        div {
+          &.photos-container {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            position: relative;
+            img {
+              width: 30%;
+              aspect-ratio: 1;
+            }
+            div {
+              &.rabbits-tr {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                img {
+                  width: 100%;
+                  &:first-child {
+                    position: absolute;
+                    top: 10px;
+                    left: -200px;
+                  }
+                  &:last-child {
+                    position: inherit;
+                    top: -10px;
+                    left: 0px;
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
 
@@ -95,9 +131,9 @@ div {
         border: 1px solid #fa6790;
         width: 100%;
         margin-bottom: 10px;
-
         // Destkop
         a {
+          text-align: center;
           @include flex-center {
             outline: 0.5px solid #fa6790;
             width: 50%;

@@ -30,6 +30,7 @@
     }
   }
   border-left: $border-turquoise;
+  border-right: $border-blue;
 
   @include mobile {
     border-right: $border-blue;
