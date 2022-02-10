@@ -8,7 +8,6 @@ import lapinvert from '../assets/lapinvert.png'
 import lapinjaune from '../assets/lapinjaune.png'
 import lapinbleu from '../assets/lapinbleu.png'
 import { useTranslation } from 'react-i18next'
-import i18next from 'i18next'
 
 interface IHovered {
   id: string,
@@ -17,9 +16,7 @@ interface IHovered {
 
 export const RANDOM_COLORS = ['#E1C3FF', '#15B7FF', '#2DE4D1', '#FACD01']
 
-export const toggleLocale = () => {
-  i18next.changeLanguage(i18next.language === "fr" ? "en" : "fr");
-};
+
 
 const HomePage: React.FC = () => {
   const isMobile = window.innerWidth < 500;
@@ -39,7 +36,6 @@ const HomePage: React.FC = () => {
 
   return (
     <div className='homepage container'>
-      <button style={{ position: 'absolute', zIndex: 999, top: 0, left: 0 }} onClick={toggleLocale}>{t('general.language')}</button>
       <section className='top'>
         <EvilHeader />
         <div className='text'>

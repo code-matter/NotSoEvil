@@ -1,4 +1,5 @@
 import React, { Dispatch, SetStateAction, } from 'react'
+import { useTranslation } from 'react-i18next'
 import { ICustomInput } from './CustomInput'
 
 interface IChoices {
@@ -12,7 +13,7 @@ interface ICustomMultiChoice extends ICustomInput {
 }
 
 const CustomMultiChoice = ({ id, setChoices, label, subLabel, isRequired, choices }: ICustomMultiChoice) => {
-
+  const { t } = useTranslation()
   const handleCheckbox = (choices: any, choice: any) => {
     const tmpChoices = [...choices]
     const tmpIdx = tmpChoices.indexOf(choice)
@@ -28,7 +29,7 @@ const CustomMultiChoice = ({ id, setChoices, label, subLabel, isRequired, choice
       {choices.map((choice, idx) => (
         <div key={choice.id} className='checkbox'>
           <input key={choice.id} type="checkbox" name={choice.id} id={choice.id} checked={choice.value} onChange={() => handleCheckbox(choices, choice)} />
-          <label htmlFor={choice.id}>{choice.label}</label>
+          <label htmlFor={choice.id}>{t(`form.${choice.label}`)}</label>
         </div>
       ))}
     </div>

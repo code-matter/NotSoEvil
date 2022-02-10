@@ -1,4 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react'
+import { useTranslation } from 'react-i18next';
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 
 interface ICustomAvailabilities {
@@ -34,6 +35,8 @@ const CustomAvailabilities = ({ id, color, arrowColor, openedAvailabilities, set
     setDay(tmpChoices)
   }
 
+  const { t } = useTranslation()
+
   return (
     <>
       <div className='custom-intput-container availabilities-container' style={{ backgroundColor: color, marginBottom: id === 'fri' ? '20px' : 0 }}>
@@ -54,7 +57,7 @@ const CustomAvailabilities = ({ id, color, arrowColor, openedAvailabilities, set
               id={choice.id}
               checked={choice.value}
               onChange={() => handleCheckbox(choices, choice)} />
-            <label htmlFor={choice.id}>{choice.label}</label>
+            <label htmlFor={choice.id}>{t(`form.${choice.label}`)}</label>
           </div>
         ))}
       </div>
