@@ -61,7 +61,7 @@ const RDV = () => {
       <section className='rdv'>
         <EvilHeader />
         <div className='text'>
-          <p className='title-text'>{t('general.form')} {isMobile && <br />} {t('general.february')}/{t('general.march')}</p>
+          <p className='title-text'>{t('general.form')} {isMobile && <br />} {t('general.april')}/{t('general.march')}</p>
           <h3 className='title-header'>DEMANDE POUR <br />UN
             <span className='blue'> RENDEZ-VOUS</span></h3>
           <p className='paragraph'>
@@ -128,6 +128,7 @@ const RDV = () => {
           label={t('form.styles')}
           choices={styles}
           setChoices={setStyles} />
+        <br />
         <CustomInput label={t('form.availabilities')} id='availabilities' isRequired hide />
         <CustomAvailabilities choices={monday} setDay={setMonday} id='mon' label={t('form.monday')} color='rgba(193,131,255,0.19)' arrowColor='rgba(193,131,255,1)' openedAvailabilities={openedAvailabilities} setOpenedAvailabilities={setOpenedAvailabilities} />
         <CustomAvailabilities choices={tuesday} setDay={setTuesday} id='tue' label={t('form.tuesday')} color='rgba(250,165,0,0.23)' arrowColor='rgba(250,165,0,1)' openedAvailabilities={openedAvailabilities} setOpenedAvailabilities={setOpenedAvailabilities} />
