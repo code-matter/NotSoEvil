@@ -60,5 +60,45 @@
       display: flex;
       justify-content: center;
     }
+    &.language-container {
+      position: absolute;
+      z-index: 999;
+      top: 40px;
+      right: 4%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 1.2rem;
+
+      p {
+        transition: all ease-in-out 0.2s;
+        &.active {
+          font-weight: bolder;
+          color: #4169df;
+        }
+        &.inactive {
+          color: rgba(#385cc7, 0.38);
+        }
+        &:hover {
+          cursor: pointer;
+        }
+        @include mobile {
+          font-size: 1.3em;
+        }
+      }
+
+      span {
+        width: 3px;
+        background-color: $mauve;
+        height: 100%;
+        margin: 0 10px;
+      }
+
+      @include mobile {
+        right: 0;
+        left: 50%;
+        transform: translate(-50%, 0);
+      }
+    }
   }
 }

@@ -38,6 +38,7 @@ const RDV = () => {
       }
     })
     if (process.env.NODE_ENV === 'production') {
+      // NEED TO TRANSLATE THIS!!!!!!
       emailjs.send(SECRETS.SERVICE_ID, SECRETS.TEMPLATE_ID, form, SECRETS.USER_ID).then(() => alert(`
       YOUPII!! Ta demande de rendez-vous est belle et bien partie, assures-toi de vérifier tes courriels. À BIENTÔT !!
       `)).then(() => navigate('/'))
