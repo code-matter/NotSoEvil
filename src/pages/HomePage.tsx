@@ -43,6 +43,14 @@ const HomePage: React.FC = () => {
           <h3 >D’LA <span className='teal'>COULEUR</span> PI BEN <br />
             D’LA <span className='mauve'>BONNE HUMEUR</span></h3>
         </div>
+        <div className='text' style={{ justifySelf: 'center' }}>
+          <h3 style={{ marginBottom: 5 }}>
+            {t('general.toronto-booking')}
+            <span className='yellow'> TORONTO</span>
+          </h3>
+          <p>{t('general.toronto-date')}</p>
+          <p>{t('general.toronto-location')}</p>
+        </div>
         <div className='homepage-links' >
           <Link className={`${hovered.id === 'rdv' ? 'hovered' : ''}`}
             style={{

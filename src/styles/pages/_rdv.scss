@@ -121,6 +121,8 @@ div {
       }
       @include mobile {
         font-size: 1rem;
+        margin: 40px 0;
+        margin-bottom: 60px;
       }
       &.disabled {
         opacity: 0.2;

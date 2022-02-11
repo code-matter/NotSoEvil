@@ -107,6 +107,22 @@ div {
                 }
               }
             }
+
+            &.yellow {
+              &::before {
+                content: "";
+                position: absolute;
+                width: 106%;
+                height: 13px;
+                top: 11px;
+                left: 13px;
+                background-color: rgba(#facd01, 0.35);
+                @include mobile {
+                  width: 100%;
+                  left: 5px;
+                }
+              }
+            }
             &.mauve {
               &::before {
                 content: "";

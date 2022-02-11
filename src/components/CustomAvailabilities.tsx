@@ -5,6 +5,7 @@ import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 interface ICustomAvailabilities {
   id: string,
   color: string,
+  isDisabled?: boolean,
   arrowColor?: string,
   openedAvailabilities: string[],
   setOpenedAvailabilities: Dispatch<SetStateAction<string[]>>,
@@ -16,7 +17,7 @@ interface ICustomAvailabilities {
 }
 
 
-const CustomAvailabilities = ({ id, color, arrowColor, openedAvailabilities, setOpenedAvailabilities, setDay, label, subLabel, isRequired, choices }: ICustomAvailabilities) => {
+const CustomAvailabilities = ({ id, isDisabled, color, arrowColor, openedAvailabilities, setOpenedAvailabilities, setDay, label, subLabel, isRequired, choices }: ICustomAvailabilities) => {
   const toggleAvailabilities = (id: string) => {
     if (openedAvailabilities.includes(id)) {
       const tmpAvailabilities = [...openedAvailabilities];
@@ -39,7 +40,7 @@ const CustomAvailabilities = ({ id, color, arrowColor, openedAvailabilities, set
 
   return (
     <>
-      <div className='custom-intput-container availabilities-container' style={{ backgroundColor: color, marginBottom: id === 'fri' ? '20px' : 0 }}>
+      <div className={`custom-intput-container availabilities-container ${isDisabled ? 'disabled' : ''}`} style={{ backgroundColor: color, marginBottom: id === 'fri' ? '20px' : 0 }}>
         <h3 className={`${isRequired ? 'required' : ''}`} onClick={() => toggleAvailabilities(id)}>
           <span className='hoverable'>
             {label}

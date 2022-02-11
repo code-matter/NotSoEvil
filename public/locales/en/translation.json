@@ -16,7 +16,10 @@
     "september": "SEPTEMBER",
     "october": "OCTOBER",
     "november": "NOVEMBER",
-    "december": "DECEMBER"
+    "december": "DECEMBER",
+    "toronto-booking": "BOOKING FOR ",
+    "toronto-date": "MARCH 16TH TO MARCH 18TH",
+    "toronto-location": "AT ALWAYS TATTOO"
   },
   "form": {
     "firstName": "First Name",
@@ -58,6 +61,21 @@
     "project": "Project",
     "moreInfo": "Additional Information",
     "11h": "11 AM",
-    "14h": "2 PM"
+    "13h": "1 PM",
+    "14h": "2 PM",
+    "15h": "3 PM",
+    "text1": "To book an appointment, please fill out this form as precisely as possible. If you want multiple projects or flashes, please only fill out one form.",
+    "text2": "If your project is selected, you will be contacted by ",
+    "text3": "email",
+    "text4": "to establish your appointments date and time. ",
+    "text5": "Look in your spams !!! ",
+    "text6": "In order to confirm your appointment, ",
+    "text7": "a deposit of 50$",
+    "text8": "will asked by",
+    "text9": "e-transfer",
+    "text10": "The appointment is not confirmed until the deposit is transferred!",
+    "text11": "Thanks for your interest in my art. It is greatly appreciated.",
+    "text12": "Looking forward to create with you!",
+    "alert": "YOUPII!! You request has been sent. Please, make sure to look at your emails and also yout spams. SEE SOU SOON !!"
   }
 }

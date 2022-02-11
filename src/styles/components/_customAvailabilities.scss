@@ -37,5 +37,9 @@ div {
       transform: scale(1.5);
       border: none;
     }
+    &.disabled {
+      opacity: 0.3;
+      pointer-events: none;
+    }
   }
 }

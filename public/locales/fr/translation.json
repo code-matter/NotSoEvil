@@ -16,7 +16,10 @@
     "september": "SEPTEMBRE",
     "october": "OCTOBRE",
     "november": "NOVEMBRE",
-    "december": "DECEMBRE"
+    "december": "DECEMBRE",
+    "toronto-booking": "BOOKING POUR ",
+    "toronto-date": "16 AU 18 MARS",
+    "toronto-location": "CHEZ ALWAYS TATTOO"
   },
   "form": {
     "firstName": "Prénom",
@@ -58,6 +61,21 @@
     "project": "Projet",
     "moreInfo": "Informations Additionnelles",
     "11h": "11h",
-    "14h": "14h"
+    "13h": "13h",
+    "14h": "14h",
+    "15h": "15h",
+    "text1": "Pour effectuer votre demande de rendez-vous, veuillez remplir le formulaire suivant le plus précisément possible. Pour plusieurs projets, veuillez remplir qu'un seul formulaire.",
+    "text2": "Si votre projet est retenu, vous serez contacté par ",
+    "text3": "courriel",
+    "text4": "afin d'établir la date de votre rendez-vous. ",
+    "text5": "Regardez vos pourriels !!! ",
+    "text6": "Afin de confirmer votre plage horaire, un ",
+    "text7": "dépôt de 50$",
+    "text8": "vous sera demandé par",
+    "text9": "virement interac",
+    "text10": "Le rendez-vous n'est pas confirmé tant que le dépôt ne sera pas envoyé!",
+    "text11": "Merci pour votre intérêt envers mon art, sachez que c'est grandement apprécié.",
+    "text12": "Au plaisir de créer avec vous!",
+    "alert": "YOUPII!! Ta demande de rendez-vous est belle et bien partie, assures-toi de vérifier tes courriels. À BIENTÔT !!"
   }
 }
