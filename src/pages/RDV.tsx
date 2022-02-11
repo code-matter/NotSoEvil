@@ -50,7 +50,7 @@ const RDV = () => {
   const [monday, setMonday] = useState<any>([{ id: 'monday-11', label: '11h', value: false }, { id: 'monday-14', label: '14h', value: false }])
   const [tuesday, setTuesday] = useState<any>([{ id: 'tuesday-11', label: '11h', value: false }, { id: 'tuesday-14', label: '14h', value: false }])
   const [wednesday, setWednesday] = useState<any>([{ id: 'wednesday-11', label: '11h', value: false }, { id: 'wednesday-13', label: '13h', value: false }, { id: 'wednesday-15', label: '15h', value: false }])
-  const [thursday, setThursday] = useState<any>([{ id: 'thursday-11', label: '11h', value: false }, { id: 'thursday-14', label: '14h', value: false }])
+  const [thursday, setThursday] = useState<any>([{ id: 'thursday-11', label: '11h', value: false }, { id: 'thursday-13', label: '13h', value: false }, { id: 'thursday-15', label: '15h', value: false }])
   const [friday, setFriday] = useState<any>([{ id: 'friday-11', label: '11h', value: false }, { id: 'friday-13', label: '13h', value: false }, { id: 'friday-15', label: '15h', value: false }])
 
   const [languages, setLanguages] = useState<any>([{ id: 'languageFr', label: 'lang-fr', value: false }, { id: 'languageEn', label: 'lang-en', value: false }])
@@ -130,7 +130,7 @@ const RDV = () => {
         <CustomAvailabilities isDisabled choices={monday} setDay={setMonday} id='mon' label={t('form.monday')} color='rgba(193,131,255,0.19)' arrowColor='rgba(193,131,255,1)' openedAvailabilities={openedAvailabilities} setOpenedAvailabilities={setOpenedAvailabilities} />
         <CustomAvailabilities isDisabled choices={tuesday} setDay={setTuesday} id='tue' label={t('form.tuesday')} color='rgba(250,165,0,0.23)' arrowColor='rgba(250,165,0,1)' openedAvailabilities={openedAvailabilities} setOpenedAvailabilities={setOpenedAvailabilities} />
         <CustomAvailabilities choices={wednesday} setDay={setWednesday} id='wed' label={t('form.wednesday')} color='rgba(250,103,144,0.35)' arrowColor='rgba(250,103,144,1)' openedAvailabilities={openedAvailabilities} setOpenedAvailabilities={setOpenedAvailabilities} />
-        <CustomAvailabilities isDisabled choices={thursday} setDay={setThursday} id='thu' label={t('form.thursday')} color='rgba(200,235,255,1)' arrowColor='rgba(6,159,246,1)' openedAvailabilities={openedAvailabilities} setOpenedAvailabilities={setOpenedAvailabilities} />
+        <CustomAvailabilities choices={thursday} setDay={setThursday} id='thu' label={t('form.thursday')} color='rgba(200,235,255,1)' arrowColor='rgba(6,159,246,1)' openedAvailabilities={openedAvailabilities} setOpenedAvailabilities={setOpenedAvailabilities} />
         <CustomAvailabilities choices={friday} setDay={setFriday} id='fri' label={t('form.friday')} color='rgba(43,215,197,0.24)' arrowColor='rgba(43,215,197,1)' openedAvailabilities={openedAvailabilities} setOpenedAvailabilities={setOpenedAvailabilities} />
         <br />
         <CustomInput
