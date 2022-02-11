@@ -45,14 +45,14 @@
     z-index: 10;
     background-color: #ffe77b;
   }
-  // &::after {
-  //   content: "";
-  //   position: absolute;
-  //   bottom: 0;
-  //   width: 100%;
-  //   height: 13px;
-  //   background-color: #e1c3ff;
-  // }
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 13px;
+    background-color: #e1c3ff;
+  }
   div {
     &.container {
       width: 100%;

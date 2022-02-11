@@ -43,7 +43,7 @@ const HomePage: React.FC = () => {
           <h3 >D’LA <span className='teal'>COULEUR</span> PI BEN <br />
             D’LA <span className='mauve'>BONNE HUMEUR</span></h3>
         </div>
-        <div className='text' style={{ justifySelf: 'center' }}>
+        <div className='text' >
           <h3 style={{ marginBottom: 10 }}>
             {t('general.toronto-booking')}
             <span className='yellow'> TORONTO</span>

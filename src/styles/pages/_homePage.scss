@@ -14,7 +14,7 @@ div {
     section {
       width: $APP_WIDTH;
       &.top {
-        height: calc(100vh - 13px);
+        // height: calc(100vh - 13px);
       }
       &.joy {
         width: 100vw;
@@ -161,7 +161,7 @@ div {
             font-weight: 700;
             color: #fa6790;
             letter-spacing: 0.2em;
-            padding: 2rem;
+            padding: 1.5rem;
             &.hovered {
               color: #fbfbfd;
               border: none;
