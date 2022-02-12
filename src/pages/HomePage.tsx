@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { MouseEvent, MouseEventHandler, useState } from 'react'
 import { Link } from 'react-router-dom'
 import EvilHeader from '../components/EvilHeader'
 import Joy from '../components/Joy'
@@ -9,7 +9,7 @@ import lapinjaune from '../assets/lapinjaune.png'
 import lapinbleu from '../assets/lapinbleu.png'
 import { useTranslation } from 'react-i18next'
 
-interface IHovered {
+export interface IHovered {
   id: string,
   color: string
 }
@@ -23,13 +23,14 @@ const HomePage: React.FC = () => {
   const { t } = useTranslation();
   const [hovered, setHovered] = useState<IHovered>({ id: '', color: '' })
 
-  const handleMouseEnter = (event: any) => { // Need to fix TYPES
+  const handleMouseEnter = (event: MouseEvent) => {
     setHovered({
-      id: event.target?.id,
+      id: (event.target as HTMLElement)?.id,
       color: RANDOM_COLORS[Math.floor(Math.random() * RANDOM_COLORS.length)]
     })
   }
-  const handleMouseLeave = (event: any) => { // Need to fix TYPES
+
+  const handleMouseLeave = () => {
     setHovered({ id: '', color: '' })
   }
 
@@ -40,11 +41,11 @@ const HomePage: React.FC = () => {
         <EvilHeader />
         <div className='text'>
           <p>TATTOOS & {isMobile && <br />} PLENTY MORE</p>
-          <h3 >D’LA <span className='teal'>COULEUR</span> PI BEN <br />
-            D’LA <span className='mauve'>BONNE HUMEUR</span></h3>
+          <h3 >D'LA <span className='teal'>COULEUR</span> PI BEN <br />
+            D'LA <span className='mauve'>BONNE HUMEUR</span></h3>
         </div>
         <div className='text' >
-          <h3 style={{ marginBottom: 10 }}>
+          <h3 style={{ marginBottom: 5 }}>
             {t('general.toronto-booking')}
             <span className='yellow'> TORONTO</span>
           </h3>
@@ -53,41 +54,53 @@ const HomePage: React.FC = () => {
         </div>
         <div className='homepage-links' >
           <Link className={`${hovered.id === 'rdv' ? 'hovered' : ''}`}
+            id='rdv'
+            to="/form"
             style={{
               backgroundColor: hovered.id === 'rdv' ? hovered.color : '',
               outline: hovered.id === 'rdv' ? `1px solid ${hovered.color}` : ''
             }}
-            id='rdv'
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            to="/form">{t('general.rdv')}</Link>
+            onMouseEnter={handleMouseEnter as MouseEventHandler}
+            onMouseLeave={handleMouseLeave as MouseEventHandler}
+          >
+            {t('general.rdv')}
+          </Link>
           <Link className={`${hovered.id === 'flash' ? 'hovered' : ''} disabled`}
+            id='flash'
+            to="/flash"
             style={{
               backgroundColor: hovered.id === 'flash' ? hovered.color : '',
               outline: hovered.id === 'flash' ? `1px solid ${hovered.color}` : ''
             }}
-            id='flash'
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            to="/flash">FLASH</Link>
+            onMouseEnter={handleMouseEnter as MouseEventHandler}
+            onMouseLeave={handleMouseLeave as MouseEventHandler}
+          >
+            FLASH
+          </Link>
           <Link className={`${hovered.id === 'shop' ? 'hovered' : ''} disabled`}
+            id='shop'
+            to="/shop"
             style={{
               backgroundColor: hovered.id === 'shop' ? hovered.color : '',
               outline: hovered.id === 'shop' ? `1px solid ${hovered.color}` : ''
             }}
-            id='shop'
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            to="/shop">{t('general.shop')}</Link>
+            onMouseEnter={handleMouseEnter as MouseEventHandler}
+            onMouseLeave={handleMouseLeave as MouseEventHandler}
+          >
+            {t('general.shop')}
+          </Link>
           <Link className={`${hovered.id === 'plus' ? 'hovered' : ''} disabled`}
+            id='plus'
+            to="/plus"
             style={{
               backgroundColor: hovered.id === 'plus' ? hovered.color : '',
               outline: hovered.id === 'plus' ? `1px solid ${hovered.color}` : ''
             }}
-            id='plus'
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            to="/plus">{t('general.moremoremore')}</Link>
+            onMouseEnter={handleMouseEnter as MouseEventHandler}
+            onMouseLeave={handleMouseLeave as MouseEventHandler}
+          >
+            {t('general.moremoremore')}
+          </Link>
         </div>
       </section >
       {/* <section className='joy'>

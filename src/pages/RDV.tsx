@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { FormEvent, useState } from 'react'
 import CustomInput from '../components/CustomInput'
 import CustomMultiChoice from '../components/CustomMultiChoice'
 import CustomTitle from '../components/CustomTitle'
@@ -11,7 +11,7 @@ import EvilHeader from '../components/EvilHeader'
 import { SECRETS } from '../secrets'
 import { useTranslation } from 'react-i18next'
 import i18next from 'i18next'
-import { isFormValid } from '../utils/form'
+import { isFormValid } from '../utils/rdv'
 import {
   FIRST_TIME,
   FRIDAY,
@@ -29,13 +29,12 @@ const RDV = () => {
   const [form, setForm] = useState<any>({})
   const isMobile = window.innerWidth < 500;
 
-  const handleFormChange = (event: any) => {
-    // Deal with  true/false/'on'
+  const handleFormChange = (event: FormEvent) => {
     setForm(
       {
         ...form,
-        [event.target.id]: event.target.value === 'on' ?
-          event.target.checked : event.target.value
+        [(event.target as HTMLInputElement).id]: (event.target as HTMLInputElement).value === 'on' ?
+          (event.target as HTMLInputElement).checked : (event.target as HTMLInputElement).value
       })
   }
 
@@ -54,6 +53,8 @@ const RDV = () => {
         SECRETS.USER_ID)
         .then(() => alert(t('form.alert')))
         .then(() => navigate('/'))
+    } else {
+      console.log(form)
     }
   }
 
