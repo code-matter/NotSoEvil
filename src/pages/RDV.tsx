@@ -51,8 +51,9 @@ const RDV = () => {
         SECRETS.SERVICE_ID,
         SECRETS.TEMPLATE_ID,
         form,
-        SECRETS.USER_ID
-      ).then(() => alert(t('form.alert'))).then(() => navigate('/'))
+        SECRETS.USER_ID)
+        .then(() => alert(t('form.alert')))
+        .then(() => navigate('/'))
     }
   }
 
