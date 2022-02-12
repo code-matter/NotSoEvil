@@ -24,6 +24,44 @@ import {
   WEDNESDAY
 } from '../constants/rdv'
 
+interface EvilForm {
+  firstName?: string,
+  lastName?: string,
+  email?: string,
+  languageEn?: boolean,
+  flash?: string,
+  descProj?: string,
+  placement?: string,
+  size?: string,
+  styleBlack?: boolean,
+  styleBc?: boolean,
+  styleColor?: boolean,
+  styleGradient?: boolean,
+  styleMulticolor?: boolean,
+  'monday-13'?: boolean,
+  'monday-11'?: boolean,
+  'monday-15'?: boolean,
+  'tuesday-13'?: boolean,
+  'tuesday-11'?: boolean,
+  'tuesday-15'?: boolean,
+  'wednesday-13'?: boolean,
+  'wednesday-11'?: boolean,
+  'wednesday-15'?: boolean,
+  'thursday-13'?: boolean,
+  'thursday-11'?: boolean,
+  'thursday-15'?: boolean,
+  'friday-13'?: boolean,
+  'friday-11'?: boolean,
+  'friday-15'?: boolean,
+  reference?: string,
+  firstTimeNo?: boolean,
+  firstTimeyYes?: boolean,
+  questions?: string,
+  over18?: boolean,
+  covidProof?: boolean,
+  trueInfo?: boolean
+}
+
 const RDV = () => {
   const { t } = useTranslation()
   const navigate = useNavigate();
@@ -34,14 +72,17 @@ const RDV = () => {
     setForm(
       {
         ...form,
-        [(event.target as HTMLInputElement).id]: (event.target as HTMLInputElement).value === 'on' ?
-          (event.target as HTMLInputElement).checked : (event.target as HTMLInputElement).value
+        [(event.target as HTMLInputElement).id]:
+          (event.target as HTMLInputElement).value === 'on'
+            ?
+            (event.target as HTMLInputElement).checked :
+            (event.target as HTMLInputElement).value
       })
   }
 
   const sendForm = () => {
-    const tmpForm: any = {};
-    Object.keys(form).forEach(info => {
+    const tmpForm: any = { ...form };
+    Object.keys(form).forEach((info: string) => {
       if (form[info]) {
         tmpForm[info] = form[info]
       }
