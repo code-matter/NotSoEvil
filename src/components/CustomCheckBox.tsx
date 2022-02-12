@@ -1,5 +1,3 @@
-import React from 'react'
-
 interface ICustomCheckBox {
   id: string,
   label: string,

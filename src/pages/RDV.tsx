@@ -13,6 +13,7 @@ import { useTranslation } from 'react-i18next'
 import i18next from 'i18next'
 import { isFormValid } from '../utils/rdv'
 import {
+  BoolChoice,
   FIRST_TIME,
   FRIDAY,
   LANGUAGES,
@@ -60,7 +61,7 @@ const RDV = () => {
 
   const [openedAvailabilities, setOpenedAvailabilities] = useState<any[]>([{}])
 
-  const [monday, setMonday] = useState<any>(MONDAY)
+  const [monday, setMonday] = useState<BoolChoice[]>(MONDAY)
   const [tuesday, setTuesday] = useState<any>(TUESDAY)
   const [wednesday, setWednesday] = useState<any>(WEDNESDAY)
   const [thursday, setThursday] = useState<any>(THURSDAY)

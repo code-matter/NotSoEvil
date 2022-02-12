@@ -1,10 +1,4 @@
-import React from 'react'
-
-interface Props {
-
-}
-
-const Joy = (props: Props) => {
+const Joy = () => {
   return (
     <div className='joy container'>
       <h2>PROPAGER LA JOIE, <br />

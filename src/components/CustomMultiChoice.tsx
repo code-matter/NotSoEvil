@@ -1,20 +1,16 @@
-import React, { Dispatch, SetStateAction, } from 'react'
+import { Dispatch, SetStateAction, } from 'react'
 import { useTranslation } from 'react-i18next'
+import { BoolChoice } from '../constants/rdv'
 import { ICustomInput } from './CustomInput'
 
-interface IChoices {
-  id: string,
-  label: string,
-  value: boolean,
-}
 interface ICustomMultiChoice extends ICustomInput {
-  choices: IChoices[],
-  setChoices: Dispatch<SetStateAction<any[]>>,
+  choices: BoolChoice[],
+  setChoices: Dispatch<SetStateAction<BoolChoice[]>>,
 }
 
 const CustomMultiChoice = ({ id, setChoices, label, subLabel, isRequired, choices }: ICustomMultiChoice) => {
   const { t } = useTranslation()
-  const handleCheckbox = (choices: any, choice: any) => {
+  const handleCheckbox = (choices: BoolChoice[], choice: BoolChoice) => {
     const tmpChoices = [...choices]
     const tmpIdx = tmpChoices.indexOf(choice)
     tmpChoices[tmpIdx].value = !tmpChoices[tmpIdx].value

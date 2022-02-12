@@ -1,5 +1,3 @@
-import React from 'react'
-
 interface ICustomTitle {
   label: string,
   isRequired?: boolean,

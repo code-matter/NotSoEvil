@@ -1,5 +1,3 @@
-import React from 'react'
-
 export interface ICustomInput {
   id: string,
   label: string,
