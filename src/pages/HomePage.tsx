@@ -53,7 +53,7 @@ const HomePage: React.FC = () => {
           <p>{t('general.toronto-location')}</p>
         </div>
         <div className='homepage-links' >
-          <Link className={`${hovered.id === 'rdv' ? 'hovered' : ''}`}
+          <Link className={`${hovered.id === 'rdv' ? 'hovered' : ''} disabled`}
             id='rdv'
             to="/form"
             style={{
