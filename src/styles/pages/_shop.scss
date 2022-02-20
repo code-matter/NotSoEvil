@@ -1,0 +1,37 @@
+div {
+  &.shop-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 4rem;
+    position: relative;
+    span {
+      &.go-back-btn {
+        position: absolute;
+        top: -30px;
+        left: 20px;
+        transition: all ease-in-out 0.3s;
+        &:hover {
+          cursor: pointer;
+          animation: shake 0.3s forwards;
+        }
+      }
+    }
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(10deg);
+  }
+  75% {
+    transform: rotate(-10deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}

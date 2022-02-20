@@ -7,6 +7,7 @@ import HomePage from './pages/HomePage';
 import RDV from './pages/RDV';
 import i18next from 'i18next'
 import { useState } from 'react';
+import Shop from './pages/Shop';
 
 function App() {
   const [lang, setLang] = useState('fr')
@@ -31,6 +32,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/form" element={<RDV />} />
+        <Route path="/shop" element={<Shop />} />
       </Routes>
     </div>
   );
