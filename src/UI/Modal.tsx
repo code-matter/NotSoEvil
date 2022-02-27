@@ -11,7 +11,7 @@ const ModalOverlay = (props: any) => {
   return (
     <motion.div className="modal"
       initial={{ y: '100vh', x: '-50%' }}
-      animate={{ y: '-50%' }}
+      animate={{ y: 0 }}
       transition={{
         type: "spring",
         damping: 50,

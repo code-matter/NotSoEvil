@@ -15,7 +15,7 @@ div {
     background-color: rgba($blue, 0.89);
     color: $white;
     position: fixed;
-    top: 50%;
+    top: 35%;
     left: 50%;
     // transform: translate(-50%, -50%);
     width: 50%;
@@ -80,6 +80,7 @@ div {
 
     @include mobile {
       width: 80%;
+      top: 30%;
     }
   }
 }
