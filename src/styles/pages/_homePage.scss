@@ -14,7 +14,7 @@ div {
     section {
       width: $APP_WIDTH;
       &.top {
-        height: calc(100vh - 13px);
+        // height: calc(100vh - 13px);
       }
       &.joy {
         width: 100vw;

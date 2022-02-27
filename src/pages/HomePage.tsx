@@ -1,4 +1,4 @@
-import React, { MouseEvent, MouseEventHandler, useState } from 'react'
+import React, { MouseEvent, MouseEventHandler, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import EvilHeader from '../components/EvilHeader'
 import Joy from '../components/Joy'
@@ -7,8 +7,9 @@ import chien from '../assets/chien.png'
 import lapinvert from '../assets/lapinvert.png'
 import lapinjaune from '../assets/lapinjaune.png'
 import lapinbleu from '../assets/lapinbleu.png'
+import { ReactComponent as COUCOU } from '../assets/Smiley.svg'
 import { useTranslation } from 'react-i18next'
-
+import Modal from '../UI/Modal'
 export interface IHovered {
   id: string,
   color: string
@@ -34,9 +35,26 @@ const HomePage: React.FC = () => {
     setHovered({ id: '', color: '' })
   }
 
+  const [showModal, setShowModal] = useState(true)
 
   return (
     <div className='homepage container'>
+      {showModal &&
+        <Modal onClose={() => setShowModal(false)}>
+          <div className="construction-modal">
+            <COUCOU onClick={() => setShowModal(false)} />
+            <h2>Coucou </h2>
+
+            <p>Veuillez prendre note que ce site est en construction. Les pages seront accessibles sous peu.</p>
+            <p>Pour communiquer avec moi, vous pouvez me rejoindre par courriel au{' '}
+            </p>
+            <a
+              href="mailto: notsoevil.ink@gmail.com?subject=[DEMANDE D'INFO]">
+              notsoevil.ink@gmail.com
+            </a>
+          </div>
+        </Modal>}
+
       <section className='top'>
         <EvilHeader />
         <div className='text'>
@@ -69,7 +87,7 @@ const HomePage: React.FC = () => {
           >
             FLASH
           </Link>
-          <Link className={`${hovered.id === 'shop' ? 'hovered' : ''} `}
+          <Link className={`${hovered.id === 'shop' ? 'hovered' : ''} disabled`}
             id='shop'
             to="/shop"
             style={{

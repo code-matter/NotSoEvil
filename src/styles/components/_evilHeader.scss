@@ -1,7 +1,6 @@
 div {
   &.title-logo-container {
     display: flex;
-    justify-content: space-between;
     position: relative;
     margin-top: 5%;
     // width: 100%;
@@ -10,8 +9,10 @@ div {
         &:hover {
           cursor: pointer;
         }
-        width: $APP_WIDTH;
-        margin-left: -15px;
+        width: $APP_WIDTH * 0.8;
+        position: relative;
+        left: -20px;
+        top: 25px;
         margin-top: 6px;
         margin-bottom: 22px;
         @include not-mobile {
