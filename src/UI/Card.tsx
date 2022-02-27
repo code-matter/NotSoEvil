@@ -1,12 +1,13 @@
 import React, { ReactNode } from 'react'
 
 export interface ICard {
-  children: ReactNode
+  children: ReactNode,
+  customPagging: number
 }
 
-const Card = ({ children }: ICard) => {
+const Card = ({ children, customPagging }: ICard) => {
   return (
-    <div className="card-container">
+    <div className="card-container" style={{ padding: customPagging }}>
       {children}
     </div>
   )
