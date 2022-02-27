@@ -77,5 +77,10 @@
     "text11": "Merci pour votre intérêt envers mon art, sachez que c'est grandement apprécié.",
     "text12": "Au plaisir de créer avec vous!",
     "alert": "YOUPII!! Ta demande de rendez-vous est belle et bien partie, assures-toi de vérifier tes courriels. À BIENTÔT !!"
+  },
+  "modal": {
+    "hey": "Coucou",
+    "1st_para": "Veuillez prendre note que ce site est en construction. Les pages seront accessibles sous peu.",
+    "2nd_para": "Pour communiquer avec moi, vous pouvez me rejoindre par courriel au "
   }
 }

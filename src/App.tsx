@@ -10,7 +10,8 @@ import { useState } from 'react';
 import Shop from './pages/Shop';
 
 function App() {
-  const [lang, setLang] = useState('fr')
+  const [lang, setLang] = useState(navigator.language.slice(0, 2))
+
   const routes = [
     {
       id: 'home',
@@ -34,15 +35,13 @@ function App() {
         <p className={lang === "fr" ? 'active' : 'inactive'}
           onClick={() => {
             i18next.changeLanguage('fr')
-            console.log(i18next.language)
-            setLang(i18next.language)
+            setLang('fr')
           }}>FR</p>
         <span></span>
         <p className={lang === "en" ? 'active' : 'inactive'}
           onClick={() => {
             i18next.changeLanguage('en')
-            console.log(i18next.language)
-            setLang(i18next.language)
+            setLang('en')
           }}>EN</p>
       </div>
       <Routes>

@@ -43,10 +43,10 @@ const HomePage: React.FC = () => {
         <Modal onClose={() => setShowModal(false)}>
           <div className="construction-modal">
             <COUCOU onClick={() => setShowModal(false)} />
-            <h2>Coucou </h2>
+            <h2>{t('modal.hey')}</h2>
 
-            <p>Veuillez prendre note que ce site est en construction. Les pages seront accessibles sous peu.</p>
-            <p>Pour communiquer avec moi, vous pouvez me rejoindre par courriel au{' '}
+            <p>{t('modal.1st_para')}</p>
+            <p>{t('modal.2nd_para')}{' '}
             </p>
             <a
               href="mailto: notsoevil.ink@gmail.com?subject=[DEMANDE D'INFO]">
