@@ -89,10 +89,10 @@ const RDV = () => {
     })
     if (process.env.NODE_ENV === 'production') {
       emailjs.send(
-        process.env.REACT_SERVICE_ID as string,
-        process.env.REACT_APP_TEMPLATE_ID as string,
+        SECRETS.SERVICE_ID,
+        SECRETS.TEMPLATE_ID,
         form,
-        process.env.REACT_APP_USER_ID as string)
+        SECRETS.USER_ID)
         .then(() => alert(t('form.alert')))
         .then(() => navigate('/'))
     } else {
