@@ -1,4 +1,4 @@
-import React, { MouseEvent, MouseEventHandler, useEffect, useState } from 'react'
+import React, { MouseEvent, MouseEventHandler, useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import EvilHeader from '../components/EvilHeader'
 import Joy from '../components/Joy'
@@ -87,7 +87,7 @@ const HomePage: React.FC = () => {
           >
             FLASH
           </Link>
-          <Link className={`${hovered.id === 'shop' ? 'hovered' : ''} disabled`}
+          <Link className={`${hovered.id === 'shop' ? 'hovered' : ''}`}
             id='shop'
             to="/shop"
             style={{
