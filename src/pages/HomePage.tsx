@@ -40,7 +40,7 @@ const HomePage: React.FC = () => {
   return (
     <div className='homepage container'>
       {showModal &&
-        <Modal onClose={() => setShowModal(false)}>
+        <Modal onClose={() => setShowModal(false)} backdropClose>
           <div className="construction-modal">
             <COUCOU onClick={() => setShowModal(false)} />
             <h2>{t('modal.hey')}</h2>

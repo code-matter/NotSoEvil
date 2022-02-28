@@ -8,6 +8,7 @@ import CustomMultiChoice from "../components/CustomMultiChoice";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { firebaseDB, firebaseStorage } from "../utils/firebase";
 import { doc, setDoc } from "firebase/firestore";
+import CustomSelect from "../components/CustomSelect";
 
 export interface IAdminHome {
 
@@ -76,15 +77,11 @@ const AdminHome = ({ }: IAdminHome) => {
 
   return (
     <div>
-      {showModal && <Modal onClose={() => setShowModal(false)}>
+      {showModal && <Modal onClose={() => setShowModal(false)} backdropClose={false}>
         <form onSubmit={sendForm} onChange={handleFormChange}>
-          <CustomInput id="name" label="Name" />
+          <CustomInput id="name" label="Name" darkTheme />
           <CustomInput id="price" label="Price" />
-          <label htmlFor="rarity">Rarity</label>
-          <select id="rarity">
-            <option id="unique" value="unique">UNIQUE</option>
-            <option id="multiples" value="multiples">MULTIPLES</option>
-          </select>
+          <CustomSelect darkTheme id="rarity" label="Rarity" selects={[{ id: 'unique', label: 'UNIQUE' }, { id: 'multiples', label: 'MULTIPLES' }]} />
           <CustomInput id="size" label="Size" />
           <CustomInput id="type" label="Type" />
           <input type="file" name="image" id="image" onChange={e => e.target.files && setFile(e.target.files[0])} />

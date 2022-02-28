@@ -3,14 +3,15 @@ export interface ICustomInput {
   label: string,
   subLabel?: string,
   isRequired?: boolean,
+  darkTheme?: boolean,
   hide?: boolean
   onChange?: (e: any) => {}
 }
 
-const CustomInput = ({ id, label, subLabel, isRequired, hide = false, ...props }: ICustomInput) => {
+const CustomInput = ({ id, label, subLabel, isRequired, darkTheme, hide = false, ...props }: ICustomInput) => {
   return (
-    <div className='custom-intput-container' style={{ margin: '5px 0' }}>
-      <h3 className={`${isRequired ? 'required' : ''}`}>
+    <div className={`custom-intput-container ${darkTheme ? 'dark' : ''}`} style={{ margin: '5px 0' }}>
+      <h3 className={`${isRequired ? 'required' : ''} `} >
         {label}
       </h3>
       {!hide && <>

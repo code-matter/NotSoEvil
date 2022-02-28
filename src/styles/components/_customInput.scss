@@ -48,6 +48,24 @@ div {
         color: $label-color;
       }
     }
+    select {
+      width: 100%;
+      padding: 10px;
+      background-color: $light-gray;
+      color: $sublabel-color;
+      border: none;
+      outline: none;
+      margin: 8px 0;
+      border-radius: 6px;
+      text-transform: uppercase;
+      &:focus {
+        background-color: rgba(#4253aa, 0.2);
+        color: $label-color;
+      }
+      option {
+        color: $white;
+      }
+    }
 
     div {
       &.checkbox {
@@ -82,6 +100,32 @@ div {
           align-self: baseline;
           margin-right: 8px;
         }
+      }
+    }
+  }
+  &.dark {
+    h3,
+    p,
+    label,
+    textarea {
+      color: $white;
+    }
+    input,
+    textarea,
+    select {
+      &[type="text"] {
+        width: 100%;
+        padding: 10px 10px;
+      }
+      background-color: $light-gray;
+      color: $sublabel-color;
+      border: none;
+      outline: none;
+      margin: 8px 0;
+      border-radius: 6px;
+      &:focus {
+        background-color: rgba($white, 0.6);
+        color: $label-color;
       }
     }
   }
