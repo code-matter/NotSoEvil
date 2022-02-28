@@ -5,7 +5,6 @@ export interface ICustomInput {
   isRequired?: boolean,
   darkTheme?: boolean,
   hide?: boolean
-  onChange?: (e: any) => {}
 }
 
 const CustomInput = ({ id, label, subLabel, isRequired, darkTheme, hide = false, ...props }: ICustomInput) => {
