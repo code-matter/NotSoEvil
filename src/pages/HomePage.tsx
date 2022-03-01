@@ -30,7 +30,6 @@ const HomePage: React.FC = () => {
       color: RANDOM_COLORS[Math.floor(Math.random() * RANDOM_COLORS.length)]
     })
   }
-
   const handleMouseLeave = () => {
     setHovered({ id: '', color: '' })
   }
@@ -63,7 +62,7 @@ const HomePage: React.FC = () => {
             D'LA <span className='mauve'>BONNE HUMEUR</span></h3>
         </div>
         <div className='homepage-links' >
-          <Link className={`${hovered.id === 'rdv' ? 'hovered' : ''} disabled`}
+          <Link className={`${hovered.id === 'rdv' ? 'hovered' : ''} `}
             id='rdv'
             to="/form"
             style={{
@@ -75,7 +74,7 @@ const HomePage: React.FC = () => {
           >
             {t('general.rdv')}
           </Link>
-          <Link className={`${hovered.id === 'flash' ? 'hovered' : ''} disabled`}
+          <Link className={`${hovered.id === 'flash' ? 'hovered' : ''} `}
             id='flash'
             to="/flash"
             style={{
@@ -99,7 +98,7 @@ const HomePage: React.FC = () => {
           >
             {t('general.shop')}
           </Link>
-          <Link className={`${hovered.id === 'plus' ? 'hovered' : ''} disabled`}
+          <Link className={`${hovered.id === 'plus' ? 'hovered' : ''} `}
             id='plus'
             to="/plus"
             style={{

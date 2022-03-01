@@ -15,14 +15,14 @@ const ShopItem = ({
   price
 }: IShopItem) => {
   return (
-    <Card customPagging={20}>
+    <>
       <h2>{id}</h2>
       <img className="item-img" src={image} alt={image} />
       <div>
         Size:{size}
         Price: {price}
       </div>
-    </Card>
+    </>
   )
 }
 

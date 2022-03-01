@@ -2,12 +2,12 @@ import React, { ReactNode } from 'react'
 
 export interface ICard {
   children: ReactNode,
-  customPagging: number
+  customPadding?: number
 }
 
-const Card = ({ children, customPagging }: ICard) => {
+const Card = ({ children, customPadding }: ICard) => {
   return (
-    <div className="card-container" style={{ padding: customPagging }}>
+    <div className="card-container" style={{ padding: customPadding }}>
       {children}
     </div>
   )

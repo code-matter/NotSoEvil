@@ -7,6 +7,9 @@ import { collection, doc, getDoc, getDocs, query, where } from "firebase/firesto
 import { firebaseDB, firebaseStorage } from '../utils/firebase';
 import { getDownloadURL, ref } from 'firebase/storage';
 import { FlashesService } from '../services/flashes.services';
+import { ReactComponent as CONSTRUCTION } from '../assets/construction.svg'
+import Card from '../components/UI/Card';
+import Button from '../components/UI/Button';
 
 export interface IShop {
 }
@@ -39,7 +42,13 @@ const Shop = ({ }: IShop) => {
 
   return (
     <div className='shop page-wrap'>
-      {!isLoading &&
+      {/* <div className='construction-zone'>
+        <CONSTRUCTION />
+        <h2>Ohh quelqu'un de curieux?</h2>
+        <p>Revient sous peu, tu pourras y voir plein de couleur et bin de la bonne humeur!</p>
+        <Button label="BACK" onClick={() => navigation('/')} />
+      </div> */}
+      {/* {!isLoading &&
         <>
           <span className="go-back-btn" onClick={() => navigation('/')}>
             <BsArrowLeft color='#ff7a9f' size={24} />
@@ -70,7 +79,7 @@ const Shop = ({ }: IShop) => {
             </div>
           </div>
         </>
-      }
+      } */}
     </div>
   )
 }
