@@ -12,7 +12,8 @@ import Login from './pages/Login';
 import { firebaseAuth } from './utils/firebase';
 import { UserContext } from './context/UserContext';
 import AdminHome from './pages/AdminHome';
-
+import Button from './components/UI/Button';
+import { ReactComponent as CONSTRUCTION } from './assets/construction.svg'
 function App() {
   const [lang, setLang] = useState(navigator.language.slice(0, 2))
   const [currentUser, setCurrentUser] = useState<any>()
@@ -49,16 +50,16 @@ function App() {
       path: '/',
       element: HomePage
     },
-    {
-      id: 'form',
-      path: '/form',
-      element: RDV
-    },
-    {
-      id: 'shop',
-      path: '/shop',
-      element: Shop
-    },
+    // {
+    //   id: 'form',
+    //   path: '/form',
+    //   element: RDV
+    // },
+    // {
+    //   id: 'shop',
+    //   path: '/shop',
+    //   element: Shop
+    // },
     {
       id: 'login',
       path: '/admin/login',
@@ -96,6 +97,14 @@ function App() {
               path={route.path}
               element={<route.element />} />
           )}
+          <Route path="*" element={
+            <div className='construction-zone'>
+              <CONSTRUCTION />
+              <h2>Ohh quelqu'un de curieux?</h2>
+              <p>Revient sous peu, tu pourras y voir plein de couleur et bin de la bonne humeur!</p>
+              <Button label="BACK" onClick={() => window.location.replace('/')} />
+            </div>
+          } />
         </Routes>
       </div>
     </UserContext.Provider>
