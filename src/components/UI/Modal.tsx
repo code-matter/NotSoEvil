@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { RANDOM_COLORS } from "../pages/HomePage";
+import { RANDOM_COLORS } from "../../pages/HomePage";
 import { motion } from "framer-motion"
 
 const Backdrop = (props: any) => {

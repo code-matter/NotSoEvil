@@ -1,6 +1,7 @@
 import React, { FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import CustomInput from '../components/CustomInput'
+import Button from '../components/UI/Button'
 import { UsersService } from '../services/users.services'
 export interface ILogin {
 
@@ -38,13 +39,13 @@ const Login = ({ }: ILogin) => {
       <form onSubmit={sendForm} onChange={handleFormChange}>
         <CustomInput id="username" label="username" />
         <CustomInput id="password" label="password" />
-        <button
-          type="submit"> SEND
-        </button>
-        <button
+        <Button
+          label="SEND"
+          type="submit" />
+        <Button
+          label="LOG OUT"
           type="button"
-          onClick={() => UsersService.logout()}>LOG OUT
-        </button>
+          onClick={() => UsersService.logout()} />
       </form>
     </div>
   )

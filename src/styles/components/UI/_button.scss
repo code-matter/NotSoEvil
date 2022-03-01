@@ -1,0 +1,17 @@
+button {
+  &.custom-btn {
+    padding: 10px;
+    background-color: $mauve;
+    border: none;
+    outline: none;
+    border-radius: $radius-sm;
+    color: $label-color;
+    font-weight: 600;
+    margin: 6px 0;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      cursor: pointer;
+      background-color: rgba($mauve, 0.8);
+    }
+  }
+}

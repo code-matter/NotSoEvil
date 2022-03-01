@@ -9,7 +9,7 @@ import lapinjaune from '../assets/lapinjaune.png'
 import lapinbleu from '../assets/lapinbleu.png'
 import { ReactComponent as COUCOU } from '../assets/Smiley.svg'
 import { useTranslation } from 'react-i18next'
-import Modal from '../UI/Modal'
+import Modal from '../components/UI/Modal'
 export interface IHovered {
   id: string,
   color: string

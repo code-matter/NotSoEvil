@@ -2,7 +2,7 @@ import { UserContext } from "../context/UserContext"
 import React, { FormEvent, useContext, useEffect, useRef, useState } from 'react';
 import { UsersService } from "../services/users.services";
 import { useNavigate } from "react-router-dom";
-import Modal from "../UI/Modal";
+import Modal from "../components/UI/Modal";
 import CustomInput from "../components/CustomInput";
 import CustomMultiChoice from "../components/CustomMultiChoice";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
@@ -10,6 +10,7 @@ import { firebaseDB, firebaseStorage } from "../utils/firebase";
 import { doc, setDoc } from "firebase/firestore";
 import CustomSelect from "../components/CustomSelect";
 import { ReactComponent as COUCOU } from '../assets/Smiley.svg'
+import Button from "../components/UI/Button";
 
 export interface IAdminHome {
 
@@ -108,17 +109,16 @@ const AdminHome = ({ }: IAdminHome) => {
               name="image"
               id="image"
               onChange={e => e.target.files && setFile(e.target.files[0])} />
-            <button
-              disabled={!form.name || !form.image}>
-              SUBMIT
-            </button>
+            <Button
+              label="Add Item"
+              disabled={!form.name || !form.image} />
           </form>
         </div>
       </Modal>}
 
       HELLO {userContext?.email}
 
-      <button onClick={() => setShowModal(true)}>Add Shop Item</button>
+      <Button label="Add Item" onClick={() => setShowModal(true)} />
 
       <button
         type="button"
