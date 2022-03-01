@@ -115,8 +115,8 @@ div {
     select {
       &[type="text"] {
         width: 100%;
-        padding: 10px 10px;
       }
+      padding: 10px 10px;
       background-color: $light-gray;
       color: $sublabel-color;
       border: none;
@@ -126,6 +126,9 @@ div {
       &:focus {
         background-color: rgba($white, 0.6);
         color: $label-color;
+      }
+      option {
+        background-color: rgba($blue, 0.4);
       }
     }
   }

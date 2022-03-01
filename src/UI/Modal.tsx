@@ -11,7 +11,7 @@ const ModalOverlay = (props: any) => {
   return (
     <motion.div className="modal"
       initial={{ y: '100vh', x: '-50%' }}
-      animate={{ y: 0 }}
+      animate={{ y: '-25vh', x: '-50%' }}
       transition={{
         type: "spring",
         damping: 50,
@@ -28,13 +28,13 @@ const portalEl = document.getElementById("overlays");
 
 const Modal = (props: any) => {
   return (
-    <>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       {ReactDOM.createPortal(<Backdrop onClose={props.backdropClose ? props.onClose : null} />, portalEl as HTMLElement)}
       {ReactDOM.createPortal(
         <ModalOverlay>{props.children}</ModalOverlay>,
         portalEl as HTMLElement
       )}
-    </>
+    </div>
   );
 };
 

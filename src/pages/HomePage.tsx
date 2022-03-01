@@ -38,7 +38,7 @@ const HomePage: React.FC = () => {
   const [showModal, setShowModal] = useState(true)
 
   return (
-    <div className='homepage container'>
+    <div className='homepage'>
       {showModal &&
         <Modal onClose={() => setShowModal(false)} backdropClose>
           <div className="construction-modal">

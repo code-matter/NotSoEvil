@@ -9,6 +9,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { firebaseDB, firebaseStorage } from "../utils/firebase";
 import { doc, setDoc } from "firebase/firestore";
 import CustomSelect from "../components/CustomSelect";
+import { ReactComponent as COUCOU } from '../assets/Smiley.svg'
 
 export interface IAdminHome {
 
@@ -76,17 +77,43 @@ const AdminHome = ({ }: IAdminHome) => {
 
 
   return (
-    <div>
+    <>
       {showModal && <Modal onClose={() => setShowModal(false)} backdropClose={false}>
-        <form onSubmit={sendForm} onChange={handleFormChange}>
-          <CustomInput id="name" label="Name" darkTheme />
-          <CustomInput id="price" label="Price" />
-          <CustomSelect darkTheme id="rarity" label="Rarity" selects={[{ id: 'unique', label: 'UNIQUE' }, { id: 'multiples', label: 'MULTIPLES' }]} />
-          <CustomInput id="size" label="Size" />
-          <CustomInput id="type" label="Type" />
-          <input type="file" name="image" id="image" onChange={e => e.target.files && setFile(e.target.files[0])} />
-          <button disabled={!form.name || !form.image}>SUBMIT</button>
-        </form>
+        <div className='construction-modal no-padding'>
+          <COUCOU onClick={() => setShowModal(false)} />
+          <form onSubmit={sendForm} onChange={handleFormChange}>
+            <CustomInput
+              id="name"
+              label="Name"
+              darkTheme />
+            <CustomInput
+              id="price"
+              label="Price"
+              darkTheme />
+            <CustomSelect
+              id="rarity"
+              label="Rarity"
+              darkTheme
+              selects={[{ id: 'unique', label: 'UNIQUE' }, { id: 'multiples', label: 'MULTIPLES' }]} />
+            <CustomInput
+              id="size"
+              label="Size"
+              darkTheme />
+            <CustomInput
+              id="type"
+              label="Type"
+              darkTheme />
+            <input
+              type="file"
+              name="image"
+              id="image"
+              onChange={e => e.target.files && setFile(e.target.files[0])} />
+            <button
+              disabled={!form.name || !form.image}>
+              SUBMIT
+            </button>
+          </form>
+        </div>
       </Modal>}
 
       HELLO {userContext?.email}
@@ -98,7 +125,7 @@ const AdminHome = ({ }: IAdminHome) => {
         onClick={() => UsersService.logout()}>LOG OUT
       </button>
       <button onClick={() => navigate('/shop')}>GO TO SHOP</button>
-    </div>
+    </>
   )
 }
 
