@@ -19,7 +19,8 @@
     "december": "DECEMBRE",
     "toronto-booking": "BOOKING POUR ",
     "toronto-date": "16 AU 18 MARS",
-    "toronto-location": "CHEZ ALWAYS TATTOO"
+    "toronto-location": "CHEZ ALWAYS TATTOO",
+    "back": "RETOUR"
   },
   "form": {
     "firstName": "Prénom",
@@ -82,5 +83,9 @@
     "hey": "Coucou",
     "1st_para": "Veuillez prendre note que ce site est en construction. Les pages seront accessibles sous peu.",
     "2nd_para": "Pour communiquer avec moi, vous pouvez me rejoindre par courriel au "
+  },
+  "construction": {
+    "curious": "Ohh quelqu'un de curieux?",
+    "come_back": "Revient sous peu, tu pourras y voir plein de couleur et bin de la bonne humeur!"
   }
 }

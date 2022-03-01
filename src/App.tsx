@@ -14,10 +14,11 @@ import { UserContext } from './context/UserContext';
 import AdminHome from './pages/AdminHome';
 import Button from './components/UI/Button';
 import { ReactComponent as CONSTRUCTION } from './assets/construction.svg'
+import { useTranslation } from 'react-i18next';
 function App() {
   const [lang, setLang] = useState(navigator.language.slice(0, 2))
   const [currentUser, setCurrentUser] = useState<any>()
-
+  const { t } = useTranslation()
   useEffect(() => {
     firebaseAuth.onAuthStateChanged((user) => {
       if (user) {
@@ -50,11 +51,11 @@ function App() {
       path: '/',
       element: HomePage
     },
-    // {
-    //   id: 'form',
-    //   path: '/form',
-    //   element: RDV
-    // },
+    {
+      id: 'form',
+      path: '/form',
+      element: RDV
+    },
     // {
     //   id: 'shop',
     //   path: '/shop',
@@ -100,9 +101,9 @@ function App() {
           <Route path="*" element={
             <div className='construction-zone'>
               <CONSTRUCTION />
-              <h2>Ohh quelqu'un de curieux?</h2>
-              <p>Revient sous peu, tu pourras y voir plein de couleur et bin de la bonne humeur!</p>
-              <Button label="BACK" onClick={() => window.location.replace('/')} />
+              <h2>{t('construction.curious')}</h2>
+              <p>{t('construction.come_back')}</p>
+              <Button label={t('general.back')} onClick={() => window.location.replace('/')} />
             </div>
           } />
         </Routes>
