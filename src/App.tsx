@@ -1,7 +1,9 @@
 import './styles/App.scss';
 import {
   Routes,
-  Route
+  Route,
+  useNavigate,
+  useMatch
 } from "react-router-dom";
 import HomePage from './pages/HomePage';
 import RDV from './pages/RDV';
@@ -15,10 +17,13 @@ import AdminHome from './pages/AdminHome';
 import Button from './components/UI/Button';
 import { ReactComponent as CONSTRUCTION } from './assets/construction.svg'
 import { useTranslation } from 'react-i18next';
+import { BsArrowLeft } from 'react-icons/bs';
 function App() {
   const [lang, setLang] = useState(navigator.language.slice(0, 2))
   const [currentUser, setCurrentUser] = useState<any>()
   const { t } = useTranslation()
+  const navigate = useNavigate()
+  const isHome = useMatch('/');
   useEffect(() => {
     firebaseAuth.onAuthStateChanged((user) => {
       if (user) {
@@ -79,17 +84,22 @@ function App() {
     <UserContext.Provider value={currentUser}>
       <div className="App">
         <div className='language-container'>
-          <p className={lang === "fr" ? 'active' : 'inactive'}
-            onClick={() => {
-              i18next.changeLanguage('fr')
-              setLang('fr')
-            }}>FR</p>
-          <span></span>
-          <p className={lang === "en" ? 'active' : 'inactive'}
-            onClick={() => {
-              i18next.changeLanguage('en')
-              setLang('en')
-            }}>EN</p>
+          <span className="go-back-btn" onClick={() => navigate('/')}>
+            {!isHome ? <BsArrowLeft color='#ff7a9f' size={24} /> : <></>}
+          </span>
+          <div className="languages">
+            <p className={lang === "fr" ? 'active' : 'inactive'}
+              onClick={() => {
+                i18next.changeLanguage('fr')
+                setLang('fr')
+              }}>FR</p>
+            <span className="spacer"></span>
+            <p className={lang === "en" ? 'active' : 'inactive'}
+              onClick={() => {
+                i18next.changeLanguage('en')
+                setLang('en')
+              }}>EN</p>
+          </div>
         </div>
         <Routes>
           {routes.map(route =>
@@ -100,10 +110,11 @@ function App() {
           )}
           <Route path="*" element={
             <div className='construction-zone'>
+              <div className='construction-text'>
+                <h2>{t('construction.curious')}</h2>
+                <p>{t('construction.come_back')}</p>
+              </div>
               <CONSTRUCTION />
-              <h2>{t('construction.curious')}</h2>
-              <p>{t('construction.come_back')}</p>
-              <Button label={t('general.back')} onClick={() => window.location.replace('/')} />
             </div>
           } />
         </Routes>

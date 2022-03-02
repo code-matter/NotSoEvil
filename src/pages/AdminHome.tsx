@@ -57,21 +57,25 @@ const AdminHome = ({ }: IAdminHome) => {
         tmpForm[info] = form[info]
       }
     })
-    console.log('tmpForm: ', tmpForm);
     if (file) {
       const storageRef = ref(firebaseStorage, `flashes/${form.name}`);
       await uploadBytes(storageRef, file)
       const imgUrl = await getURL(`flashes/${form.name}`)
       if (imgUrl) {
-        console.log(imgUrl);
-        await setDoc(doc(firebaseDB, "shop-flash", form.name), {
-          name: form.name,
-          type: form.type,
-          price: form.price,
-          image: imgUrl,
-          rarity: form.rarity,
-          size: form.size
-        })
+        try {
+          const d = await setDoc(doc(firebaseDB, "shop-flash", form.name), {
+            name: form.name,
+            type: form.type,
+            price: form.price,
+            image: imgUrl,
+            rarity: form.rarity || 'unique',
+            size: form.size
+          })
+          console.log(d);
+          document.location.reload()
+        } catch (error) {
+          console.error(error)
+        }
       }
     }
   }
@@ -111,6 +115,7 @@ const AdminHome = ({ }: IAdminHome) => {
               onChange={e => e.target.files && setFile(e.target.files[0])} />
             <Button
               label="Add Item"
+              type="submit"
               disabled={!form.name || !form.image} />
           </form>
         </div>

@@ -28,7 +28,7 @@ const CustomSelect = ({
         <select id={id} {...props}>
           {selects.map((select) => {
             return (
-              <option value={select.id}>{select.label}</option>
+              <option key={select.id} value={select.id}>{select.label}</option>
             )
           })}
         </select></>}

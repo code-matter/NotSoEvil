@@ -30,6 +30,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   position: relative;
   -webkit-tap-highlight-color: transparent;
   input {
@@ -70,36 +71,62 @@
     }
     &.language-container {
       position: absolute;
+      top: 25px;
+      width: 97%;
       z-index: 999;
-      top: 40px;
-      right: 4%;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
       height: 1.2rem;
+      @include mobile {
+        top: 40px;
+        width: 100%;
+      }
 
-      p {
-        transition: all ease-in-out 0.2s;
-        &.active {
-          font-weight: bolder;
-          color: #4169df;
-        }
-        &.inactive {
-          color: rgba(#385cc7, 0.38);
-        }
-        &:hover {
-          cursor: pointer;
-        }
-        @include mobile {
-          font-size: 1.3em;
+      div {
+        &.languages {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          p {
+            transition: all ease-in-out 0.2s;
+            &.active {
+              font-weight: bolder;
+              color: #4169df;
+            }
+            &.inactive {
+              color: rgba(#385cc7, 0.38);
+            }
+            &:hover {
+              cursor: pointer;
+            }
+            @include mobile {
+              font-size: 1.3em;
+            }
+          }
+          span {
+            &.spacer {
+              width: 3px;
+              background-color: $mauve;
+              height: 100%;
+              margin: 0 10px;
+            }
+          }
         }
       }
 
       span {
-        width: 3px;
-        background-color: $mauve;
-        height: 100%;
-        margin: 0 10px;
+        &.go-back-btn {
+          transition: all ease-in-out 0.3s;
+          @include mobile {
+            transform: scale(1.3);
+          }
+          &:hover {
+            cursor: pointer;
+            animation: shake 0.3s forwards;
+          }
+        }
       }
 
       @include mobile {
@@ -110,7 +137,6 @@
     &.construction-zone {
       position: absolute;
       width: 100%;
-      max-width: 100vw;
       top: 50%;
       left: 50%;
       padding: 40px 20px;
@@ -121,6 +147,22 @@
       align-items: center;
       color: $label-color;
       text-align: center;
+      div {
+        &.construction-text {
+          position: absolute;
+          top: 20%;
+          left: 42%;
+          width: 26%;
+          text-align: left;
+          @include mobile {
+            bottom: 20px;
+            top: unset;
+            left: unset;
+            width: 100%;
+            text-align: center;
+          }
+        }
+      }
       h2 {
         margin: 20px 0 10px 0;
         letter-spacing: 0.1em;
@@ -139,4 +181,14 @@
       }
     }
   }
+}
+
+.page-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  min-height: 90vh;
+  width: 100%;
+  max-width: 100vw;
 }

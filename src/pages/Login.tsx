@@ -32,6 +32,7 @@ const Login = ({ }: ILogin) => {
       }
     })
     UsersService.login(form.username, form.password);
+
     navigate('/admin/home')
   }
   return (

@@ -35,41 +35,18 @@ const Shop = ({ }: IShop) => {
     fetchData();
   }, [])
 
-  const testHandle = async () => {
-    const res = await getDownloadURL(ref(firebaseStorage, 'flashes/fraise.png'))
-    console.log('res ', res)
-  }
 
   return (
-    <div className='shop page-wrap'>
-      {/* <div className='construction-zone'>
-        <CONSTRUCTION />
-        <h2>Ohh quelqu'un de curieux?</h2>
-        <p>Revient sous peu, tu pourras y voir plein de couleur et bin de la bonne humeur!</p>
-        <Button label="BACK" onClick={() => navigation('/')} />
-      </div> */}
-      {/* {!isLoading &&
-        <>
-          <span className="go-back-btn" onClick={() => navigation('/')}>
-            <BsArrowLeft color='#ff7a9f' size={24} />
-          </span>
+    <>
+      {!isLoading &&
+        <div className='shop page-wrap'>
           <div className="shop-container">
             <ShopFilter />
-            <button
-              onClick={() => {
-                console.log('shopFlash', shopFlash);
-                testHandle()
-                // shopFlash.forEach((flash: any) => {
-                //   console.log(flash.id, '::', flash.data());
-                // });
-              }}
-              disabled={isLoading}
-            >CLG</button>
             <div className="shop-items">
               {shopFlash.map((flash: any, idx: number) => {
-                console.log(flash.data());
                 return (
                   <ShopItem
+                    key={idx}
                     id={flash.data().name}
                     image={flash.data().image}
                     size={flash.data().size}
@@ -78,9 +55,9 @@ const Shop = ({ }: IShop) => {
               })}
             </div>
           </div>
-        </>
-      } */}
-    </div>
+        </div>
+      }
+    </>
   )
 }
 

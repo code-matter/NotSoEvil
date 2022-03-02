@@ -1,4 +1,4 @@
-import React, { MouseEvent, MouseEventHandler, useContext, useEffect, useState } from 'react'
+import React, { MouseEvent, MouseEventHandler, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import EvilHeader from '../components/EvilHeader'
 import Joy from '../components/Joy'
@@ -8,7 +8,7 @@ import lapinvert from '../assets/lapinvert.png'
 import lapinjaune from '../assets/lapinjaune.png'
 import lapinbleu from '../assets/lapinbleu.png'
 import { ReactComponent as COUCOU } from '../assets/Smiley.svg'
-import { useTranslation } from 'react-i18next'
+import { useSSR, useTranslation } from 'react-i18next'
 import Modal from '../components/UI/Modal'
 export interface IHovered {
   id: string,
@@ -16,9 +16,6 @@ export interface IHovered {
 }
 
 export const RANDOM_COLORS = ['#E1C3FF', '#15B7FF', '#2DE4D1', '#FACD01']
-
-
-
 const HomePage: React.FC = () => {
   const isMobile = window.innerWidth < 500;
   const { t } = useTranslation();
@@ -35,10 +32,20 @@ const HomePage: React.FC = () => {
   }
 
   const [showModal, setShowModal] = useState(true)
+  const [hasRead, setHasRead] = useState(false)
+
+  useEffect(() => {
+    const hasRead = sessionStorage.getItem('hasRead')
+    if (showModal && !hasRead) {
+      sessionStorage.setItem('hasRead', '1')
+      setHasRead(true)
+    }
+  }, [showModal])
+
 
   return (
     <div className='homepage'>
-      {showModal &&
+      {showModal && hasRead &&
         <Modal onClose={() => setShowModal(false)} backdropClose>
           <div className="construction-modal">
             <COUCOU onClick={() => setShowModal(false)} />
