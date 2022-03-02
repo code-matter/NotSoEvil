@@ -83,7 +83,7 @@ function App() {
   return (
     <UserContext.Provider value={currentUser}>
       <div className="App">
-        <div className='language-container' style={{ top: isHome ? '25px' : '' }}>
+        <div className='language-container'>
           <span className="go-back-btn" onClick={() => navigate('/')}>
             {!isHome ? <BsArrowLeft color='#ff7a9f' size={24} /> : <></>}
           </span>
