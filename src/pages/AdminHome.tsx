@@ -6,11 +6,12 @@ import Modal from "../components/UI/Modal";
 import CustomInput from "../components/CustomInput";
 import CustomMultiChoice from "../components/CustomMultiChoice";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { firebaseDB, firebaseStorage } from "../utils/firebase";
+import { firebaseAuth, firebaseDB, firebaseStorage } from "../utils/firebase";
 import { doc, setDoc } from "firebase/firestore";
 import CustomSelect from "../components/CustomSelect";
 import { ReactComponent as COUCOU } from '../assets/Smiley.svg'
 import Button from "../components/UI/Button";
+import { onAuthStateChanged } from "firebase/auth";
 
 export interface IAdminHome {
 
@@ -24,13 +25,14 @@ const AdminHome = ({ }: IAdminHome) => {
   const [form, setForm] = useState<any>({})
 
   useEffect(() => {
-    const time = setTimeout(() => {
-      if (!userContext) {
-        navigate('/')
+    const onChangeUser = onAuthStateChanged(firebaseAuth, (user) => {
+      if (!user) {
+        navigate('/admin/login')
       }
-    }, 500)
-    return () => clearTimeout(time)
-  }, [navigate, userContext])
+    })
+    return () => onChangeUser()
+  }, [navigate])
+
 
   const handleFormChange = (event: FormEvent) => {
     setForm(
@@ -80,7 +82,6 @@ const AdminHome = ({ }: IAdminHome) => {
     }
   }
 
-
   return (
     <>
       {showModal && <Modal onClose={() => setShowModal(false)} backdropClose={false}>
@@ -121,7 +122,7 @@ const AdminHome = ({ }: IAdminHome) => {
         </div>
       </Modal>}
 
-      HELLO {userContext?.email}
+      HELLO {userContext?.state?.user?.email}
 
       <Button label="Add Item" onClick={() => setShowModal(true)} />
 

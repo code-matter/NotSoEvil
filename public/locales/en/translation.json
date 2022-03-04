@@ -20,7 +20,10 @@
     "toronto-booking": "BOOKING FOR ",
     "toronto-date": "MARCH 16TH TO MARCH 18TH",
     "toronto-location": "AT ALWAYS TATTOO",
-    "back": "BACK"
+    "back": "BACK",
+    "login": "LOG IN",
+    "username": "Username",
+    "password": "Password"
   },
   "form": {
     "firstName": "First Name",

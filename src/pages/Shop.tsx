@@ -39,7 +39,7 @@ const Shop = ({ }: IShop) => {
   return (
     <>
       {!isLoading &&
-        <div className='shop page-wrap'>
+        <div className='shop'>
           <div className="shop-container">
             <ShopFilter />
             <div className="shop-items">

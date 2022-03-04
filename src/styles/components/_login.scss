@@ -1,0 +1,8 @@
+div {
+  &.login-container {
+    width: 30%;
+    @include mobile {
+      width: 70%;
+    }
+  }
+}

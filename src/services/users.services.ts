@@ -8,7 +8,12 @@ import { firebaseAuth } from "../utils/firebase";
 const login = async (email: string, password: string) => {
   try {
     await setPersistence(firebaseAuth, browserSessionPersistence);
-    await signInWithEmailAndPassword(firebaseAuth, email, password);
+    const user = await signInWithEmailAndPassword(
+      firebaseAuth,
+      email,
+      password
+    );
+    return user;
   } catch (error) {
     console.error(error);
   }

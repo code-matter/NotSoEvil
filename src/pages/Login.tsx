@@ -1,7 +1,10 @@
-import React, { FormEvent, useState } from 'react'
+import React, { FormEvent, useContext, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import CustomInput from '../components/CustomInput'
 import Button from '../components/UI/Button'
+import { USER_KEYS } from '../constants/reducerKeys'
+import { UserContext } from '../context/UserContext'
 import { UsersService } from '../services/users.services'
 export interface ILogin {
 
@@ -9,8 +12,9 @@ export interface ILogin {
 
 const Login = ({ }: ILogin) => {
   const [form, setForm] = useState<any>({})
+  const { t } = useTranslation()
   const navigate = useNavigate()
-
+  const userContext = useContext(UserContext);
   const handleFormChange = (event: FormEvent) => {
     setForm(
       {
@@ -23,7 +27,7 @@ const Login = ({ }: ILogin) => {
       })
   }
 
-  const sendForm = (e: FormEvent) => {
+  const sendForm = async (e: FormEvent) => {
     e.preventDefault();
     const tmpForm: any = { ...form };
     Object.keys(form).forEach((info: string) => {
@@ -31,22 +35,19 @@ const Login = ({ }: ILogin) => {
         tmpForm[info] = form[info]
       }
     })
-    UsersService.login(form.username, form.password);
-
+    const user = await UsersService.login(form.username, form.password);
+    userContext.dispatch({ type: USER_KEYS.SET_USER, payload: user?.user })
     navigate('/admin/home')
   }
+
   return (
-    <div>
+    <div className="login-container">
       <form onSubmit={sendForm} onChange={handleFormChange}>
-        <CustomInput id="username" label="username" />
-        <CustomInput id="password" label="password" />
+        <CustomInput id="username" label={t('general.username')} />
+        <CustomInput id="password" label={t('general.password')} />
         <Button
-          label="SEND"
+          label={t('general.login')}
           type="submit" />
-        <Button
-          label="LOG OUT"
-          type="button"
-          onClick={() => UsersService.logout()} />
       </form>
     </div>
   )

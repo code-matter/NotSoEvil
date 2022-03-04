@@ -20,7 +20,10 @@
     "toronto-booking": "BOOKING POUR ",
     "toronto-date": "16 AU 18 MARS",
     "toronto-location": "CHEZ ALWAYS TATTOO",
-    "back": "RETOUR"
+    "back": "RETOUR",
+    "login": "SE CONNECTER",
+    "username": "Utilisateur",
+    "password": "Mot de passe"
   },
   "form": {
     "firstName": "Prénom",
