@@ -27,7 +27,7 @@ const Header = ({ }: IHeader) => {
             i18next.changeLanguage('fr')
             userContext.dispatch({ type: USER_KEYS.SET_LANGUAGE, payload: 'fr' })
           }}>FR</p>
-        <span className="spacer" onClick={() => navigate('admin/home')}></span>
+        <span className="spacer"></span>
         <p className={userContext?.state?.language === "en" ? 'active' : 'inactive'}
           onClick={() => {
             i18next.changeLanguage('en')
