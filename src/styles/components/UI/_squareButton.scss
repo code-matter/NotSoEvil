@@ -1,0 +1,16 @@
+button {
+  &.square-btn {
+    background-color: $white;
+    text-align: center;
+    padding: 16px;
+    border: none;
+    outline: 1px solid #c183ff;
+    font-weight: 700;
+    color: #c183ff;
+    letter-spacing: 0.2em;
+    &:hover {
+      cursor: pointer;
+      color: $white;
+    }
+  }
+}

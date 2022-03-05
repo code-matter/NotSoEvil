@@ -12,6 +12,7 @@ import CustomSelect from "../components/CustomSelect";
 import { ReactComponent as COUCOU } from '../assets/Smiley.svg'
 import Button from "../components/UI/Button";
 import { onAuthStateChanged } from "firebase/auth";
+import SquareButton from "../components/UI/SquareButton";
 
 export interface IAdminHome {
 
@@ -114,7 +115,7 @@ const AdminHome = ({ }: IAdminHome) => {
               name="image"
               id="image"
               onChange={e => e.target.files && setFile(e.target.files[0])} />
-            <Button
+            <SquareButton
               label="Add Item"
               type="submit"
               disabled={!form.name || !form.image} />
@@ -124,7 +125,7 @@ const AdminHome = ({ }: IAdminHome) => {
 
       HELLO {userContext?.state?.user?.email}
 
-      <Button label="Add Item" onClick={() => setShowModal(true)} />
+      <SquareButton label="Add Item" onClick={() => setShowModal(true)} />
 
       <button
         type="button"

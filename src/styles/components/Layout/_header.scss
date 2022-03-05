@@ -1,7 +1,6 @@
 div {
   &.language-container {
-    position: absolute;
-    top: 25px;
+    margin: 30px 0 15px 0;
     width: 97%;
     z-index: 999;
     display: flex;
@@ -9,8 +8,7 @@ div {
     align-items: center;
     height: 1.2rem;
     @include mobile {
-      top: 40px;
-      width: 100%;
+      width: 90%;
     }
 
     div {
@@ -57,11 +55,6 @@ div {
           animation: shake 0.3s forwards;
         }
       }
-    }
-
-    @include mobile {
-      transform: scale(0.75);
-      margin-top: -10px;
     }
   }
 }

@@ -12,6 +12,7 @@
 @import "./components/UI/card";
 @import "./components/UI/modal";
 @import "./components/UI/button";
+@import "./components/UI/squareButton";
 
 // Layout
 @import "./components/Layout/header";
@@ -32,10 +33,8 @@
   min-height: 100vh;
   background-color: $white;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
-  position: relative;
   -webkit-tap-highlight-color: transparent;
   input {
     &:hover {

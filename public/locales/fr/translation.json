@@ -90,5 +90,11 @@
   "construction": {
     "curious": "Ohh quelqu'un de curieux?",
     "come_back": "Revient sous peu, tu pourras y voir plein de couleur et bin de la bonne humeur!"
+  },
+  "shop": {
+    "sort": "TRIER LA RECHERCHE",
+    "original_art": "OEUVRES ORIGINALES",
+    "prints": "PRINTS",
+    "merch": "MERCH"
   }
 }

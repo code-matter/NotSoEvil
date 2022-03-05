@@ -1,22 +1,70 @@
 div {
-  &.shop {
+  &.shop-container {
+    width: 80%;
+    flex-grow: 1;
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    width: 100%;
-    border: 2px solid gold;
-
+    flex-direction: column;
+    color: #c183ff;
+    @include mobile {
+      flex-direction: column;
+    }
     div {
-      &.shop-container {
+      &.shop-ctas {
         display: flex;
-        position: relative;
+        width: 100%;
+        margin: 5% 0 2% 0;
+        button {
+          width: calc(100% / 3);
+        }
+      }
+    }
+    section {
+      &.shop-section {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        margin: 20px 0;
+        h2 {
+          margin: 4px 0;
+          letter-spacing: 0.2em;
+        }
+        hr {
+          margin-bottom: 24px;
+          display: block;
+          height: 1px;
+          border: 0;
+          padding: 0;
+        }
         div {
-          &.shop-items {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
+          &.shop-items-container {
+            gap: 16px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
           }
+        }
+      }
+      &.oeuvres {
+        h2 {
+          color: $pink;
+        }
+        hr {
+          border-top: 1px solid $pink;
+        }
+      }
+      &.prints {
+        h2 {
+          color: $cyan;
+        }
+        hr {
+          border-top: 1px solid $cyan;
+        }
+      }
+      &.merch {
+        h2 {
+          color: $light-blue;
+        }
+        hr {
+          border-top: 1px solid $light-blue;
         }
       }
     }

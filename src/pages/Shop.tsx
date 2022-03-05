@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { Ref, useEffect, useRef, useState } from 'react'
 import ShopItem from '../components/ShopItem'
 import { BsArrowLeft } from "react-icons/bs";
 import { useNavigate } from 'react-router-dom';
@@ -10,6 +10,8 @@ import { FlashesService } from '../services/flashes.services';
 import { ReactComponent as CONSTRUCTION } from '../assets/construction.svg'
 import Card from '../components/UI/Card';
 import Button from '../components/UI/Button';
+import SquareButton from '../components/UI/SquareButton';
+import { useTranslation } from 'react-i18next';
 
 export interface IShop {
 }
@@ -20,6 +22,10 @@ const Shop = ({ }: IShop) => {
   let navigation = useNavigate()
   const [shopItems, setShopItems] = useState<any>()
   const [isLoading, setIsLoading] = useState(true);
+  const { t } = useTranslation()
+  const OEUVRES = useRef<HTMLElement>(null)
+  const PRINTS = useRef<HTMLElement>(null)
+  const MERCH = useRef<HTMLElement>(null)
 
   const fetchData = async () => {
     const flashes: any = await FlashesService.list();
@@ -35,14 +41,39 @@ const Shop = ({ }: IShop) => {
     fetchData();
   }, [])
 
+  const scrollInView = (where: any) => {
+    if (where) {
+      where.current.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
 
   return (
     <>
+      {/* <ShopFilter /> */}
       {!isLoading &&
-        <div className='shop'>
-          <div className="shop-container">
-            <ShopFilter />
-            <div className="shop-items">
+        <div className="shop-container">
+          <div className="shop-ctas">
+            <SquareButton
+              fontSize={22}
+              label={t("shop.original_art")}
+              onClick={() => scrollInView(OEUVRES)} />
+            <SquareButton
+              fontSize={22}
+              label={t("shop.prints")}
+              onClick={() => scrollInView(PRINTS)} />
+            <SquareButton
+              fontSize={22}
+              label={t("shop.merch")}
+              onClick={() => scrollInView(MERCH)} />
+          </div>
+          <div>
+            <p>+ {t('shop.sort')}</p>
+          </div>
+          <section className="shop-section oeuvres"
+            ref={OEUVRES}>
+            <h2>{t("shop.original_art")}</h2>
+            <hr />
+            <div className="shop-items-container">
               {shopItems.map((item: any, idx: number) => {
                 return (
                   <ShopItem
@@ -50,11 +81,51 @@ const Shop = ({ }: IShop) => {
                     id={item.data().name}
                     image={item.data().image}
                     size={item.data().size}
+                    type={item.data().type}
+                    rarity={item.data().rarity}
                     price={item.data().price} />
                 )
               })}
             </div>
-          </div>
+          </section>
+          <section className="shop-section prints"
+            ref={PRINTS}>
+            <h2>{t("shop.prints")}</h2>
+            <hr />
+            <div className="shop-items-container">
+              {shopItems.map((item: any, idx: number) => {
+                return (
+                  <ShopItem
+                    key={idx}
+                    id={item.data().name}
+                    image={item.data().image}
+                    size={item.data().size}
+                    type={item.data().type}
+                    rarity={item.data().rarity}
+                    price={item.data().price} />
+                )
+              })}
+            </div>
+          </section>
+          <section className="shop-section merch"
+            ref={MERCH}>
+            <h2>{t("shop.merch")}</h2>
+            <hr />
+            <div className="shop-items-container">
+              {shopItems.map((item: any, idx: number) => {
+                return (
+                  <ShopItem
+                    key={idx}
+                    id={item.data().name}
+                    image={item.data().image}
+                    type={item.data().type}
+                    rarity={item.data().rarity}
+                    size={item.data().size}
+                    price={item.data().price} />
+                )
+              })}
+            </div>
+          </section>
         </div>
       }
     </>

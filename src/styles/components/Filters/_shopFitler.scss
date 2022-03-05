@@ -1,10 +1,13 @@
 div {
   &.shop-filter {
-    left: 20px;
-    padding: 10px;
+    padding: 16px;
     width: 20%;
+    min-width: 235px;
     display: flex;
     flex-direction: column;
     align-self: flex-start;
+    // @include mobile {
+    //   min-width: unset;
+    // }
   }
 }

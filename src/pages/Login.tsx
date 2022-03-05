@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import CustomInput from '../components/CustomInput'
 import Button from '../components/UI/Button'
+import SquareButton from '../components/UI/SquareButton'
 import { USER_KEYS } from '../constants/reducerKeys'
 import { UserContext } from '../context/UserContext'
 import { UsersService } from '../services/users.services'
@@ -45,7 +46,7 @@ const Login = ({ }: ILogin) => {
       <form onSubmit={sendForm} onChange={handleFormChange}>
         <CustomInput id="username" label={t('general.username')} />
         <CustomInput id="password" label={t('general.password')} />
-        <Button
+        <SquareButton
           label={t('general.login')}
           type="submit" />
       </form>

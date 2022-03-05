@@ -31,22 +31,25 @@ const HomePage: React.FC = () => {
     setHovered({ id: '', color: '' })
   }
 
-  const [showModal, setShowModal] = useState(true)
-  const [hasRead, setHasRead] = useState(false)
+  const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
     const hasRead = sessionStorage.getItem('hasRead')
-    if (showModal && !hasRead) {
-      sessionStorage.setItem('hasRead', '1')
-      setHasRead(true)
+    if (!hasRead) {
+      setShowModal(true)
+    } else {
+      setShowModal(false)
     }
-  }, [showModal])
+  }, [])
 
 
   return (
     <div className='homepage'>
-      {showModal && hasRead &&
-        <Modal onClose={() => setShowModal(false)} backdropClose>
+      {showModal &&
+        <Modal onClose={() => {
+          setShowModal(false)
+          sessionStorage.setItem('hasRead', '1')
+        }} backdropClose>
           <div className="construction-modal">
             <COUCOU onClick={() => setShowModal(false)} />
             <h2>{t('modal.hey')}</h2>

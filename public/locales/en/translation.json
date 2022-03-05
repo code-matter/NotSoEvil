@@ -90,5 +90,11 @@
   "construction": {
     "curious": "Ohh someone's curious?",
     "come_back": "Come back soon to see some fun and colors!"
+  },
+  "shop": {
+    "sort": "NARROW RESULTS",
+    "original_art": "ORIGINAL ART",
+    "prints": "PRINTS",
+    "merch": "MERCH"
   }
 }

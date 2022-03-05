@@ -1,6 +1,55 @@
-img {
-  &.item-img {
-    width: 200px;
-    height: 200px;
+div {
+  &.shop-items {
+    position: relative;
+
+    p {
+      letter-spacing: 0.1em;
+      color: $blue;
+      margin: 4px 0;
+      &.item-title {
+        font-weight: 600;
+      }
+    }
+    &:hover {
+      cursor: pointer;
+      // &::before {
+      //   content: "";
+      //   font-size: 40px;
+      //   position: absolute;
+      //   top: 0;
+      //   left: 0;
+      //   right: 0;
+      //   bottom: 0;
+      //   text-align: center;
+      //   display: flex;
+      //   align-items: center;
+      //   background-color: rgba($turquoise, 0.4);
+      // }
+    }
+    div {
+      &.item-img {
+        width: 100%;
+        margin-bottom: 10px;
+        img {
+          width: 100%;
+          position: relative;
+        }
+        p {
+          &.shop-seemore {
+            position: absolute;
+            top: -5px;
+            aspect-ratio: 1;
+            color: $white;
+            font-weight: bold;
+            font-size: 35px;
+            letter-spacing: 0.2em;
+            // background-color: rgba($turquoise, 0.4);
+            display: flex;
+            text-align: center;
+            align-items: center;
+          }
+        }
+      }
+    }
   }
 }
