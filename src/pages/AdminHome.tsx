@@ -60,12 +60,12 @@ const AdminHome = ({ }: IAdminHome) => {
       }
     })
     if (file) {
-      const storageRef = ref(firebaseStorage, `flashes/${form.name}`);
+      const storageRef = ref(firebaseStorage, `items/${form.name}`);
       await uploadBytes(storageRef, file)
-      const imgUrl = await getURL(`flashes/${form.name}`)
+      const imgUrl = await getURL(`items/${form.name}`)
       if (imgUrl) {
         try {
-          const d = await setDoc(doc(firebaseDB, "shop-flash", form.name), {
+          const d = await setDoc(doc(firebaseDB, "shop-items", form.name), {
             name: form.name,
             type: form.type,
             price: form.price,

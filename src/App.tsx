@@ -28,11 +28,11 @@ function App() {
       path: '/form',
       element: RDV
     },
-    // {
-    //   id: 'shop',
-    //   path: '/shop',
-    //   element: Shop
-    // },
+    {
+      id: 'shop',
+      path: '/shop',
+      element: Shop
+    },
     {
       id: 'login',
       path: '/admin/login',

@@ -18,7 +18,7 @@ export interface IShop {
 
 const Shop = ({ }: IShop) => {
   let navigation = useNavigate()
-  const [shopFlash, setShopFlash] = useState<any>()
+  const [shopItems, setShopItems] = useState<any>()
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = async () => {
@@ -27,7 +27,7 @@ const Shop = ({ }: IShop) => {
       console.error('No items!')
       return
     }
-    setShopFlash(flashes.docs)
+    setShopItems(flashes.docs)
     setIsLoading(false)
   }
 
@@ -43,14 +43,14 @@ const Shop = ({ }: IShop) => {
           <div className="shop-container">
             <ShopFilter />
             <div className="shop-items">
-              {shopFlash.map((flash: any, idx: number) => {
+              {shopItems.map((item: any, idx: number) => {
                 return (
                   <ShopItem
                     key={idx}
-                    id={flash.data().name}
-                    image={flash.data().image}
-                    size={flash.data().size}
-                    price={flash.data().price} />
+                    id={item.data().name}
+                    image={item.data().image}
+                    size={item.data().size}
+                    price={item.data().price} />
                 )
               })}
             </div>
