@@ -31,8 +31,8 @@ const Shop = ({ }: IShop) => {
   const PRINTS = useRef<HTMLElement>(null)
   const MERCH = useRef<HTMLElement>(null)
 
-  const fetchData = async () => {
-    const flashes: any = await FlashesService.list('shop-items');
+  const fetchData = async (filters?: any) => {
+    const flashes: any = await FlashesService.list('shop-items', filters);
     if (flashes.empty) {
       console.error('No items!')
       return
@@ -50,6 +50,12 @@ const Shop = ({ }: IShop) => {
     if (where) {
       where.current.scrollIntoView({ behavior: 'smooth' })
     }
+  }
+
+  const handleFilters = (e: any) => {
+    fetchData({
+      fieldPath: 'color', operation: '==', value: e.target.id
+    })
   }
 
   return (
@@ -80,7 +86,7 @@ const Shop = ({ }: IShop) => {
             </p>
             <div className={`filters ${filtersOpened ? 'opened' : ''}`} >
               {filtersOpened &&
-                <form>
+                <form onChange={handleFilters}>
                   <CustomCheckBox id="couleur" label="Couleur" />
                   <CustomCheckBox id="nb" label="Noir & Blanc" />
                 </form>
