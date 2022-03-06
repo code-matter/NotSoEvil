@@ -9,7 +9,7 @@ const CustomCheckBox = ({ id, label, isRequired }: ICustomCheckBox) => {
     <div className='custom-intput-container'>
       <div className={`checkbox authorization ${isRequired ? 'required' : ''}`} >
         <input id={id} type="checkbox" />
-        <label className={`${isRequired ? 'required' : ''}`}>
+        <label htmlFor={id} className={`${isRequired ? 'required' : ''}`}>
           {label}
         </label>
       </div>

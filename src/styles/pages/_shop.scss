@@ -17,6 +17,27 @@ div {
           width: calc(100% / 3);
         }
       }
+      &.shop-filters {
+        div {
+          &.filters {
+            display: none;
+            // flex-direction: column;
+            height: 0%;
+            border: none;
+            transition: all 1s ease-in-out;
+          }
+          &.opened {
+            height: 100%;
+            border: 1px solid #c183ff;
+            display: flex;
+            // input {
+            //   &[type="checkbox"] {
+            //     animation: fade-in 1s forwards;
+            //   }
+            // }
+          }
+        }
+      }
     }
     section {
       &.shop-section {
@@ -83,5 +104,23 @@ div {
   }
   100% {
     transform: rotate(0deg);
+  }
+}
+
+@keyframes grow-in {
+  0% {
+    max-height: 0;
+  }
+  100% {
+    max-height: 100vh;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

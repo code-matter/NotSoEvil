@@ -1,10 +1,14 @@
+import { HTMLInputTypeAttribute } from "react"
+
 export interface ICustomInput {
   id: string,
   label: string,
   subLabel?: string,
   isRequired?: boolean,
   darkTheme?: boolean,
-  hide?: boolean
+  hide?: boolean,
+  type?: HTMLInputTypeAttribute,
+  onChange?: (e: any) => void
 }
 
 const CustomInput = ({ id, label, subLabel, isRequired, darkTheme, hide = false, ...props }: ICustomInput) => {

@@ -21,6 +21,8 @@ div {
         border-radius: 2px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
         z-index: 30;
+        max-height: 80vh;
+        overflow-y: scroll;
         div {
           &.construction-modal {
             display: flex;
@@ -74,8 +76,11 @@ div {
               font-weight: bolder;
             }
           }
-          &.no-padding {
-            padding: 0;
+          &.add-items-modal {
+            padding: 2rem 1rem;
+            form {
+              width: 80%;
+            }
           }
         }
 

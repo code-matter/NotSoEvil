@@ -12,6 +12,9 @@ import Card from '../components/UI/Card';
 import Button from '../components/UI/Button';
 import SquareButton from '../components/UI/SquareButton';
 import { useTranslation } from 'react-i18next';
+import { FaPlus, FaMinus } from "react-icons/fa";
+import CustomCheckBox from '../components/CustomCheckBox';
+
 
 export interface IShop {
 }
@@ -22,13 +25,14 @@ const Shop = ({ }: IShop) => {
   let navigation = useNavigate()
   const [shopItems, setShopItems] = useState<any>()
   const [isLoading, setIsLoading] = useState(true);
+  const [filtersOpened, setFiltersOpened] = useState(false)
   const { t } = useTranslation()
   const OEUVRES = useRef<HTMLElement>(null)
   const PRINTS = useRef<HTMLElement>(null)
   const MERCH = useRef<HTMLElement>(null)
 
   const fetchData = async () => {
-    const flashes: any = await FlashesService.list();
+    const flashes: any = await FlashesService.list('shop-items');
     if (flashes.empty) {
       console.error('No items!')
       return
@@ -38,8 +42,9 @@ const Shop = ({ }: IShop) => {
   }
 
   useEffect(() => {
-    fetchData();
+    fetchData()
   }, [])
+
 
   const scrollInView = (where: any) => {
     if (where) {
@@ -66,8 +71,21 @@ const Shop = ({ }: IShop) => {
               label={t("shop.merch")}
               onClick={() => scrollInView(MERCH)} />
           </div>
-          <div>
-            <p>+ {t('shop.sort')}</p>
+          <div className="shop-filters">
+            <p onClick={() => setFiltersOpened(!filtersOpened)}>
+              {filtersOpened ?
+                <FaMinus size={10} color='#c183ff' /> :
+                <FaPlus size={10} color='#c183ff' />}
+              {t('shop.sort')}
+            </p>
+            <div className={`filters ${filtersOpened ? 'opened' : ''}`} >
+              {filtersOpened &&
+                <form>
+                  <CustomCheckBox id="couleur" label="Couleur" />
+                  <CustomCheckBox id="nb" label="Noir & Blanc" />
+                </form>
+              }
+            </div>
           </div>
           <section className="shop-section oeuvres"
             ref={OEUVRES}>

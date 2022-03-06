@@ -38,6 +38,8 @@ div {
           &.shop-seemore {
             position: absolute;
             top: -5px;
+            left: 0;
+            right: 0;
             aspect-ratio: 1;
             color: $white;
             font-weight: bold;
@@ -46,6 +48,7 @@ div {
             // background-color: rgba($turquoise, 0.4);
             display: flex;
             text-align: center;
+            justify-content: center;
             align-items: center;
           }
         }

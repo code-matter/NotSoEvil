@@ -72,7 +72,8 @@ const AdminHome = ({ }: IAdminHome) => {
             price: form.price,
             image: imgUrl,
             rarity: form.rarity || 'unique',
-            size: form.size
+            size: form.size,
+            color: form.color,
           })
           console.log(d);
           document.location.reload()
@@ -85,10 +86,18 @@ const AdminHome = ({ }: IAdminHome) => {
 
   return (
     <>
-      {showModal && <Modal onClose={() => setShowModal(false)} backdropClose={false}>
-        <div className='construction-modal no-padding'>
+      {showModal && <Modal
+        onClose={() => setShowModal(false)}
+        backdropClose={false}>
+        <div className='construction-modal add-items-modal'>
           <COUCOU onClick={() => setShowModal(false)} />
           <form onSubmit={sendForm} onChange={handleFormChange}>
+            <CustomInput
+              type="file"
+              id="image"
+              label="image"
+              darkTheme
+              onChange={e => e.target.files && setFile(e.target.files[0])} />
             <CustomInput
               id="name"
               label="Name"
@@ -101,7 +110,9 @@ const AdminHome = ({ }: IAdminHome) => {
               id="rarity"
               label="Rarity"
               darkTheme
-              selects={[{ id: 'unique', label: 'UNIQUE' }, { id: 'multiples', label: 'MULTIPLES' }]} />
+              selects={
+                [{ id: 'unique', label: 'UNIQUE' },
+                { id: 'multiples', label: 'MULTIPLES' }]} />
             <CustomInput
               id="size"
               label="Size"
@@ -110,11 +121,11 @@ const AdminHome = ({ }: IAdminHome) => {
               id="type"
               label="Type"
               darkTheme />
-            <input
-              type="file"
-              name="image"
-              id="image"
-              onChange={e => e.target.files && setFile(e.target.files[0])} />
+            <CustomInput
+              id="color"
+              label="Color"
+              darkTheme />
+
             <SquareButton
               label="Add Item"
               type="submit"
