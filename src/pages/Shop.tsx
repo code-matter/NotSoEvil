@@ -1,4 +1,4 @@
-import React, { Ref, useEffect, useRef, useState } from 'react'
+import React, { FormEvent, Ref, useEffect, useRef, useState } from 'react'
 import ShopItem from '../components/ShopItem'
 import { BsArrowLeft } from "react-icons/bs";
 import { useNavigate } from 'react-router-dom';
@@ -14,9 +14,16 @@ import SquareButton from '../components/UI/SquareButton';
 import { useTranslation } from 'react-i18next';
 import { FaPlus, FaMinus } from "react-icons/fa";
 import CustomCheckBox from '../components/CustomCheckBox';
-
+import CustomInput from '../components/CustomInput';
+import _ from 'lodash';
 
 export interface IShop {
+}
+
+export const scrollInView = (where: any) => {
+  if (where) {
+    where.current.scrollIntoView({ behavior: 'smooth' })
+  }
 }
 
 /*THIS WILL NEED A MAJOR REFACTOR. IM JUST PLAYING AROUND NOW */
@@ -26,13 +33,14 @@ const Shop = ({ }: IShop) => {
   const [shopItems, setShopItems] = useState<any>()
   const [isLoading, setIsLoading] = useState(true);
   const [filtersOpened, setFiltersOpened] = useState(false)
+  const [form, setForm] = useState({})
   const { t } = useTranslation()
   const OEUVRES = useRef<HTMLElement>(null)
   const PRINTS = useRef<HTMLElement>(null)
   const MERCH = useRef<HTMLElement>(null)
 
-  const fetchData = async (filters?: any) => {
-    const flashes: any = await FlashesService.list('shop-items', filters);
+  const fetchData = async () => {
+    const flashes: any = await FlashesService.list('shop-items');
     if (flashes.empty) {
       console.error('No items!')
       return
@@ -45,18 +53,36 @@ const Shop = ({ }: IShop) => {
     fetchData()
   }, [])
 
+  const handleFilters = (e: any) => {
+    const target = e.target;
+    const value = target.type === 'checkbox' ? e.target.checked : target.value;
+    const type = target.type;
+    const id = target.id;
+    switch (type) {
+      case 'checkbox':
+        setForm(
+          {
+            ...form,
+            [id]: value
+          })
+        break;
 
-  const scrollInView = (where: any) => {
-    if (where) {
-      where.current.scrollIntoView({ behavior: 'smooth' })
+      default:
+        break;
     }
   }
 
-  const handleFilters = (e: any) => {
-    fetchData({
-      fieldPath: 'color', operation: '==', value: e.target.id
-    })
-  }
+  useEffect(() => {
+    const fetchWithFilters = async () => {
+
+      if (Object.values(form).length > 0) {
+        console.log('form: ', form);
+      }
+    }
+    fetchWithFilters()
+    // fetchData()
+  }, [form])
+
 
   return (
     <>
@@ -87,8 +113,13 @@ const Shop = ({ }: IShop) => {
             <div className={`filters ${filtersOpened ? 'opened' : ''}`} >
               {filtersOpened &&
                 <form onChange={handleFilters}>
+                  <h3>COLORS</h3>
                   <CustomCheckBox id="couleur" label="Couleur" />
                   <CustomCheckBox id="nb" label="Noir & Blanc" />
+                  {/* <h3>PRICE</h3>
+                  <CustomInput id="price-min" label="MIN" type="number" />
+                  <CustomInput id="price-max" label="MAX" type="number" /> */}
+                  <SquareButton type="button" label="SEND" onClick={() => console.log(form)} />
                 </form>
               }
             </div>
