@@ -14,36 +14,44 @@ import { useTranslation } from 'react-i18next';
 import { userInitialstate, userReducer } from './reducers/UserReducer';
 import Layout from './components/Layout/Layout';
 import Shop from './pages/Shop';
+
+export const routes = [
+  {
+    id: 'home',
+    label: 'general.home',
+    path: '/',
+    element: HomePage
+  },
+  {
+    id: 'form',
+    label: 'general.form',
+    path: '/form',
+    element: RDV
+  },
+  {
+    id: 'shop',
+    label: 'general.shop',
+    path: '/shop',
+    element: Shop
+  },
+  {
+    id: 'login',
+    label: 'general.login',
+    path: '/admin/login',
+    element: Login
+  },
+  {
+    id: 'admin-home',
+    label: 'general.admin_home',
+    path: 'admin/home',
+    element: AdminHome
+  }
+]
+
 function App() {
   const { t } = useTranslation()
   const [state, dispatch] = useReducer<any>(userReducer, userInitialstate);
-  const routes = [
-    {
-      id: 'home',
-      path: '/',
-      element: HomePage
-    },
-    {
-      id: 'form',
-      path: '/form',
-      element: RDV
-    },
-    {
-      id: 'shop',
-      path: '/shop',
-      element: Shop
-    },
-    {
-      id: 'login',
-      path: '/admin/login',
-      element: Login
-    },
-    {
-      id: 'admin-home',
-      path: 'admin/home',
-      element: AdminHome
-    }
-  ]
+
 
   const AppRouter = () => {
     return (

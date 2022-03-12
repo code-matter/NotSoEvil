@@ -1,4 +1,5 @@
 import React, { useEffect, useContext, ReactNode } from 'react'
+import { useMatch } from 'react-router-dom'
 import { USER_KEYS } from '../../constants/reducerKeys'
 import { UserContext } from '../../context/UserContext'
 import { firebaseAuth } from '../../utils/firebase'
@@ -10,6 +11,7 @@ export interface ILayout {
 
 const Layout = ({ children }: ILayout) => {
   const userContext = useContext(UserContext)
+  const isHome = useMatch('/')
 
   useEffect(() => {
     firebaseAuth.onAuthStateChanged((user) => {
@@ -37,7 +39,7 @@ const Layout = ({ children }: ILayout) => {
 
   return (
     <div className="App">
-      <Header />
+      {!isHome && <Header />}
       {children}
     </div>
   )
