@@ -10,20 +10,22 @@ export interface ISquareButton {
 }
 
 const SquareButton = ({ label, disabled, type, fontSize, onClick }: ISquareButton) => {
-  const [ishovered, setIshovered] = useState(false)
+  const [isHovered, setIshovered] = useState({ color: '', hovered: false })
   return (
     <button className="square-btn"
       disabled={disabled}
       onClick={onClick}
       type={type || 'button'}
-      onMouseEnter={() => setIshovered(true)}
-      onMouseLeave={() => setIshovered(false)}
+      onMouseEnter={() => setIshovered({ color: RANDOM_COLORS[Math.floor(Math.random() * RANDOM_COLORS.length)], hovered: true })}
+      onMouseLeave={() => setIshovered({ color: '', hovered: false })}
       style={{
         fontSize: fontSize || '16px',
-        backgroundColor: ishovered ?
-          RANDOM_COLORS[Math.floor(Math.random() * RANDOM_COLORS.length)] : '',
+        backgroundColor: isHovered.hovered ?
+          isHovered.color : '',
         opacity: disabled ? 0.3 : 1,
-        pointerEvents: disabled ? 'none' : 'unset'
+        pointerEvents: disabled ? 'none' : 'unset',
+        outline: isHovered.hovered ?
+          `1px solid ${isHovered.color}` : '',
       }}
     >
       {label}
