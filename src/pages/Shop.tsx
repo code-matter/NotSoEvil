@@ -23,7 +23,7 @@ export interface IShop {
 
 export const scrollInView = (where: any) => {
   if (where) {
-    where.current.scrollIntoView({ behavior: 'smooth' })
+    where.current.scrollIntoView({ behavior: 'smooth', block: 'center' })
   }
 }
 
@@ -111,7 +111,7 @@ const Shop = ({ }: IShop) => {
     <>
       {/* <ShopFilter /> */}
       {!isLoading &&
-        <div className="shop-container">
+        <div className="shop-container container">
           <div className="shop-ctas">
             <SquareButton
               fontSize={22}

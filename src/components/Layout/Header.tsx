@@ -1,30 +1,28 @@
 import i18next from 'i18next';
-import React, { useContext } from 'react'
-import { BsArrowLeft } from 'react-icons/bs';
-import { Link, useLocation, useMatch, useNavigate } from 'react-router-dom';
+import { useContext } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { USER_KEYS } from '../../constants/reducerKeys';
 import { UserContext } from '../../context/UserContext';
 import { ReactComponent as CART } from '../../assets/Vector.svg'
 import { ReactComponent as LOGO } from '../../assets/EvilCurrent.svg'
-import { routes } from '../../App';
 import { useTranslation } from 'react-i18next';
-import { RANDOM_COLORS } from '../../pages/HomePage';
+import { RANDOM_COLORS_PASTELS } from '../../pages/HomePage';
 
 export interface IHeader {
 
 }
 
 const Header = ({ }: IHeader) => {
-  const isHome = useMatch('/');
   const navigate = useNavigate()
   const userContext = useContext(UserContext)
   const { t } = useTranslation()
   const { pathname } = useLocation()
 
+
   return (
 
-    <div className='header-wrap' style={{ backgroundColor: RANDOM_COLORS[Math.floor(Math.random() * RANDOM_COLORS.length)] }}>
-      {!isHome ? <LOGO className="logo" onClick={() => navigate('/')} /> : <></>}
+    <div className='header-wrap' style={{ backgroundColor: RANDOM_COLORS_PASTELS[Math.floor(Math.random() * RANDOM_COLORS_PASTELS.length)] }}>
+      <LOGO className="logo" onClick={() => navigate('/')} />
       <div className='links'>
         <Link className={`${pathname === "/rdv" ? 'on-page' : ''}`} to="/rdv">{t('general.rdv')}</Link>
         <Link className={`${pathname === "/flash" ? 'on-page' : ''}`} to="/flash">FLASH</Link>

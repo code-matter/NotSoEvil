@@ -112,5 +112,8 @@
         }
       }
     }
+    &.container {
+      margin-top: $NAV_HEIGHT;
+    }
   }
 }

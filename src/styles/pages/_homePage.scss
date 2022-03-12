@@ -12,6 +12,42 @@ div {
       width: $APP_WIDTH;
       &.top {
         margin-top: 60px;
+        div {
+          &.languages {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            p {
+              margin: 0 4px;
+              color: $blue;
+              &.on-page {
+                color: $blue;
+                font-weight: 900;
+              }
+              &.separator {
+                color: $mauve;
+                font-weight: 900;
+                font-size: 25px;
+              }
+              font-weight: normal;
+              line-height: 28px;
+              font-size: 1.3em;
+              letter-spacing: 0.2em;
+              transition: all ease-in-out 0.2s;
+              &.active {
+                font-weight: 900;
+                text-decoration: underline;
+              }
+              &.inactive {
+                // color: darken($white, 5);
+                font-weight: 400;
+              }
+              &:hover {
+                cursor: pointer;
+              }
+            }
+          }
+        }
       }
       &.joy {
         width: 100vw;

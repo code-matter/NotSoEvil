@@ -1,4 +1,4 @@
-import React, { MouseEvent, MouseEventHandler, useEffect, useState } from 'react'
+import React, { MouseEvent, MouseEventHandler, useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import EvilHeader from '../components/EvilHeader'
 import Joy from '../components/Joy'
@@ -10,12 +10,16 @@ import lapinbleu from '../assets/lapinbleu.png'
 import { ReactComponent as COUCOU } from '../assets/Smiley.svg'
 import { useSSR, useTranslation } from 'react-i18next'
 import Modal from '../components/UI/Modal'
+import { UserContext } from '../context/UserContext'
+import i18next from 'i18next'
+import { USER_KEYS } from '../constants/reducerKeys'
 export interface IHovered {
   id: string,
   color: string
 }
 
 export const RANDOM_COLORS = ['#E1C3FF', '#15B7FF', '#2DE4D1', '#FACD01']
+export const RANDOM_COLORS_PASTELS = ['#a6f3eb', '#a4e3ff', '#e1c3ff', '#ffe77f']
 const HomePage: React.FC = () => {
   const isMobile = window.innerWidth < 500;
   const { t } = useTranslation();
@@ -32,6 +36,7 @@ const HomePage: React.FC = () => {
   }
 
   const [showModal, setShowModal] = useState(false)
+  const userContext = useContext(UserContext);
 
   useEffect(() => {
     const hasRead = sessionStorage.getItem('hasRead')
@@ -65,6 +70,20 @@ const HomePage: React.FC = () => {
         </Modal>}
 
       <section className='top'>
+        <div className='languages'>
+          <p className={userContext?.state?.language === "fr" ? 'active' : 'inactive'}
+            onClick={() => {
+              i18next.changeLanguage('fr')
+              userContext.dispatch({ type: USER_KEYS.SET_LANGUAGE, payload: 'fr' })
+            }}>FR</p>
+          <p className='separator'>|</p>
+          {/* <span className="spacer"></span> */}
+          <p className={userContext?.state?.language === "en" ? 'active' : 'inactive'}
+            onClick={() => {
+              i18next.changeLanguage('en')
+              userContext.dispatch({ type: USER_KEYS.SET_LANGUAGE, payload: 'en' })
+            }}>EN</p>
+        </div>
         <EvilHeader />
         <div className='text'>
           <p>TATTOOS & {isMobile && <br />} PLENTY MORE</p>
