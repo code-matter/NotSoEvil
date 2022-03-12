@@ -14,6 +14,9 @@ div {
         margin-top: 60px;
         div {
           &.languages {
+            position: absolute;
+            top: 26px;
+            right: 13px;
             display: flex;
             align-items: center;
             justify-content: flex-end;
