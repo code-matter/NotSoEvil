@@ -85,7 +85,7 @@ const AdminHome = ({ }: IAdminHome) => {
   }
 
   return (
-    <>
+    <div className="container" style={{ display: 'flex', flexDirection: 'column' }}>
       {showModal && <Modal
         onClose={() => setShowModal(false)}
         backdropClose={false}>
@@ -147,7 +147,7 @@ const AdminHome = ({ }: IAdminHome) => {
         onClick={() => UsersService.logout()}>LOG OUT
       </button>
       <button onClick={() => navigate('/shop')}>GO TO SHOP</button>
-    </>
+    </div>
   )
 }
 

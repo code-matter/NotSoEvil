@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { USER_KEYS } from '../constants/reducerKeys'
+import { UserContext } from '../context/UserContext'
 import { RANDOM_COLORS } from '../pages/HomePage'
 import Card from './UI/Card'
 import SquareButton from './UI/SquareButton'
@@ -25,6 +27,12 @@ const ShopItem = ({
 }: IShopItem) => {
   const [isHovered, setIsHovered] = useState({ color: '', hovered: false })
   const { t } = useTranslation()
+  const userContext = useContext(UserContext)
+
+  const handleAddItem = () => {
+    userContext.dispatch({ type: USER_KEYS.ADD_ITEMS, payload: id })
+  }
+
   return (
     <div className={`shop-items ${!available ? 'sold' : ''}`}
       onMouseEnter={() => setIsHovered({ color: RANDOM_COLORS[Math.floor(Math.random() * RANDOM_COLORS.length)], hovered: true })}
@@ -43,7 +51,7 @@ const ShopItem = ({
           <span>{rarity.toUpperCase()}</span>
           <span
             className='buy-btn'
-            onClick={available ? () => console.log('bought IT!') : undefined}
+            onClick={available ? handleAddItem : undefined}
             style={{
               color: isHovered.hovered ?
                 isHovered.color : '',

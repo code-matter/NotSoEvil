@@ -53,11 +53,9 @@ const Shop = ({ }: IShop) => {
       console.error('No items!')
       return
     }
-    console.log(flashes.docs)
     setShopItems(flashes.docs)
     setIsLoading(false)
   }
-
   useEffect(() => {
     fetchData()
   }, [])
@@ -152,7 +150,7 @@ const Shop = ({ }: IShop) => {
             <h2>{t("shop.original_art")}</h2>
             <hr />
             <div className="shop-items-container">
-              {shopItems.filter((si: any) => si.data().category === ITEM_CATEGORIES.OG_ART).map((item: any, idx: number) => {
+              {shopItems?.filter((si: any) => si.data().category === ITEM_CATEGORIES.OG_ART).map((item: any, idx: number) => {
                 return (
                   <ShopItem
                     key={idx}
@@ -172,7 +170,7 @@ const Shop = ({ }: IShop) => {
             <h2>{t("shop.prints")}</h2>
             <hr />
             <div className="shop-items-container">
-              {shopItems.filter((si: any) => si.data().category === ITEM_CATEGORIES.PRINTS).map((item: any, idx: number) => {
+              {shopItems?.filter((si: any) => si.data().category === ITEM_CATEGORIES.PRINTS).map((item: any, idx: number) => {
                 return (
                   <ShopItem
                     key={idx}
@@ -192,7 +190,7 @@ const Shop = ({ }: IShop) => {
             <h2>{t("shop.merch")}</h2>
             <hr />
             <div className="shop-items-container">
-              {shopItems.filter((si: any) => si.data().category === ITEM_CATEGORIES.MERCH).map((item: any, idx: number) => {
+              {shopItems?.filter((si: any) => si.data().category === ITEM_CATEGORIES.MERCH).map((item: any, idx: number) => {
                 return (
                   <ShopItem
                     key={idx}

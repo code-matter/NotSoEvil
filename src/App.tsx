@@ -50,7 +50,6 @@ export const routes = [
 
 function App() {
   const { t } = useTranslation()
-  const [state, dispatch] = useReducer<any>(userReducer, userInitialstate);
 
 
   const AppRouter = () => {
@@ -77,11 +76,9 @@ function App() {
 
 
   return (
-    <UserContext.Provider value={{ state, dispatch }}>
-      <Layout>
-        <AppRouter />
-      </Layout>
-    </UserContext.Provider>
+    <Layout>
+      <AppRouter />
+    </Layout>
   );
 }
 

@@ -42,7 +42,7 @@ const Login = ({ }: ILogin) => {
   }
 
   return (
-    <div className="login-container">
+    <div className="login-container container">
       <form onSubmit={sendForm} onChange={handleFormChange}>
         <CustomInput id="username" label={t('general.username')} />
         <CustomInput id="password" label={t('general.password')} />
