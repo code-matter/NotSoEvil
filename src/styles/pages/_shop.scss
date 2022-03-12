@@ -5,9 +5,7 @@ div {
     display: flex;
     flex-direction: column;
     color: #c183ff;
-    @include mobile {
-      flex-direction: column;
-    }
+
     div {
       &.shop-ctas {
         display: flex;
@@ -61,6 +59,9 @@ div {
             gap: 32px;
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
+            @include mobile {
+              grid-template-columns: 1fr;
+            }
           }
         }
       }
