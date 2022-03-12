@@ -11,6 +11,7 @@ div {
     section {
       width: $APP_WIDTH;
       &.top {
+        margin-top: 60px;
       }
       &.joy {
         width: 100vw;
