@@ -1,5 +1,9 @@
 div {
   &.shop-items {
+    &.sold {
+      opacity: 0.3;
+      pointer-events: none;
+    }
     position: relative;
 
     p {
@@ -8,6 +12,34 @@ div {
       margin: 4px 0;
       &.item-title {
         font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        span {
+          &:last-child {
+            border-left: 3px solid $mauve;
+            padding-left: 10px;
+          }
+        }
+      }
+      &.item-rarity {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        span {
+          &.buy-btn {
+            color: $mauve;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 28px;
+            /* or 140% */
+
+            text-align: right;
+            letter-spacing: 0.1em;
+            text-decoration-line: underline;
+          }
+        }
       }
     }
     &:hover {

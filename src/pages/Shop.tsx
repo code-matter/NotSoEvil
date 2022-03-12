@@ -15,7 +15,8 @@ import { useTranslation } from 'react-i18next';
 import { FaPlus, FaMinus } from "react-icons/fa";
 import CustomCheckBox from '../components/CustomCheckBox';
 import CustomInput from '../components/CustomInput';
-import _ from 'lodash';
+import _, { isEmpty } from 'lodash';
+import { ITEM_CATEGORIES } from '../utils/constants';
 
 export interface IShop {
 }
@@ -33,7 +34,14 @@ const Shop = ({ }: IShop) => {
   const [shopItems, setShopItems] = useState<any>()
   const [isLoading, setIsLoading] = useState(true);
   const [filtersOpened, setFiltersOpened] = useState(false)
-  const [form, setForm] = useState({})
+  const [currentFilters, setCurrentFilters] = useState<any>({
+    color: [],
+    minPrice: 0,
+    maxPrice: undefined,
+    rarity: [],
+    size: [],
+    type: []
+  })
   const { t } = useTranslation()
   const OEUVRES = useRef<HTMLElement>(null)
   const PRINTS = useRef<HTMLElement>(null)
@@ -45,6 +53,7 @@ const Shop = ({ }: IShop) => {
       console.error('No items!')
       return
     }
+    console.log(flashes.docs)
     setShopItems(flashes.docs)
     setIsLoading(false)
   }
@@ -57,14 +66,19 @@ const Shop = ({ }: IShop) => {
     const target = e.target;
     const value = target.type === 'checkbox' ? e.target.checked : target.value;
     const type = target.type;
+    const name = target.name;
     const id = target.id;
+    let tmpFilters;
     switch (type) {
       case 'checkbox':
-        setForm(
-          {
-            ...form,
-            [id]: value
-          })
+        tmpFilters = { ...currentFilters };
+        if (tmpFilters[name].includes(id)) {
+          const tmpIdx = tmpFilters[name].indexOf(id)
+          tmpFilters[name].splice(tmpIdx, 1)
+        } else {
+          tmpFilters[name].push(id)
+        }
+        setCurrentFilters(tmpFilters)
         break;
 
       default:
@@ -72,16 +86,25 @@ const Shop = ({ }: IShop) => {
     }
   }
 
-  useEffect(() => {
-    const fetchWithFilters = async () => {
+  const isFiltering =
+    currentFilters.color.length !== 0 ||
+    currentFilters.rarity.length !== 0 ||
+    currentFilters.type.length !== 0 ||
+    currentFilters.size.length !== 0 ||
+    currentFilters.minPrice > 0 ||
+    currentFilters.maxPrice > 0
 
-      if (Object.values(form).length > 0) {
-        console.log('form: ', form);
-      }
+  useEffect(() => {
+    const tmpShopItems = { ...shopItems }
+    if (isFiltering && tmpShopItems) {
+      const filters = { ...currentFilters }
+      console.log('filters: ', filters)
+      // console.log('shopItems: ', shopItems)
+      _.forEach(tmpShopItems, (iValue: any, iKey: string) => {
+        console.log(iValue)
+      })
     }
-    fetchWithFilters()
-    // fetchData()
-  }, [form])
+  }, [currentFilters, shopItems, isFiltering])
 
 
   return (
@@ -103,7 +126,7 @@ const Shop = ({ }: IShop) => {
               label={t("shop.merch")}
               onClick={() => scrollInView(MERCH)} />
           </div>
-          <div className="shop-filters">
+          {/* <div className="shop-filters">
             <p onClick={() => setFiltersOpened(!filtersOpened)}>
               {filtersOpened ?
                 <FaMinus size={10} color='#c183ff' /> :
@@ -114,22 +137,22 @@ const Shop = ({ }: IShop) => {
               {filtersOpened &&
                 <form onChange={handleFilters}>
                   <h3>COLORS</h3>
-                  <CustomCheckBox id="couleur" label="Couleur" />
-                  <CustomCheckBox id="nb" label="Noir & Blanc" />
-                  {/* <h3>PRICE</h3>
+                  <CustomCheckBox id="couleur" label="Couleur" name="color" />
+                  <CustomCheckBox id="nb" label="Noir & Blanc" name="color" />
+                  <h3>PRICE</h3>
                   <CustomInput id="price-min" label="MIN" type="number" />
-                  <CustomInput id="price-max" label="MAX" type="number" /> */}
-                  <SquareButton type="button" label="SEND" onClick={() => console.log(form)} />
+                  <CustomInput id="price-max" label="MAX" type="number" />
+                  <SquareButton type="button" label="SEND" onClick={() => console.log(currentFilters)} />
                 </form>
               }
             </div>
-          </div>
+          </div> */}
           <section className="shop-section oeuvres"
             ref={OEUVRES}>
             <h2>{t("shop.original_art")}</h2>
             <hr />
             <div className="shop-items-container">
-              {shopItems.map((item: any, idx: number) => {
+              {shopItems.filter((si: any) => si.data().category === ITEM_CATEGORIES.OG_ART).map((item: any, idx: number) => {
                 return (
                   <ShopItem
                     key={idx}
@@ -137,6 +160,7 @@ const Shop = ({ }: IShop) => {
                     image={item.data().image}
                     size={item.data().size}
                     type={item.data().type}
+                    available={item.data().available}
                     rarity={item.data().rarity}
                     price={item.data().price} />
                 )
@@ -148,7 +172,7 @@ const Shop = ({ }: IShop) => {
             <h2>{t("shop.prints")}</h2>
             <hr />
             <div className="shop-items-container">
-              {shopItems.map((item: any, idx: number) => {
+              {shopItems.filter((si: any) => si.data().category === ITEM_CATEGORIES.PRINTS).map((item: any, idx: number) => {
                 return (
                   <ShopItem
                     key={idx}
@@ -156,6 +180,7 @@ const Shop = ({ }: IShop) => {
                     image={item.data().image}
                     size={item.data().size}
                     type={item.data().type}
+                    available={item.data().available}
                     rarity={item.data().rarity}
                     price={item.data().price} />
                 )
@@ -167,13 +192,14 @@ const Shop = ({ }: IShop) => {
             <h2>{t("shop.merch")}</h2>
             <hr />
             <div className="shop-items-container">
-              {shopItems.map((item: any, idx: number) => {
+              {shopItems.filter((si: any) => si.data().category === ITEM_CATEGORIES.MERCH).map((item: any, idx: number) => {
                 return (
                   <ShopItem
                     key={idx}
                     id={item.data().name}
                     image={item.data().image}
                     type={item.data().type}
+                    available={item.data().available}
                     rarity={item.data().rarity}
                     size={item.data().size}
                     price={item.data().price} />

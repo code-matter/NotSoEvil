@@ -125,6 +125,10 @@ const AdminHome = ({ }: IAdminHome) => {
               id="color"
               label="Color"
               darkTheme />
+            <CustomInput
+              id="category"
+              label="Category"
+              darkTheme />
 
             <SquareButton
               label="Add Item"
