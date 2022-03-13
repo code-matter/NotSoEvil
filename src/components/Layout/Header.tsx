@@ -63,7 +63,7 @@ const Header = ({ }: IHeader) => {
                   }}>EN</p>
               </div>
               <CART className={`cart ${userContext.state.items.length === 0 ? 'disabled' : ''}`} onClick={userContext.state.items.length > 0 ? handleOpenCart : undefined} />
-              <p className='cart-qty'>{userContext?.state.items?.length}</p>
+              <p className='cart-qty' onClick={userContext.state.items.length > 0 ? handleOpenCart : undefined}>{userContext?.state.items?.length}</p>
             </div>
           </div>
         </div>
