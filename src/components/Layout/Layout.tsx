@@ -1,3 +1,4 @@
+import { AnimatePresence } from 'framer-motion'
 import { useEffect, useContext, ReactNode, useReducer } from 'react'
 import { useMatch } from 'react-router-dom'
 import { USER_KEYS } from '../../constants/reducerKeys'
@@ -11,13 +12,11 @@ export interface ILayout {
 }
 
 const Layout = ({ children }: ILayout) => {
-  const userContext = useContext(UserContext)
   const isHome = useMatch('/')
   const [state, dispatch] = useReducer<any>(userReducer, userInitialstate);
   return (
-    <div className="App">
+    <div className="App" id="App">
       <UserContext.Provider value={{ state, dispatch }}>
-        {userContext.state?.feedback && <p>{userContext.state.feedback}</p>}
         {!isHome && <Header />}
         {children}
       </UserContext.Provider>

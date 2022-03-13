@@ -24,6 +24,8 @@ export const userReducer = (state: IInitialState, action: any) => {
       return { ...state, language: action.payload };
     case USER_KEYS.ADD_ITEMS:
       return { ...state, items: [...state.items, action.payload] };
+    case USER_KEYS.SET_FEEDBACK:
+      return { ...state, feedback: action.payload };
     default:
       return state;
   }

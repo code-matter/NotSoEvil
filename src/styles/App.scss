@@ -11,6 +11,7 @@
 // UI
 @import "./components/UI/card";
 @import "./components/UI/modal";
+@import "./components/UI/feedback";
 @import "./components/UI/button";
 @import "./components/UI/squareButton";
 
@@ -33,6 +34,7 @@
   min-height: 100vh;
   background-color: $white;
   display: flex;
+  position: relative;
   align-items: center;
   flex-direction: column;
   -webkit-tap-highlight-color: transparent;
@@ -114,6 +116,17 @@
     }
     &.container {
       margin-top: $NAV_HEIGHT;
+    }
+    &.feedback {
+      z-index: 600;
+      position: absolute;
+      background-color: $white;
+      padding: 10px;
+      border-radius: 4px;
+      border-bottom: 4px solid $mauve;
+      // top: 50vh;
+      // left: 50vw;
+      // transform: translate(-50%, -50%);
     }
   }
 }

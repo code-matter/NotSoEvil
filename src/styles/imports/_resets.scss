@@ -5,6 +5,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  height: 100%;
+}
+html {
+  height: 100%;
 }
 @include not-mobile {
   // ::-webkit-scrollbar {

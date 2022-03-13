@@ -7,10 +7,14 @@ import { ReactComponent as CART } from '../../assets/Vector.svg'
 import { ReactComponent as LOGO } from '../../assets/EvilCurrent.svg'
 import { useTranslation } from 'react-i18next';
 import { getColor } from '../../utils/colors';
+import { AnimatePresence, motion } from 'framer-motion'
+import ReactDOM from "react-dom";
+import Feedback from '../UI/Feedback';
 
 export interface IHeader {
 
 }
+const portalEl = document.getElementById("overlays");
 
 const Header = ({ }: IHeader) => {
   const navigate = useNavigate()
@@ -22,6 +26,14 @@ const Header = ({ }: IHeader) => {
 
   return (
     <>
+      {ReactDOM.createPortal(
+        <AnimatePresence>
+          {userContext?.state?.feedback &&
+            <Feedback>
+              {userContext?.state?.feedback} ajouté au panier!
+            </Feedback>}
+        </AnimatePresence>
+        , portalEl as HTMLElement)}
       {
         !isAdmin &&
         <div className='header-wrap' style={{ backgroundColor: getColor() }}>

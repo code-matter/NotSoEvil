@@ -29,6 +29,8 @@ const ShopItem = ({
 
   const handleAddItem = () => {
     userContext.dispatch({ type: USER_KEYS.ADD_ITEMS, payload: id })
+    userContext.dispatch({ type: USER_KEYS.SET_FEEDBACK, payload: id })
+    setTimeout(() => userContext.dispatch({ type: USER_KEYS.SET_FEEDBACK, payload: undefined }), 2500)
   }
 
   return (
