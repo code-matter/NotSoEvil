@@ -44,9 +44,9 @@ const Header = ({ }: IHeader) => {
         <div className='header-wrap' style={{ backgroundColor: getPastelColor() }}>
           <LOGO className="logo" onClick={() => navigate('/')} />
           <div className='links'>
-            <Link className={`${pathname === "/rdv" ? 'on-page' : ''}`} to="/rdv">{t('general.rdv')}</Link>
+            <Link className={`${pathname === "/form" ? 'on-page' : ''} disabled`} to="/form">{t('general.rdv')}</Link>
             <Link className={`${pathname === "/flash" ? 'on-page' : ''}`} to="/flash">FLASH</Link>
-            <Link className={`${pathname === "/shop" ? 'on-page' : ''}`} to="/shop">{t('general.shop')}</Link>
+            <Link className={`${pathname === "/shop" ? 'on-page' : ''} disabled`} to="/shop">{t('general.shop')}</Link>
             <Link className={`${pathname === "/more" ? 'on-page' : ''}`} to="/more">{t('general.moremoremore')}</Link>
             <div className="languages-container">
               <div className='languages'>
@@ -62,7 +62,7 @@ const Header = ({ }: IHeader) => {
                     userContext.dispatch({ type: USER_KEYS.SET_LANGUAGE, payload: 'en' })
                   }}>EN</p>
               </div>
-              <CART className='cart' onClick={userContext.state.items.length > 0 ? handleOpenCart : undefined} />
+              <CART className='cart disabled' onClick={userContext.state.items.length > 0 ? handleOpenCart : undefined} />
               <p className='cart-qty'>{userContext?.state.items?.length}</p>
             </div>
           </div>

@@ -8,6 +8,10 @@ div {
     align-items: center;
     height: $NAV_HEIGHT;
     position: fixed;
+    .disabled {
+      pointer-events: none;
+      opacity: 0.5;
+    }
     svg {
       fill: $white;
       transition: all ease-in-out 0.3s;
@@ -61,6 +65,7 @@ div {
     p,
     a {
       color: $white;
+
       &.on-page {
         color: $white;
         font-weight: 900;
