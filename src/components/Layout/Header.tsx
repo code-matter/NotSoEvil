@@ -62,7 +62,7 @@ const Header = ({ }: IHeader) => {
                     userContext.dispatch({ type: USER_KEYS.SET_LANGUAGE, payload: 'en' })
                   }}>EN</p>
               </div>
-              <CART className='cart disabled' onClick={userContext.state.items.length > 0 ? handleOpenCart : undefined} />
+              <CART className={`cart ${userContext.state.items.length > 0 ? 'disabled' : ''}`} onClick={userContext.state.items.length > 0 ? handleOpenCart : undefined} />
               <p className='cart-qty'>{userContext?.state.items?.length}</p>
             </div>
           </div>
