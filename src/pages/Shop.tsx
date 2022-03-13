@@ -1,21 +1,10 @@
-import React, { FormEvent, Ref, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import ShopItem from '../components/ShopItem'
-import { BsArrowLeft } from "react-icons/bs";
 import { useNavigate } from 'react-router-dom';
-import ShopFilter from '../components/Filters/ShopFilter';
-import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
-import { firebaseDB, firebaseStorage } from '../utils/firebase';
-import { getDownloadURL, ref } from 'firebase/storage';
 import { FlashesService } from '../services/flashes.services';
-import { ReactComponent as CONSTRUCTION } from '../assets/construction.svg'
-import Card from '../components/UI/Card';
-import Button from '../components/UI/Button';
 import SquareButton from '../components/UI/SquareButton';
 import { useTranslation } from 'react-i18next';
-import { FaPlus, FaMinus } from "react-icons/fa";
-import CustomCheckBox from '../components/CustomCheckBox';
-import CustomInput from '../components/CustomInput';
-import _, { isEmpty } from 'lodash';
+import _ from 'lodash';
 import { ITEM_CATEGORIES } from '../utils/constants';
 
 export interface IShop {
@@ -30,7 +19,6 @@ export const scrollInView = (where: any) => {
 /*THIS WILL NEED A MAJOR REFACTOR. IM JUST PLAYING AROUND NOW */
 
 const Shop = ({ }: IShop) => {
-  let navigation = useNavigate()
   const [shopItems, setShopItems] = useState<any>()
   const [isLoading, setIsLoading] = useState(true);
   const [filtersOpened, setFiltersOpened] = useState(false)
@@ -53,11 +41,17 @@ const Shop = ({ }: IShop) => {
       console.error('No items!')
       return
     }
-    setShopItems(flashes.docs)
+    const docs = await flashes.docs
+    setShopItems(docs)
     setIsLoading(false)
   }
-  useEffect(() => {
+
+  useEffect((): any => {
     fetchData()
+    return () => {
+      setShopItems([])
+      setIsLoading(true)
+    }
   }, [])
 
   const handleFilters = (e: any) => {
@@ -108,7 +102,7 @@ const Shop = ({ }: IShop) => {
   return (
     <>
       {/* <ShopFilter /> */}
-      {!isLoading &&
+      {!isLoading && shopItems.length > 0 &&
         <div className="shop-container container">
           <div className="shop-ctas">
             <SquareButton

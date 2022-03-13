@@ -6,7 +6,7 @@ import { UserContext } from '../../context/UserContext';
 import { ReactComponent as CART } from '../../assets/Vector.svg'
 import { ReactComponent as LOGO } from '../../assets/EvilCurrent.svg'
 import { useTranslation } from 'react-i18next';
-import { RANDOM_COLORS_PASTELS } from '../../pages/HomePage';
+import { getColor } from '../../utils/colors';
 
 export interface IHeader {
 
@@ -24,7 +24,7 @@ const Header = ({ }: IHeader) => {
     <>
       {
         !isAdmin &&
-        <div className='header-wrap' style={{ backgroundColor: RANDOM_COLORS_PASTELS[Math.floor(Math.random() * RANDOM_COLORS_PASTELS.length)] }}>
+        <div className='header-wrap' style={{ backgroundColor: getColor() }}>
           <LOGO className="logo" onClick={() => navigate('/')} />
           <div className='links'>
             <Link className={`${pathname === "/rdv" ? 'on-page' : ''}`} to="/rdv">{t('general.rdv')}</Link>
@@ -39,7 +39,6 @@ const Header = ({ }: IHeader) => {
                     userContext.dispatch({ type: USER_KEYS.SET_LANGUAGE, payload: 'fr' })
                   }}>FR</p>
                 <p>|</p>
-                {/* <span className="spacer"></span> */}
                 <p className={userContext?.state?.language === "en" ? 'active' : 'inactive'}
                   onClick={() => {
                     i18next.changeLanguage('en')

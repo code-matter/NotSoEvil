@@ -1,10 +1,8 @@
-import React, { useContext, useState } from 'react'
+import { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { USER_KEYS } from '../constants/reducerKeys'
 import { UserContext } from '../context/UserContext'
-import { RANDOM_COLORS } from '../pages/HomePage'
-import Card from './UI/Card'
-import SquareButton from './UI/SquareButton'
+import { getColor } from '../utils/colors'
 
 export interface IShopItem {
   id: string,
@@ -35,7 +33,7 @@ const ShopItem = ({
 
   return (
     <div className={`shop-items ${!available ? 'sold' : ''}`}
-      onMouseEnter={() => setIsHovered({ color: RANDOM_COLORS[Math.floor(Math.random() * RANDOM_COLORS.length)], hovered: true })}
+      onMouseEnter={() => setIsHovered({ color: getColor(), hovered: true })}
       onMouseLeave={() => setIsHovered({ color: '', hovered: false })}>
       <div className="item-img" >
         <img src={image} alt={image} />

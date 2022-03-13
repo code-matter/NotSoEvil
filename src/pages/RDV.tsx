@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from 'react'
+import { FormEvent, useState } from 'react'
 import CustomInput from '../components/CustomInput'
 import CustomMultiChoice from '../components/CustomMultiChoice'
 import CustomTitle from '../components/CustomTitle'

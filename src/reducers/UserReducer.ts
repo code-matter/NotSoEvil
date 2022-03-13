@@ -4,6 +4,7 @@ interface IInitialState {
   language: string | undefined;
   user: any | undefined;
   items: any[];
+  feedback: string | undefined;
 }
 
 export const userInitialstate: IInitialState = {
@@ -11,6 +12,7 @@ export const userInitialstate: IInitialState = {
     localStorage.getItem("i18nextLng") || navigator.language.slice(0, 2),
   user: undefined,
   items: [],
+  feedback: undefined,
 };
 
 export const userReducer = (state: IInitialState, action: any) => {

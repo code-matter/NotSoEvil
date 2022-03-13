@@ -1,6 +1,4 @@
-import React from "react";
 import ReactDOM from "react-dom";
-import { RANDOM_COLORS } from "../../pages/HomePage";
 import { motion } from "framer-motion"
 
 const Backdrop = (props: any) => {
@@ -18,7 +16,6 @@ const ModalOverlay = (props: any) => {
         mass: 3,
         stiffness: 500,
       }}
-    // style={{ backgroundColor: RANDOM_COLORS[Math.floor(Math.random() * RANDOM_COLORS.length)] + 'af' }}
     >
       <div className="modal-content">{props.children}</div>
     </motion.div>

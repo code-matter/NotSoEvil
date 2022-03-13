@@ -1,16 +1,14 @@
 import { UserContext } from "../context/UserContext"
-import React, { FormEvent, useContext, useEffect, useRef, useState } from 'react';
+import { FormEvent, useContext, useEffect, useState } from 'react';
 import { UsersService } from "../services/users.services";
 import { useNavigate } from "react-router-dom";
 import Modal from "../components/UI/Modal";
 import CustomInput from "../components/CustomInput";
-import CustomMultiChoice from "../components/CustomMultiChoice";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { firebaseAuth, firebaseDB, firebaseStorage } from "../utils/firebase";
 import { doc, setDoc } from "firebase/firestore";
 import CustomSelect from "../components/CustomSelect";
 import { ReactComponent as COUCOU } from '../assets/Smiley.svg'
-import Button from "../components/UI/Button";
 import { onAuthStateChanged } from "firebase/auth";
 import SquareButton from "../components/UI/SquareButton";
 

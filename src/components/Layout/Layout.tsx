@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, ReactNode, useReducer } from 'react'
+import { useEffect, useContext, ReactNode, useReducer } from 'react'
 import { useMatch } from 'react-router-dom'
 import { USER_KEYS } from '../../constants/reducerKeys'
 import { UserContext } from '../../context/UserContext'
@@ -14,30 +14,10 @@ const Layout = ({ children }: ILayout) => {
   const userContext = useContext(UserContext)
   const isHome = useMatch('/')
   const [state, dispatch] = useReducer<any>(userReducer, userInitialstate);
-
-  useEffect(() => {
-    firebaseAuth.onAuthStateChanged((user) => {
-      if (user) {
-        userContext.dispatch({ type: USER_KEYS.SET_USER, payload: user })
-      } else {
-        userContext.dispatch({ type: USER_KEYS.SET_USER, payload: undefined })
-
-      }
-    })
-    return () => {
-      firebaseAuth.onAuthStateChanged((user) => {
-        if (user) {
-          userContext.dispatch({ type: USER_KEYS.SET_USER, payload: user })
-        } else {
-          userContext.dispatch({ type: USER_KEYS.SET_USER, payload: undefined })
-        }
-      })
-    }
-  }, [])
-
   return (
     <div className="App">
       <UserContext.Provider value={{ state, dispatch }}>
+        {userContext.state?.feedback && <p>{userContext.state.feedback}</p>}
         {!isHome && <Header />}
         {children}
       </UserContext.Provider>

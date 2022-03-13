@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { RANDOM_COLORS } from '../../pages/HomePage'
+import { useState } from 'react'
+import { getColor } from '../../utils/colors'
 
 export interface ISquareButton {
   label: string,
@@ -16,7 +16,7 @@ const SquareButton = ({ label, disabled, type, fontSize, onClick }: ISquareButto
       disabled={disabled}
       onClick={onClick}
       type={type || 'button'}
-      onMouseEnter={() => setIshovered({ color: RANDOM_COLORS[Math.floor(Math.random() * RANDOM_COLORS.length)], hovered: true })}
+      onMouseEnter={() => setIshovered({ color: getColor(), hovered: true })}
       onMouseLeave={() => setIshovered({ color: '', hovered: false })}
       style={{
         fontSize: fontSize || '16px',
