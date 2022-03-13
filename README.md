@@ -1,6 +1,6 @@
 # 🌈 No So Evil's Portfolio 🌈
 
-This project is an effort put together by [@notsoevil.ink](https://www.instagram.com/notsoevil.ink/) & [@code_matter](https://www.instagram.com/code_matter/) to make a portfolio site for the artist Not So Evil. You can visite the website [here!](www.notsoevil.ink)
+This project is an effort put together by [@notsoevil.ink](https://www.instagram.com/notsoevil.ink/) & [@code_matter](https://www.instagram.com/code_matter/) to make a portfolio site for the artist Not So Evil. You can visite the website [here!](https://www.notsoevil.ink)
 
 ## Table of Content
 
