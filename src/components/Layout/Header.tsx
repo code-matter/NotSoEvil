@@ -23,6 +23,9 @@ const Header = ({ }: IHeader) => {
   const { pathname } = useLocation()
   const isAdmin = useMatch('/admin/*')
 
+  const handleOpenCart = () => {
+    userContext.dispatch({ type: USER_KEYS.OPEN_CART })
+  }
 
   return (
     <>
@@ -57,7 +60,7 @@ const Header = ({ }: IHeader) => {
                     userContext.dispatch({ type: USER_KEYS.SET_LANGUAGE, payload: 'en' })
                   }}>EN</p>
               </div>
-              <CART className='cart' />
+              <CART className='cart' onClick={handleOpenCart} />
               <p>{userContext?.state.items?.length}</p>
             </div>
           </div>

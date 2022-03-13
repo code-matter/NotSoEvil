@@ -5,4 +5,5 @@ export const UserContext = createContext<any>({
   user: undefined,
   items: [],
   feedback: undefined,
+  cartOpen: false
 })

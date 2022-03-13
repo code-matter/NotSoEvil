@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import ShopItem from '../components/ShopItem'
 import { useNavigate } from 'react-router-dom';
 import { FlashesService } from '../services/flashes.services';
@@ -6,6 +6,8 @@ import SquareButton from '../components/UI/SquareButton';
 import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
 import { ITEM_CATEGORIES } from '../utils/constants';
+import CartAside from '../components/UI/CartAside';
+import { UserContext } from '../context/UserContext';
 
 export interface IShop {
 }
@@ -34,6 +36,7 @@ const Shop = ({ }: IShop) => {
   const OEUVRES = useRef<HTMLElement>(null)
   const PRINTS = useRef<HTMLElement>(null)
   const MERCH = useRef<HTMLElement>(null)
+  const userContext = useContext(UserContext)
 
   const fetchData = async () => {
     const flashes: any = await FlashesService.list('shop-items');
@@ -102,6 +105,8 @@ const Shop = ({ }: IShop) => {
   return (
     <>
       {/* <ShopFilter /> */}
+      {userContext.state.cartOpen &&
+        <CartAside shopItems={shopItems} />}
       {!isLoading && shopItems.length > 0 &&
         <div className="shop-container container">
           <div className="shop-ctas">

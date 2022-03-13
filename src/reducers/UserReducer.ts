@@ -5,6 +5,7 @@ interface IInitialState {
   user: any | undefined;
   items: any[];
   feedback: string | undefined;
+  cartOpen: boolean;
 }
 
 export const userInitialstate: IInitialState = {
@@ -13,6 +14,7 @@ export const userInitialstate: IInitialState = {
   user: undefined,
   items: [],
   feedback: undefined,
+  cartOpen: false,
 };
 
 export const userReducer = (state: IInitialState, action: any) => {
@@ -26,6 +28,8 @@ export const userReducer = (state: IInitialState, action: any) => {
       return { ...state, items: [...state.items, action.payload] };
     case USER_KEYS.SET_FEEDBACK:
       return { ...state, feedback: action.payload };
+    case USER_KEYS.OPEN_CART:
+      return { ...state, cartOpen: !state.cartOpen };
     default:
       return state;
   }
