@@ -28,7 +28,7 @@ export const userReducer = (state: IInitialState, action: any) => {
       return { ...state, items: [...state.items, action.payload] };
     case USER_KEYS.SET_FEEDBACK:
       return { ...state, feedback: action.payload };
-    case USER_KEYS.OPEN_CART:
+    case USER_KEYS.TOGGLE_CART:
       return { ...state, cartOpen: !state.cartOpen };
     default:
       return state;

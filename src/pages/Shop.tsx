@@ -8,6 +8,8 @@ import _ from 'lodash';
 import { ITEM_CATEGORIES } from '../utils/constants';
 import CartAside from '../components/UI/CartAside';
 import { UserContext } from '../context/UserContext';
+import { AnimatePresence } from 'framer-motion';
+import { USER_KEYS } from '../constants/reducerKeys';
 
 export interface IShop {
 }
@@ -105,8 +107,10 @@ const Shop = ({ }: IShop) => {
   return (
     <>
       {/* <ShopFilter /> */}
-      {userContext.state.cartOpen &&
-        <CartAside shopItems={shopItems} />}
+      <AnimatePresence>
+        {userContext.state.cartOpen &&
+          <CartAside shopItems={shopItems} onClose={() => userContext.dispatch({ type: USER_KEYS.TOGGLE_CART })} />}
+      </AnimatePresence>
       {!isLoading && shopItems.length > 0 &&
         <div className="shop-container container">
           <div className="shop-ctas">

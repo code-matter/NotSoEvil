@@ -2,7 +2,7 @@ import { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { USER_KEYS } from '../constants/reducerKeys'
 import { UserContext } from '../context/UserContext'
-import { getColor } from '../utils/colors'
+import { accentColor } from '../utils/colors'
 
 export interface IShopItem {
   id: string,
@@ -23,7 +23,9 @@ const ShopItem = ({
   available,
   type
 }: IShopItem) => {
-  const [isHovered, setIsHovered] = useState({ color: '', hovered: false })
+  const [imgHovered, setImgHovered] = useState(false)
+  const [btnHovered, setBtnHovered] = useState(false)
+  const [color, setColor] = useState(accentColor())
   const { t } = useTranslation()
   const userContext = useContext(UserContext)
 
@@ -40,32 +42,50 @@ const ShopItem = ({
       }
     })
     userContext.dispatch({ type: USER_KEYS.SET_FEEDBACK, payload: id })
-    setTimeout(() => userContext.dispatch({ type: USER_KEYS.SET_FEEDBACK, payload: undefined }), 500)
+    setTimeout(() => userContext.dispatch({ type: USER_KEYS.SET_FEEDBACK, payload: undefined }), 1500)
   }
 
   return (
-    <div className={`shop-items ${!available ? 'sold' : ''}`}
-      onMouseEnter={() => setIsHovered({ color: getColor(), hovered: true })}
-      onMouseLeave={() => setIsHovered({ color: '', hovered: false })}>
-      <div className="item-img" >
+    <div className={`shop-items ${!available ? 'sold' : ''}`}>
+      <div className="item-img"
+        onMouseEnter={() => {
+          if (!color)
+            setColor(accentColor())
+          setImgHovered(true)
+        }}
+        onMouseLeave={() => {
+          setColor('')
+          setImgHovered(false)
+        }}>
         <img src={image} alt={image} />
-        {isHovered.hovered && <p className="shop-seemore" style={{
-          backgroundColor: isHovered.hovered ?
-            isHovered.color + '67' : '',
+        {imgHovered && <p className="shop-seemore" style={{
+          backgroundColor: imgHovered && color ?
+            color + '67' : '',
         }}>{t('shop.see_more')}</p>}
       </div>
       <>
-        <p className="item-title"><span>{id}</span><span>{price} $</span></p>
+        <div className="item-title">
+          <h1>{id}</h1>
+          <h1>{price} $</h1>
+        </div>
         <p className="item-info">{type} | {size}</p>
         <p className="item-rarity">
           <span>{rarity.toUpperCase()}</span>
           <span
             className='buy-btn'
             onClick={available ? handleAddItem : undefined}
+            onMouseEnter={() => {
+              if (!color)
+                setColor(accentColor())
+              setBtnHovered(true)
+            }}
+            onMouseLeave={() => {
+              setColor('')
+              setBtnHovered(false)
+            }}
             style={{
-              color: isHovered.hovered ?
-                isHovered.color : '',
-            }}>JE LE VEUX !
+              color: color && btnHovered ? color : ''
+            }}>{t('shop.want_it')}
           </span>
         </p>
       </>

@@ -5,10 +5,23 @@ div {
       pointer-events: none;
     }
     position: relative;
-
+    color: $blue;
+    div {
+      &.item-title {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        h1 {
+          overflow: hidden;
+          white-space: nowrap;
+          max-width: 275px;
+          font-size: 18px;
+          text-overflow: ellipsis;
+        }
+      }
+    }
     p {
       letter-spacing: 0.1em;
-      color: $blue;
       margin: 4px 0;
       &.item-title {
         font-weight: 600;

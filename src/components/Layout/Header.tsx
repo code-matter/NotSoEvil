@@ -6,7 +6,7 @@ import { UserContext } from '../../context/UserContext';
 import { ReactComponent as CART } from '../../assets/Vector.svg'
 import { ReactComponent as LOGO } from '../../assets/EvilCurrent.svg'
 import { useTranslation } from 'react-i18next';
-import { getColor } from '../../utils/colors';
+import { getPastelColor } from '../../utils/colors';
 import { AnimatePresence, motion } from 'framer-motion'
 import ReactDOM from "react-dom";
 import Feedback from '../UI/Feedback';
@@ -24,7 +24,7 @@ const Header = ({ }: IHeader) => {
   const isAdmin = useMatch('/admin/*')
 
   const handleOpenCart = () => {
-    userContext.dispatch({ type: USER_KEYS.OPEN_CART })
+    userContext.dispatch({ type: USER_KEYS.TOGGLE_CART })
   }
 
   return (
@@ -33,13 +33,15 @@ const Header = ({ }: IHeader) => {
         <AnimatePresence>
           {userContext?.state?.feedback &&
             <Feedback>
-              {userContext?.state?.feedback} ajouté au panier!
+              <h1>
+                {userContext?.state?.feedback} {t('shop.added')}
+              </h1>
             </Feedback>}
         </AnimatePresence>
         , portalEl as HTMLElement)}
       {
         !isAdmin &&
-        <div className='header-wrap' style={{ backgroundColor: getColor() }}>
+        <div className='header-wrap' style={{ backgroundColor: getPastelColor() }}>
           <LOGO className="logo" onClick={() => navigate('/')} />
           <div className='links'>
             <Link className={`${pathname === "/rdv" ? 'on-page' : ''}`} to="/rdv">{t('general.rdv')}</Link>
@@ -60,8 +62,8 @@ const Header = ({ }: IHeader) => {
                     userContext.dispatch({ type: USER_KEYS.SET_LANGUAGE, payload: 'en' })
                   }}>EN</p>
               </div>
-              <CART className='cart' onClick={handleOpenCart} />
-              <p>{userContext?.state.items?.length}</p>
+              <CART className='cart' onClick={userContext.state.items.length > 0 ? handleOpenCart : undefined} />
+              <p className='cart-qty'>{userContext?.state.items?.length}</p>
             </div>
           </div>
         </div>

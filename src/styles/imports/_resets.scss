@@ -1,14 +1,13 @@
+html,
+button,
 body {
-  font-family: "Asap", BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   height: 100%;
-}
-html {
-  height: 100%;
+  font-family: "Asap", BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
 }
 @include not-mobile {
   // ::-webkit-scrollbar {
@@ -37,4 +36,7 @@ html {
 a {
   text-decoration: none;
   color: unset;
+  font-family: "Asap", BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
 }

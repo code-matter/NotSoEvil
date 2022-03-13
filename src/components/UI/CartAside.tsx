@@ -21,15 +21,15 @@ const Backdrop = (props: any) => {
 const CartAsideOverlay = (props: any) => {
   return (
     <motion.div className="cartAside"
-      initial={{ y: '-25vh', opacity: 0 }}
-      animate={{ y: 100, opacity: 1 }}
+      initial={{ y: 100, x: '20vw', opacity: 0 }}
+      animate={{ y: 100, x: 0, opacity: 1 }}
       transition={{
         type: "spring",
         damping: 50,
         mass: 3,
         stiffness: 500,
       }}
-      exit={{ y: '-25vh', opacity: 0 }}
+      exit={{ x: '50vw' }}
     >
       <div className="cartAside-content">{props.children}</div>
     </motion.div>
@@ -43,16 +43,33 @@ const CartAside = (props: any) => {
   return (
     <>
       {ReactDOM.createPortal(
-        <Backdrop
-          onClose={props.backdropClose ?
-            props.onClose :
-            null} >
+        <>
+          <Backdrop
+            onClose={props.onClose ?
+              props.onClose :
+              null} >
+
+          </Backdrop>
           {props.shopItems && userContext && <CartAsideOverlay>
             {userContext.state.items.map((i: any, idx: number) =>
-              <p>{i.id}</p>
+              <div className="cart-item-view" key={i.id + idx}>
+                <img src={i.image} alt={i.image} />
+                <div className="cart-item-infos">
+                  <div className="infos-title">
+                    <h1>{i.id}</h1>
+                    <h1>{i.price} $</h1>
+                  </div>
+                  <div className="infos-title description">
+                    <p>{i.rarity.toUpperCase()}</p>
+                    <p>{i.type}</p>
+                    <p>{i.size}</p>
+                  </div>
+                </div>
+              </div>
             )}
           </CartAsideOverlay>}
-        </Backdrop>, portalEl as HTMLElement)}
+        </>
+        , portalEl as HTMLElement)}
     </>
   );
 };
