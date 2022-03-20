@@ -16,6 +16,7 @@ const ModalOverlay = (props: any) => {
         mass: 3,
         stiffness: 500,
       }}
+      style={{ backgroundColor: props.backdropColor }}
     >
       <div className="modal-content">{props.children}</div>
     </motion.div>
@@ -29,10 +30,10 @@ const Modal = (props: any) => {
     <>
       {ReactDOM.createPortal(
         <Backdrop
-          onClose={props.backdropClose ?
+          onClose={props.onClose ?
             props.onClose :
             null} >
-          <ModalOverlay>{props.children}</ModalOverlay>
+          <ModalOverlay backdropColor={props.backdropColor}>{props.children}</ModalOverlay>
         </Backdrop>, portalEl as HTMLElement)}
     </>
   );

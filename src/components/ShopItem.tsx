@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next'
 import { USER_KEYS } from '../constants/reducerKeys'
 import { UserContext } from '../context/UserContext'
 import { accentColor } from '../utils/colors'
+import Modal from './UI/Modal'
+import SquareButton from './UI/SquareButton'
 
 export interface IShopItem {
   id: string,
@@ -25,6 +27,7 @@ const ShopItem = ({
 }: IShopItem) => {
   const [imgHovered, setImgHovered] = useState(false)
   const [btnHovered, setBtnHovered] = useState(false)
+  const [infoOpened, setInfoOpened] = useState(false)
   const [color, setColor] = useState(accentColor())
   const { t } = useTranslation()
   const userContext = useContext(UserContext)
@@ -47,6 +50,27 @@ const ShopItem = ({
 
   return (
     <div className={`shop-items ${!available ? 'sold' : ''}`}>
+      {infoOpened &&
+        <Modal onClose={() => setInfoOpened(false)} backdropColor="rgba(255,255,255,0.85)">
+          <div className='modal-shop'>
+            <div className='modal-shop-img'>
+              <img src={image} alt={image} />
+            </div>
+            <div className='modal-shop-info'>
+              <h1>{id}</h1>
+              <div>
+                <p>{size}</p>
+                <p>Reprehenderit ea consectetur in commodo fugiat deserunt eu sint labore amet.</p>
+              </div>
+              <div>
+                <p>{rarity.toUpperCase()}</p>
+                <p>Collection Hiver</p>
+              </div>
+              <p className='price'>{price} $</p>
+              <SquareButton label={t('shop.want_it')} onClick={available ? handleAddItem : undefined} />
+            </div>
+          </div>
+        </Modal>}
       <div className="item-img"
         onMouseEnter={() => {
           if (!color)
@@ -57,11 +81,13 @@ const ShopItem = ({
           setColor('')
           setImgHovered(false)
         }}>
-        <img src={image} alt={image} />
-        {imgHovered && <p className="shop-seemore" style={{
-          backgroundColor: imgHovered && color ?
-            color + '67' : '',
-        }}>{t('shop.see_more')}</p>}
+        <img className='item-img' src={image} alt={image} />
+        {imgHovered && <p className="shop-seemore"
+          onClick={() => setInfoOpened(true)}
+          style={{
+            backgroundColor: imgHovered && color ?
+              color + '67' : '',
+          }}>{t('shop.see_more')}</p>}
       </div>
       <>
         <div className="item-title">

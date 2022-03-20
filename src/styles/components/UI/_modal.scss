@@ -82,6 +82,43 @@ div {
               width: 80%;
             }
           }
+          &.modal-shop {
+            display: flex;
+            gap: 16px;
+            color: $label-color;
+            // overflow-x: hidden;
+            letter-spacing: 0.2em;
+            div {
+              &.modal-shop-img {
+                img {
+                  height: 100%;
+                  aspect-ratio: 1;
+                }
+              }
+              &.modal-shop-info {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                h1 {
+                  font-size: 20px;
+                  font-weight: 600;
+                  max-width: 250px;
+                  overflow: hidden;
+                  white-space: nowrap;
+                  text-overflow: ellipsis;
+                }
+                p {
+                  margin: 10px 0;
+                  &.price {
+                    font-weight: 600;
+                  }
+                }
+                button {
+                  max-height: 50px;
+                }
+              }
+            }
+          }
         }
 
         @include mobile {
