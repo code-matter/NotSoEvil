@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import CustomInput from '../components/CustomInput'
 import CustomMultiChoice from '../components/CustomMultiChoice'
 import CustomTitle from '../components/CustomTitle'
@@ -23,6 +23,7 @@ import {
   TUESDAY,
   WEDNESDAY
 } from '../constants/rdv'
+import _ from 'lodash'
 
 interface EvilForm {
   firstName?: string,
@@ -62,11 +63,60 @@ interface EvilForm {
   trueInfo?: boolean
 }
 
+const initForm = {
+  "firstName": "",
+  "lastName": "",
+  "email": "",
+  "languageFr": false,
+  "languageEn": false,
+  "flash": "",
+  "descProj": "",
+  "placement": "",
+  "size": "",
+  "styleBlack": false,
+  "styleBc": false,
+  "styleColor": false,
+  "styleGradient": false,
+  "styleMulticolor": false,
+  "wednesday-11": false,
+  "wednesday-13": false,
+  "wednesday-15": false,
+  "thursday-11": false,
+  "thursday-13": false,
+  "thursday-15": false,
+  "friday-11": false,
+  "friday-13": false,
+  "friday-15": false,
+  "reference": "",
+  "firstTimeNo": false,
+  "firstTimeyYes": false,
+  "questions": "",
+  "over18": false,
+  "covidProof": false,
+  "trueInfo": false
+}
+
 const RDV = () => {
   const { t } = useTranslation()
   const navigate = useNavigate();
   const [form, setForm] = useState<any>({})
   const isMobile = window.innerWidth < 500;
+
+  useEffect(() => {
+    return () => {
+      setForm({})
+      setOpenedAvailabilities([{}])
+      setMonday(MONDAY)
+      setTuesday(TUESDAY)
+      setWednesday(WEDNESDAY)
+      setThursday(THURSDAY)
+      setFriday(FRIDAY)
+      setLanguages(LANGUAGES)
+      setStyles(STYLES)
+      setFirstTime(FIRST_TIME)
+    }
+  }, [])
+
 
   const handleFormChange = (event: FormEvent) => {
     setForm(
@@ -81,27 +131,39 @@ const RDV = () => {
   }
 
   const sendForm = () => {
-    const tmpForm: any = { ...form };
-    Object.keys(form).forEach((info: string) => {
-      if (form[info]) {
-        tmpForm[info] = form[info]
-      }
-    })
     if (process.env.NODE_ENV === 'production') {
+      let finalForm = { ...initForm, ...form }
+      _.forEach(finalForm, (value, key) => {
+        if (!value) {
+          finalForm[key] = ""
+        }
+        if (value === true) {
+          finalForm[key] = "OUI"
+        }
+      })
       emailjs.send(
         SECRETS.SERVICE_ID,
         SECRETS.TEMPLATE_ID,
-        form,
+        finalForm,
         SECRETS.USER_ID)
         .then(() => alert(t('form.alert')))
-        .then(() => navigate('/'))
+        .then(() => window.location.replace('/'))
     } else {
-      console.log(form)
+      let finalForm = { ...initForm, ...form }
+      _.forEach(finalForm, (value, key) => {
+        if (!value) {
+          finalForm[key] = ""
+        }
+        if (value === true) {
+          finalForm[key] = "OUI"
+        }
+      })
+      console.log('finalForm', finalForm)
+      window.location.replace('/')
     }
   }
 
   const [openedAvailabilities, setOpenedAvailabilities] = useState<any[]>([{}])
-
   const [monday, setMonday] = useState<BoolChoice[]>(MONDAY)
   const [tuesday, setTuesday] = useState<any>(TUESDAY)
   const [wednesday, setWednesday] = useState<any>(WEDNESDAY)

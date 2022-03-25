@@ -95,10 +95,9 @@ const Shop = ({ }: IShop) => {
     const tmpShopItems = { ...shopItems }
     if (isFiltering && tmpShopItems) {
       const filters = { ...currentFilters }
-      console.log('filters: ', filters)
       // console.log('shopItems: ', shopItems)
       _.forEach(tmpShopItems, (iValue: any, iKey: string) => {
-        console.log(iValue)
+        // console.log(iValue)
       })
     }
   }, [currentFilters, shopItems, isFiltering])

@@ -46,7 +46,6 @@ const AdminHome = ({ }: IAdminHome) => {
   }
   const getURL = async (where: any) => {
     const res = await getDownloadURL(ref(firebaseStorage, where))
-    console.log('res ', res)
     return res
   }
 
@@ -73,7 +72,6 @@ const AdminHome = ({ }: IAdminHome) => {
             size: form.size,
             color: form.color,
           })
-          console.log(d);
           document.location.reload()
         } catch (error) {
           console.error(error)
