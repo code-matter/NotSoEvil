@@ -102,7 +102,7 @@ const HomePage: React.FC = () => {
           >
             {t('general.rdv')}
           </Link>
-          <Link className={`${hovered.id === 'flash' ? 'hovered' : ''} `}
+          <Link className={`${hovered.id === 'flash' ? 'hovered' : ''} disabled`}
             id='flash'
             to="/flash"
             style={{
@@ -126,7 +126,7 @@ const HomePage: React.FC = () => {
           >
             {t('general.shop')}
           </Link>
-          <Link className={`${hovered.id === 'plus' ? 'hovered' : ''} `}
+          <Link className={`${hovered.id === 'plus' ? 'hovered' : ''} disabled`}
             id='plus'
             to="/plus"
             style={{
