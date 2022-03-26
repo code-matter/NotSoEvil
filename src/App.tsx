@@ -14,6 +14,7 @@ import { useTranslation } from 'react-i18next';
 import { userInitialstate, userReducer } from './reducers/UserReducer';
 import Layout from './components/Layout/Layout';
 import Shop from './pages/Shop';
+import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 
 export const routes = [
   {
@@ -74,11 +75,13 @@ function App() {
     )
   }
 
-
+  // need to store in env
   return (
-    <Layout>
-      <AppRouter />
-    </Layout>
+    <PayPalScriptProvider options={{ 'client-id': process.env.REACT_APP_PP_CLIENT_ID as string, 'currency': 'CAD' }} >
+      <Layout>
+        <AppRouter />
+      </Layout>
+    </PayPalScriptProvider>
   );
 }
 
