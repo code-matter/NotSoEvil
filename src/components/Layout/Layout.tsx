@@ -15,6 +15,17 @@ const Layout = ({ children }: ILayout) => {
   const isHome = useMatch('/')
   const isRDV = useMatch('/form')
   const [state, dispatch] = useReducer<any>(userReducer, userInitialstate);
+  useEffect(() => {
+    console.log(`
+    Hey! First, thanks for coming here!
+    The artist and myself are quite happy to see you here!
+    If you are a web developepr interested in learning more,
+    come join us on discord: https://discord.gg/tPuC99czEa
+
+    💻 See you soon! 💻
+  `)
+  }, [])
+
   return (
     <div className="App" id="App">
       <UserContext.Provider value={{ state, dispatch }}>
