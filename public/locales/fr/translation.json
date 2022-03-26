@@ -64,10 +64,13 @@
     "contact": "Contact",
     "project": "Projet",
     "moreInfo": "Informations Additionnelles",
+    "10h": "10h",
     "11h": "11h",
+    "12h": "12h",
     "13h": "13h",
     "14h": "14h",
     "15h": "15h",
+    "16h": "16h",
     "text1": "Pour effectuer votre demande de rendez-vous, veuillez remplir le formulaire suivant le plus précisément possible. Pour plusieurs projets, veuillez remplir qu'un seul formulaire.",
     "text2": "Si votre projet est retenu, vous serez contacté par ",
     "text3": "courriel",
@@ -84,7 +87,7 @@
   },
   "modal": {
     "hey": "Coucou",
-    "1st_para": "Veuillez prendre note que ce site est en construction. Les pages seront accessibles sous peu.",
+    "1st_para": "Veuillez prendre note que ce site est encore en construction. Les autres pages seront accessibles sous peu.",
     "2nd_para": "Pour communiquer avec moi, vous pouvez me rejoindre par courriel au "
   },
   "construction": {
