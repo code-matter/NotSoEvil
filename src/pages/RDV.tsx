@@ -9,7 +9,7 @@ import CustomAvailabilities from '../components/CustomAvailabilities'
 import { useNavigate } from 'react-router-dom'
 import EvilHeader from '../components/EvilHeader'
 import { SECRETS } from '../secrets'
-import { useTranslation } from 'react-i18next'
+import { useSSR, useTranslation } from 'react-i18next'
 import i18next from 'i18next'
 import { isFormValid } from '../utils/rdv'
 import {
@@ -26,7 +26,7 @@ import {
 import _ from 'lodash'
 
 const FIRST_MONTH = 'april'
-const SECOND_MONTH = 'march'
+const SECOND_MONTH = 'june'
 
 const initForm = {
   "firstName": "",
@@ -35,29 +35,35 @@ const initForm = {
   "languageFr": false,
   "languageEn": false,
   "flash": "",
-  "descProj": "",
+  // "descProj": "",
   "placement": "",
   "size": "",
-  "styleBlack": false,
-  "styleBc": false,
-  "styleColor": false,
-  "styleGradient": false,
-  "styleMulticolor": false,
-  "wednesday-11": false,
-  "wednesday-13": false,
-  "wednesday-15": false,
-  "thursday-11": false,
-  "thursday-13": false,
-  "thursday-15": false,
-  "friday-11": false,
-  "friday-13": false,
-  "friday-15": false,
-  "reference": "",
+  // "styleBlack": false,
+  // "styleBc": false,
+  // "styleColor": false,
+  // "styleGradient": false,
+  // "styleMulticolor": false,
+  "monday-10": false,
+  "monday-12": false,
+  "monday-14": false,
+  "tuesday-10": false,
+  "tuesday-12": false,
+  "tuesday-14": false,
+  "wednesday-10": false,
+  "wednesday-12": false,
+  "wednesday-14": false,
+  "thursday-10": false,
+  "thursday-12": false,
+  "thursday-14": false,
+  "friday-10": false,
+  "friday-12": false,
+  "friday-14": false,
+  // "reference": "",
   "firstTimeNo": false,
   "firstTimeyYes": false,
   "questions": "",
   "over18": false,
-  "covidProof": false,
+  // "covidProof": false,
   "trueInfo": false
 }
 
@@ -96,7 +102,8 @@ const RDV = () => {
   }
 
   const sendForm = () => {
-    if (process.env.NODE_ENV === 'production') {
+    setIsDisabled(false)
+    if (process.env.NODE_ENV === 'production' || true) {
       let finalForm = { ...initForm, ...form }
       _.forEach(finalForm, (value, key) => {
         if (!value) {
@@ -123,7 +130,6 @@ const RDV = () => {
           finalForm[key] = "OUI"
         }
       })
-      console.log('finalForm', finalForm)
       window.location.replace('/')
     }
   }
@@ -137,6 +143,7 @@ const RDV = () => {
   const [languages, setLanguages] = useState<any>(LANGUAGES)
   const [styles, setStyles] = useState<any>(STYLES)
   const [firstTime, setFirstTime] = useState<any>(FIRST_TIME)
+  const [isDisabled, setIsDisabled] = useState(true)
 
   return (
     <div className='rdv container'
@@ -189,10 +196,10 @@ const RDV = () => {
           id='flash'
           label='Flash'
           subLabel={t('form.subFlash')} />
-        <CustomTextArea
+        {/* <CustomTextArea
           id='descProj'
           label={t('form.projDescription')}
-        />
+        /> */}
         <CustomInput
           id='placement'
           label={t('form.placement')}
@@ -203,11 +210,11 @@ const RDV = () => {
           label={t('form.size')}
           subLabel={t('form.sizeUnit')}
           isRequired />
-        <CustomMultiChoice
+        {/* <CustomMultiChoice
           id='style'
           label={t('form.styles')}
           choices={styles}
-          setChoices={setStyles} />
+          setChoices={setStyles} /> */}
         <br />
         <CustomInput
           id='availabilities'
@@ -217,7 +224,6 @@ const RDV = () => {
         <CustomAvailabilities
           id='mon'
           label={t('form.monday')}
-          isDisabled
           choices={monday}
           color='rgba(193,131,255,0.19)'
           arrowColor='rgba(193,131,255,1)'
@@ -227,7 +233,6 @@ const RDV = () => {
         <CustomAvailabilities
           id='tue'
           label={t('form.tuesday')}
-          isDisabled
           choices={tuesday}
           color='rgba(250,165,0,0.23)'
           arrowColor='rgba(250,165,0,1)'
@@ -262,10 +267,10 @@ const RDV = () => {
           openedAvailabilities={openedAvailabilities}
           setOpenedAvailabilities={setOpenedAvailabilities} />
         <br />
-        <CustomInput
+        {/* <CustomInput
           id='reference'
           label={t('form.refImage')}
-          subLabel={t('form.refImage-notes')} />
+          subLabel={t('form.refImage-notes')} /> */}
         <CustomTitle
           label={t('form.moreInfo')}
           color='#C183FF' />
@@ -282,16 +287,16 @@ const RDV = () => {
           id='over18'
           label={t('form.over18')}
           isRequired />
-        <CustomCheckBox
+        {/* <CustomCheckBox
           id='covidProof'
           label={t('form.wellVaccinated')}
-          isRequired />
+          isRequired /> */}
         <CustomCheckBox
           id='trueInfo'
           label={t('form.valideInfo')}
           isRequired />
         <button
-          className={`${isFormValid(form)}`}
+          className={isFormValid(form) && isDisabled ? '' : 'disabled'}
           onClick={sendForm}>
           {t('form.send')}
         </button>
