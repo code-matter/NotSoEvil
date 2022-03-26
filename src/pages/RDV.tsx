@@ -112,7 +112,7 @@ const RDV = () => {
           finalForm[key] = ""
         }
         if (value === true) {
-          finalForm[key] = "OUI"
+          finalForm[key] = "YES BÉBÉ 🌈"
         }
       })
       emailjs.send(
