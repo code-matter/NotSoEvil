@@ -3,6 +3,8 @@ import { motion } from "framer-motion"
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 import { PayPalButtons } from "@paypal/react-paypal-js";
+import { BiTrash } from "react-icons/bi";
+import { USER_KEYS } from "../../constants/reducerKeys";
 
 const Backdrop = (props: any) => {
   return <motion.div className="cartAside-backdrop"
@@ -65,7 +67,7 @@ const CartAside = (props: any) => {
                       <p>{i.rarity.toUpperCase()}</p>
                       <p>{i.type}</p>
                       <p>{i.size}</p>
-
+                      <BiTrash onClick={() => userContext.dispatch({ type: USER_KEYS.REMOVE_ITEMS, payload: i.id })} />
                     </div>
                   </div>
                 </div>

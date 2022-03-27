@@ -26,6 +26,17 @@ export const userReducer = (state: IInitialState, action: any) => {
       return { ...state, language: action.payload };
     case USER_KEYS.ADD_ITEMS:
       return { ...state, items: [...state.items, action.payload] };
+    case USER_KEYS.REMOVE_ITEMS:
+      const tmpItems = [...state.items];
+      const tmpIdx = state.items.indexOf(
+        tmpItems.find((item) => item.id === action.payload)
+      );
+      tmpItems.splice(tmpIdx, 1);
+      return {
+        ...state,
+        items: tmpItems,
+        cartOpen: tmpItems.length > 0 ? true : false,
+      };
     case USER_KEYS.SET_FEEDBACK:
       return { ...state, feedback: action.payload };
     case USER_KEYS.TOGGLE_CART:

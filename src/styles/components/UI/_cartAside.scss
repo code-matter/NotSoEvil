@@ -63,7 +63,9 @@ div {
                     }
                   }
                   &.description {
-                    max-width: 225px;
+                    margin-top: 10px;
+                    width: 100%;
+                    // max-width: 225px;
                     p {
                       text-overflow: ellipsis;
                       overflow: hidden;
@@ -72,6 +74,12 @@ div {
                       font-size: 0.75em;
                       letter-spacing: 0.1em;
                       font-weight: 500;
+                    }
+                    svg {
+                      &:hover {
+                        cursor: pointer;
+                        color: $pink;
+                      }
                     }
                   }
                 }
