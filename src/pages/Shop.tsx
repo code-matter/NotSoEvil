@@ -114,15 +114,12 @@ const Shop = ({ }: IShop) => {
         <div className="shop-container container">
           <div className="shop-ctas">
             <SquareButton
-              fontSize={22}
               label={t("shop.original_art")}
               onClick={() => scrollInView(OEUVRES)} />
             <SquareButton
-              fontSize={22}
               label={t("shop.prints")}
               onClick={() => scrollInView(PRINTS)} />
             <SquareButton
-              fontSize={22}
               label={t("shop.merch")}
               onClick={() => scrollInView(MERCH)} />
           </div>

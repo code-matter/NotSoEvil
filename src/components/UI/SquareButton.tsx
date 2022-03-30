@@ -19,7 +19,7 @@ const SquareButton = ({ label, disabled, type, fontSize, onClick }: ISquareButto
       onMouseEnter={() => setIshovered({ color: getColor(), hovered: true })}
       onMouseLeave={() => setIshovered({ color: '', hovered: false })}
       style={{
-        fontSize: fontSize || '16px',
+        fontSize: fontSize || '',
         backgroundColor: isHovered.hovered ?
           isHovered.color : '',
         opacity: disabled ? 0.3 : 1,
