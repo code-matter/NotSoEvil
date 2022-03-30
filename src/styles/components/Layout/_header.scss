@@ -108,4 +108,45 @@ div {
       }
     }
   }
+  &.mobile {
+    width: 75%;
+    height: 100vh;
+    position: absolute;
+    right: -13px;
+    div {
+      &.links {
+        width: 100%;
+        flex-direction: column;
+      }
+    }
+  }
+  &.opened {
+    padding: 1rem 2rem 2rem 2rem;
+    position: fixed;
+  }
+  &.draggable-nav {
+    z-index: 999;
+    position: absolute;
+    top: 70vh;
+    right: 5%;
+    background-color: $mauve;
+    border-radius: 50%;
+    padding: 10px;
+    box-shadow: 2px 4px 7px rgba($mauve, 0.4);
+    svg {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  span {
+    &.hamburger {
+      padding: 10px;
+      position: fixed;
+      right: -13px;
+      border-bottom-left-radius: 50%;
+      z-index: 9999;
+      box-shadow: -1px 3px 10px rgba(black, 0.2);
+    }
+  }
 }
