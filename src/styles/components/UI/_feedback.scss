@@ -10,7 +10,7 @@ div {
     justify-content: center;
     // align-items: center;
     @include mobile {
-      height: 100vh;
+      height: unset;
     }
     div {
       &.feedback {
