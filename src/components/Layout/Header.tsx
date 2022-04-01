@@ -61,7 +61,7 @@ const Header = ({ }: IHeader) => {
         <div className={`header-wrap ${isMobile ? 'mobile' : ''} ${isOpen ? 'opened' : ''}`} style={{ backgroundColor: getPastelColor() }}>
 
           <div className="header-content" onClick={isMobile ? () => setIsOpen(!isOpen) : undefined}>
-            {isOpen ? <HiArrowNarrowLeft color="#fbfbfd" size={30} onClick={() => navigate('/')} /> : <LOGO className="logo" />}
+            {isOpen ? <HiArrowNarrowLeft color="#fbfbfd" size={30} onClick={() => navigate('/')} /> : <LOGO className="logo" onClick={isMobile ? undefined : () => navigate('/')} />}
             {isMobile && <Turn toggled={isOpen} size={isOpen ? 30 : 20} color="#fbfbfd" />}
           </div>
 
