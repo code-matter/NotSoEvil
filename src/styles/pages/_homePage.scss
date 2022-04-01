@@ -12,6 +12,10 @@ div {
       width: $APP_WIDTH;
       &.top {
         margin-top: 60px;
+        @include mobile {
+          margin-top: 20px;
+          margin-bottom: 40px;
+        }
         div {
           &.languages {
             position: absolute;
