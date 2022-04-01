@@ -46,41 +46,42 @@ const Header = ({ }: IHeader) => {
   }, [isOpen])
 
   const renderLinks = () => {
-    return <><div className='links'>
-      <Link className={`${pathname === "/form" ? 'on-page' : ''} `}
-        to="/form">
-        {t('general.rdv')}
-      </Link>
-      <Link className={`${pathname === "/flash" ? 'on-page' : ''}`}
-        to="/flash">
-        FLASH
-      </Link>
-      <Link className={`${pathname === "/shop" ? 'on-page' : ''} `}
-        to="/shop">
-        {t('general.shop')}
-      </Link>
-      <Link className={`${pathname === "/more" ? 'on-page' : ''}`}
-        to="/more">
-        {t('general.moremoremore')}
-      </Link>
-      <div className="languages-container">
-        <div className='languages'>
-          <p className={userContext?.state?.language === "fr" ? 'active' : 'inactive'}
-            onClick={() => {
-              i18next.changeLanguage('fr')
-              userContext.dispatch({ type: USER_KEYS.SET_LANGUAGE, payload: 'fr' })
-            }}>FR</p>
-          <p>|</p>
-          <p className={userContext?.state?.language === "en" ? 'active' : 'inactive'}
-            onClick={() => {
-              i18next.changeLanguage('en')
-              userContext.dispatch({ type: USER_KEYS.SET_LANGUAGE, payload: 'en' })
-            }}>EN</p>
+    return <>
+      <div className='links'>
+        <Link className={`${pathname === "/form" ? 'on-page' : ''} `}
+          to="/form">
+          {t('general.rdv')}
+        </Link>
+        <Link className={`${pathname === "/flash" ? 'on-page' : ''}`}
+          to="/flash">
+          FLASH
+        </Link>
+        <Link className={`${pathname === "/shop" ? 'on-page' : ''} disabled`}
+          to="/shop">
+          {t('general.shop')}
+        </Link>
+        <Link className={`${pathname === "/more" ? 'on-page' : ''}`}
+          to="/more">
+          {t('general.moremoremore')}
+        </Link>
+        <div className="languages-container">
+          <div className='languages'>
+            <p className={userContext?.state?.language === "fr" ? 'active' : 'inactive'}
+              onClick={() => {
+                i18next.changeLanguage('fr')
+                userContext.dispatch({ type: USER_KEYS.SET_LANGUAGE, payload: 'fr' })
+              }}>FR</p>
+            <p>|</p>
+            <p className={userContext?.state?.language === "en" ? 'active' : 'inactive'}
+              onClick={() => {
+                i18next.changeLanguage('en')
+                userContext.dispatch({ type: USER_KEYS.SET_LANGUAGE, payload: 'en' })
+              }}>EN</p>
+          </div>
+          <CART className={`cart ${userContext.state.items.length === 0 ? 'disabled' : ''}`} onClick={userContext.state.items.length > 0 ? handleOpenCart : undefined} />
+          <p className='cart-qty' onClick={userContext.state.items.length > 0 ? handleOpenCart : undefined}>{userContext?.state.items?.length}</p>
         </div>
-        <CART className={`cart ${userContext.state.items.length === 0 ? 'disabled' : ''}`} onClick={userContext.state.items.length > 0 ? handleOpenCart : undefined} />
-        <p className='cart-qty' onClick={userContext.state.items.length > 0 ? handleOpenCart : undefined}>{userContext?.state.items?.length}</p>
-      </div>
-    </div></>
+      </div></>
   }
 
   return (
