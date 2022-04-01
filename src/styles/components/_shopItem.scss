@@ -1,5 +1,6 @@
 div {
   &.shop-items {
+    width: 100%;
     &.sold {
       opacity: 0.3;
       pointer-events: none;
@@ -14,9 +15,37 @@ div {
         h1 {
           overflow: hidden;
           white-space: nowrap;
-          max-width: 275px;
+          max-width: 230px;
           text-overflow: ellipsis;
           font-size: 18px;
+          letter-spacing: 0.1em;
+        }
+      }
+      &.item-img {
+        width: 100%;
+        margin-bottom: 10px;
+        img {
+          &.item-img {
+            width: 100%;
+          }
+        }
+        p {
+          &.shop-seemore {
+            position: absolute;
+            top: -5px;
+            left: 0;
+            right: 0;
+            aspect-ratio: 1;
+            color: $white;
+            font-weight: bold;
+            font-size: 35px;
+            letter-spacing: 0.2em;
+            // background-color: rgba($turquoise, 0.4);
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+          }
         }
       }
     }
@@ -50,7 +79,6 @@ div {
 
             text-align: right;
             letter-spacing: 0.1em;
-            text-decoration-line: underline;
           }
         }
       }
@@ -70,36 +98,6 @@ div {
       //   align-items: center;
       //   background-color: rgba($turquoise, 0.4);
       // }
-    }
-    div {
-      &.item-img {
-        width: 100%;
-        margin-bottom: 10px;
-        img {
-          &.item-img {
-            width: 100%;
-            position: relative;
-          }
-        }
-        p {
-          &.shop-seemore {
-            position: absolute;
-            top: -5px;
-            left: 0;
-            right: 0;
-            aspect-ratio: 1;
-            color: $white;
-            font-weight: bold;
-            font-size: 35px;
-            letter-spacing: 0.2em;
-            // background-color: rgba($turquoise, 0.4);
-            display: flex;
-            text-align: center;
-            justify-content: center;
-            align-items: center;
-          }
-        }
-      }
     }
   }
 }

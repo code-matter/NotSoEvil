@@ -71,6 +71,7 @@ const ShopItem = ({
             </div>
           </div>
         </Modal>}
+
       <div className="item-img"
         onMouseEnter={() => {
           if (!color)
@@ -89,7 +90,7 @@ const ShopItem = ({
               color + '67' : '',
           }}>{t('shop.see_more')}</p>}
       </div>
-      <>
+      <span>
         <div className="item-title">
           <h1>{id}</h1>
           <h1>{price} $</h1>
@@ -114,7 +115,7 @@ const ShopItem = ({
             }}>{t('shop.want_it')}
           </span>
         </p>
-      </>
+      </span>
     </div>
   )
 }
