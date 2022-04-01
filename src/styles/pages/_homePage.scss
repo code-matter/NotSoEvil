@@ -207,7 +207,6 @@ div {
             &.hovered {
               color: #fbfbfd;
               border: none;
-              z-index: 999;
             }
             &.disabled {
               opacity: 0.6;
@@ -233,7 +232,6 @@ div {
               &.hovered {
                 color: #fbfbfd;
                 border: none;
-                z-index: 999;
               }
               &.disabled {
                 opacity: 0.1;

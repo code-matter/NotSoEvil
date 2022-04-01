@@ -5,6 +5,8 @@ import { UserContext } from "../../context/UserContext";
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import { BiTrash } from "react-icons/bi";
 import { USER_KEYS } from "../../constants/reducerKeys";
+import useMobile from "../../hooks/useMobile";
+import { HiX } from "react-icons/hi";
 
 const Backdrop = (props: any) => {
   return <motion.div className="cartAside-backdrop"
@@ -21,18 +23,36 @@ const Backdrop = (props: any) => {
   >{props.children}</motion.div>;
 };
 
+
+
+
 const CartAsideOverlay = (props: any) => {
+  const { isMobile } = useMobile()
+  const cartAside = {
+    mobileBefore: {
+      y: 0,
+      x: '20vw',
+      opacity: 0
+    },
+    mobileAfter: {
+      y: 0,
+      x: 0,
+      opacity: 1
+    },
+  }
+
   return (
     <motion.div className="cartAside"
-      initial={{ y: 100, x: '20vw', opacity: 0 }}
-      animate={{ y: 100, x: 0, opacity: 1 }}
+      initial={"mobileBefore"}
+      animate={"mobileAfter"}
+      variants={cartAside}
       transition={{
         type: "spring",
         damping: 50,
         mass: 3,
         stiffness: 500,
       }}
-      exit={{ x: '50vw' }}
+      exit={isMobile ? { x: '100vw' } : { x: '50vw' }}
     >
       <div className="cartAside-content">{props.children}</div>
     </motion.div>
@@ -55,23 +75,26 @@ const CartAside = (props: any) => {
           </Backdrop>
           {props.shopItems && userContext &&
             <CartAsideOverlay>
-              {userContext.state.items.map((i: any, idx: number) =>
-                <div className="cart-item-view" key={i.id + idx}>
-                  <img src={i.image} alt={i.image} />
-                  <div className="cart-item-infos">
-                    <div className="infos-title">
-                      <h1>{i.id}</h1>
-                      <h1>{i.price} $</h1>
-                    </div>
-                    <div className="infos-title description">
-                      <p>{i.rarity.toUpperCase()}</p>
-                      <p>{i.type}</p>
-                      <p>{i.size}</p>
-                      <BiTrash onClick={() => userContext.dispatch({ type: USER_KEYS.REMOVE_ITEMS, payload: i.id })} />
+              <span>
+                <HiX size={24} onClick={() => userContext.dispatch({ type: USER_KEYS.TOGGLE_CART })} />
+                {userContext.state.items.map((i: any, idx: number) =>
+                  <div className="cart-item-view" key={i.id + idx}>
+                    <img src={i.image} alt={i.image} />
+                    <div className="cart-item-infos">
+                      <div className="infos-title">
+                        <h1>{i.id}</h1>
+                        <h1>{i.price} $</h1>
+                      </div>
+                      <div className="infos-title description">
+                        <p>{i.rarity.toUpperCase()}</p>
+                        <p>{i.type}</p>
+                        <p>{i.size}</p>
+                        <BiTrash onClick={() => userContext.dispatch({ type: USER_KEYS.REMOVE_ITEMS, payload: i.id })} />
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
+                )}
+              </span>
               <PayPalButtons
                 createOrder={(data, actions) => {
                   return actions.order
