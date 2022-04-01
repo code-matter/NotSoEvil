@@ -29,7 +29,7 @@ const Layout = ({ children }: ILayout) => {
   return (
     <div className="App" id="App">
       <UserContext.Provider value={{ state, dispatch }}>
-        {!isHome && !isRDV && <Header />}
+        {!isHome && <Header />}
         {children}
       </UserContext.Provider>
     </div>

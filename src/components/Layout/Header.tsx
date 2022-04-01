@@ -60,7 +60,7 @@ const Header = ({ }: IHeader) => {
         !isAdmin &&
         <div className={`header-wrap ${isMobile ? 'mobile' : ''} ${isOpen ? 'opened' : ''}`} style={{ backgroundColor: getPastelColor() }}>
 
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', paddingLeft: 14 }} onClick={() => setIsOpen(!isOpen)}>
+          <div className="header-content" onClick={isMobile ? () => setIsOpen(!isOpen) : undefined}>
             {isOpen ? <HiArrowNarrowLeft color="#fbfbfd" size={30} onClick={() => navigate('/')} /> : <LOGO className="logo" />}
             {isMobile && <Turn toggled={isOpen} size={isOpen ? 30 : 20} color="#fbfbfd" />}
           </div>
@@ -108,7 +108,7 @@ const Header = ({ }: IHeader) => {
 
           {!isMobile &&
             <div className='links'>
-              <Link className={`${pathname === "/form" ? 'on-page' : ''} disabled`}
+              <Link className={`${pathname === "/form" ? 'on-page' : ''} `}
                 to="/form">
                 {t('general.rdv')}
               </Link>
@@ -116,7 +116,7 @@ const Header = ({ }: IHeader) => {
                 to="/flash">
                 FLASH
               </Link>
-              <Link className={`${pathname === "/shop" ? 'on-page' : ''} disabled`}
+              <Link className={`${pathname === "/shop" ? 'on-page' : ''} `}
                 to="/shop">
                 {t('general.shop')}
               </Link>
