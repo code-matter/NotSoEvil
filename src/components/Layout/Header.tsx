@@ -13,7 +13,8 @@ import Feedback from '../UI/Feedback';
 import useMobile from '../../hooks/useMobile';
 import Draggable from 'react-draggable';
 import { ReactComponent as NAV } from '../../assets/Smiley.svg'
-import { Turn as Hamburger, Turn } from 'hamburger-react'
+import { Turn } from 'hamburger-react'
+import { HiArrowNarrowLeft } from "react-icons/hi";
 export interface IHeader {
 
 }
@@ -56,9 +57,56 @@ const Header = ({ }: IHeader) => {
         </AnimatePresence>
         , portalEl as HTMLElement)}
       {
-        !isAdmin && !isMobile ?
-          <div className='header-wrap' style={{ backgroundColor: getPastelColor() }}>
-            <LOGO className="logo" onClick={() => navigate('/')} />
+        !isAdmin &&
+        <div className={`header-wrap ${isMobile ? 'mobile' : ''} ${isOpen ? 'opened' : ''}`} style={{ backgroundColor: getPastelColor() }}>
+
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', paddingLeft: 14 }} onClick={() => setIsOpen(!isOpen)}>
+            {isOpen ? <HiArrowNarrowLeft color="#fbfbfd" size={30} onClick={() => navigate('/')} /> : <LOGO className="logo" />}
+            {isMobile && <Turn toggled={isOpen} size={isOpen ? 30 : 20} color="#fbfbfd" />}
+          </div>
+
+          {isMobile && isOpen &&
+            <div className='links'>
+              <Link className={`${pathname === "/form" ? 'on-page' : ''} `}
+                to="/form">
+                {t('general.rdv')}
+              </Link>
+              <Link className={`${pathname === "/flash" ? 'on-page' : ''}`}
+                to="/flash">
+                FLASH
+              </Link>
+              <Link className={`${pathname === "/shop" ? 'on-page' : ''} `}
+                to="/shop">
+                {t('general.shop')}
+              </Link>
+              <Link className={`${pathname === "/more" ? 'on-page' : ''}`}
+                to="/more">
+                {t('general.moremoremore')}
+              </Link>
+              <div className="languages-container">
+                <div className='languages'>
+                  <p className={userContext?.state?.language === "fr" ? 'active' : 'inactive'}
+                    onClick={() => {
+                      i18next.changeLanguage('fr')
+                      userContext.dispatch({ type: USER_KEYS.SET_LANGUAGE, payload: 'fr' })
+                    }}>FR</p>
+                  <p>|</p>
+                  <p className={userContext?.state?.language === "en" ? 'active' : 'inactive'}
+                    onClick={() => {
+                      i18next.changeLanguage('en')
+                      userContext.dispatch({ type: USER_KEYS.SET_LANGUAGE, payload: 'en' })
+                    }}>EN</p>
+                </div>
+                <CART className={`cart ${userContext.state.items.length === 0 ? 'disabled' : ''}`} onClick={userContext.state.items.length > 0 ? handleOpenCart : undefined} />
+                <p className='cart-qty' onClick={userContext.state.items.length > 0 ? handleOpenCart : undefined}>{userContext?.state.items?.length}</p>
+              </div>
+            </div>}
+
+
+
+
+
+          {!isMobile &&
             <div className='links'>
               <Link className={`${pathname === "/form" ? 'on-page' : ''} disabled`}
                 to="/form">
@@ -93,70 +141,8 @@ const Header = ({ }: IHeader) => {
                 <CART className={`cart ${userContext.state.items.length === 0 ? 'disabled' : ''}`} onClick={userContext.state.items.length > 0 ? handleOpenCart : undefined} />
                 <p className='cart-qty' onClick={userContext.state.items.length > 0 ? handleOpenCart : undefined}>{userContext?.state.items?.length}</p>
               </div>
-            </div>
-          </div>
-          :
-          // <Draggable nodeRef={navRef}>
-          <AnimatePresence >
-            <span className={`hamburger`} style={{ backgroundColor: isOpen ? 'unset' : navColor, boxShadow: isOpen ? 'unset' : '' }}>
-              <Turn toggled={isOpen} toggle={() => setIsOpen(!isOpen)} color="#fbfbfd"
-              />
-            </span>
-            {isOpen && <motion.div className={`header-wrap mobile ${isOpen ? 'opened' : ''}`}
-              key='mobile-nav'
-              style={{ backgroundColor: navColor }}
-              ref={navRef}
-              initial={{ y: '-5vh', x: '20vw', opacity: 0 }}
-              animate={{ y: 0, x: 0, opacity: 1 }}
-              transition={{
-                type: "spring",
-                damping: 30,
-                mass: 1,
-                stiffness: 420,
-              }}
-              exit={{ y: '-20vh', x: '100vw', }}
-            >
-              {/* <NAV /> */}
-              <motion.div className='links'
-              >
-                <Link className={`${pathname === "/form" ? 'on-page' : ''} `}
-                  onClick={() => setIsOpen(false)} to="/form">
-                  {t('general.rdv')}
-                </Link>
-                <Link className={`${pathname === "/flash" ? 'on-page' : ''}`}
-                  onClick={() => setIsOpen(false)} to="/flash">
-                  FLASH
-                </Link>
-                <Link className={`${pathname === "/shop" ? 'on-page' : ''} `}
-                  onClick={() => setIsOpen(false)} to="/shop">
-                  {t('general.shop')}
-                </Link>
-                <Link className={`${pathname === "/more" ? 'on-page' : ''}`}
-                  onClick={() => setIsOpen(false)} to="/more">
-                  {t('general.moremoremore')}
-                </Link>
-                <div className="languages-container">
-                  <div className='languages'>
-                    <p className={userContext?.state?.language === "fr" ? 'active' : 'inactive'}
-                      onClick={() => {
-                        i18next.changeLanguage('fr')
-                        userContext.dispatch({ type: USER_KEYS.SET_LANGUAGE, payload: 'fr' })
-                      }}>FR</p>
-                    <p>|</p>
-                    <p className={userContext?.state?.language === "en" ? 'active' : 'inactive'}
-                      onClick={() => {
-                        i18next.changeLanguage('en')
-                        userContext.dispatch({ type: USER_KEYS.SET_LANGUAGE, payload: 'en' })
-                      }}>EN</p>
-                  </div>
-                  <CART className={`cart ${userContext.state.items.length === 0 ? 'disabled' : ''}`} onClick={userContext.state.items.length > 0 ? handleOpenCart : undefined} />
-                  <p className='cart-qty' onClick={userContext.state.items.length > 0 ? handleOpenCart : undefined}>{userContext?.state.items?.length}</p>
-                </div>
-              </motion.div>
-
-            </motion.div>}
-          </AnimatePresence>
-        // </Draggable>
+            </div>}
+        </div>
       }
     </>
   )
