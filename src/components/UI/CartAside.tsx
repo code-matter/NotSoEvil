@@ -76,7 +76,7 @@ const CartAside = (props: any) => {
           {props.shopItems && userContext &&
             <CartAsideOverlay>
               <span>
-                <HiX size={24} onClick={() => userContext.dispatch({ type: USER_KEYS.TOGGLE_CART })} />
+                <HiX className="exit" size={24} onClick={() => userContext.dispatch({ type: USER_KEYS.TOGGLE_CART })} />
                 {userContext.state.items.map((i: any, idx: number) =>
                   <div className="cart-item-view" key={i.id + idx}>
                     <img src={i.image} alt={i.image} />

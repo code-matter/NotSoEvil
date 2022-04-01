@@ -39,6 +39,18 @@ div {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        position: relative;
+        padding-top: 30px;
+        span {
+          max-height: 70%;
+          overflow-y: scroll;
+          svg {
+            &.exit {
+              position: absolute;
+              top: 0;
+            }
+          }
+        }
         div {
           &.cart-item-view {
             min-width: 355px;
