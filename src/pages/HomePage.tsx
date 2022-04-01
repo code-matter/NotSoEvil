@@ -114,7 +114,7 @@ const HomePage: React.FC = () => {
           >
             FLASH
           </Link>
-          <Link className={`${hovered.id === 'shop' ? 'hovered' : ''} disabled `}
+          <Link className={`${hovered.id === 'shop' ? 'hovered' : ''}  `}
             id='shop'
             to="/shop"
             style={{

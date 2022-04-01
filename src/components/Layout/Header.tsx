@@ -56,7 +56,7 @@ const Header = ({ }: IHeader) => {
           to="/flash">
           FLASH
         </Link>
-        <Link className={`${pathname === "/shop" ? 'on-page' : ''} disabled`}
+        <Link className={`${pathname === "/shop" ? 'on-page' : ''} `}
           to="/shop">
           {t('general.shop')}
         </Link>
