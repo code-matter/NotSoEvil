@@ -9,10 +9,17 @@ div {
         border: 1px solid #c183ff;
         height: calc(100vh - $NAV_HEIGHT - 113px);
         padding: $NAV_HEIGHT;
+        @include mobile {
+          flex-direction: column;
+          padding: 10px;
+        }
         div {
           &.left {
             width: 60%;
             overflow: hidden;
+            @include mobile {
+              width: 100%;
+            }
             div {
               &.order-items {
                 padding: 10px 0;
@@ -41,6 +48,17 @@ div {
                             align-items: center;
                             justify-content: space-between;
                             width: 100%;
+                            p {
+                              overflow: hidden;
+                              white-space: nowrap;
+                              max-width: 200px;
+                              text-overflow: ellipsis;
+                              font-size: 12px;
+                              letter-spacing: 0.1em;
+                              @include mobile {
+                                max-width: 75px;
+                              }
+                            }
                             h1 {
                               overflow: hidden;
                               white-space: nowrap;
@@ -48,6 +66,9 @@ div {
                               text-overflow: ellipsis;
                               font-size: 18px;
                               letter-spacing: 0.1em;
+                              @include mobile {
+                                max-width: 150px;
+                              }
                             }
                           }
                           &.description {
@@ -69,6 +90,9 @@ div {
                   }
                 }
               }
+            }
+            h1 {
+              font-size: 24px;
             }
           }
           &.right {
