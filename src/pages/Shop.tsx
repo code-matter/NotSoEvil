@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef, useState } from 'react'
 import ShopItem from '../components/ShopItem'
 import { useNavigate } from 'react-router-dom';
-import { FlashesService } from '../services/flashes.services';
+import { ShopService } from '../services/shop.services';
 import SquareButton from '../components/UI/SquareButton';
 import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
@@ -41,7 +41,7 @@ const Shop = ({ }: IShop) => {
   const userContext = useContext(UserContext)
 
   const fetchData = async () => {
-    const flashes: any = await FlashesService.list('shop-items');
+    const flashes: any = await ShopService.list('shop-items');
     if (flashes.empty) {
       console.error('No items!')
       return

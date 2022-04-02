@@ -8,6 +8,7 @@ import { USER_KEYS } from "../../constants/reducerKeys";
 import useMobile from "../../hooks/useMobile";
 import { HiX } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
+import { ShopService } from "../../services/shop.services";
 
 const Backdrop = (props: any) => {
   return <motion.div className="cartAside-backdrop"
@@ -65,6 +66,30 @@ const portalEl = document.getElementById("overlays");
 const CartAside = (props: any) => {
   const userContext = useContext(UserContext);
   const navigate = useNavigate()
+
+  const onApproveHandler = (data: any, actions: any) => {
+    // This function captures the funds from the transaction.
+    console.log('data: ', data)
+    console.log('actions: ', actions)
+    if (actions.order)
+      return actions.order?.capture().then(function (details: any) {
+        try {
+          userContext.state.items.forEach(async (item: any) => {
+            await ShopService.update('shop-items', item.id, { available: false })
+          })
+          navigate(`/order/${details.id}`, { state: { details: details, items: userContext.state.items } })
+        } catch (error) {
+
+        }
+        // if details.status === "COMPLETED" => save info in user DB
+        // Redirects to 'Complete Order Page' showing the info 
+        // Send confirmation email
+      })
+    else
+      return new Promise(() => null)
+
+  }
+
   return (
     <>
       {ReactDOM.createPortal(
@@ -119,23 +144,7 @@ const CartAside = (props: any) => {
                 onCancel={() => {
                   // Nothing?
                 }}
-                onApprove={(data, actions) => {
-                  // This function captures the funds from the transaction.
-                  console.log('data: ', data)
-                  console.log('actions: ', actions)
-                  if (actions.order)
-                    return actions.order?.capture().then(function (details) {
-
-                      console.log('details: ', details)
-                      navigate(`/order/${details.id}`, { state: { details: details, items: userContext.state.items } })
-                      // if details.status === "COMPLETED" => save info in user DB
-                      // Redirects to 'Complete Order Page' showing the info 
-                      // Send confirmation email
-                    })
-                  else
-                    return new Promise(() => null)
-
-                }} />
+                onApprove={onApproveHandler} />
             </CartAsideOverlay>}
         </>
         , portalEl as HTMLElement)}
