@@ -110,6 +110,7 @@ const Shop = ({ }: IShop) => {
         {userContext.state.cartOpen &&
           <CartAside shopItems={shopItems} onClose={() => userContext.dispatch({ type: USER_KEYS.TOGGLE_CART })} />}
       </AnimatePresence>
+
       {!isLoading && shopItems.length > 0 &&
         <div className="shop-container container">
           <div className="shop-ctas">

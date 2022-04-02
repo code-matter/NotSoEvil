@@ -33,6 +33,7 @@ const ShopItem = ({
   const userContext = useContext(UserContext)
 
   const handleAddItem = () => {
+    console.log('userContext.state', userContext.state)
     userContext.dispatch({
       type: USER_KEYS.ADD_ITEMS, payload: {
         id,
@@ -49,7 +50,7 @@ const ShopItem = ({
   }
 
   return (
-    <div className={`shop-items ${!available ? 'sold' : ''}`}>
+    <div className={`shop-items ${userContext.state.items.find((item: any) => item.id === id) || !available ? 'sold' : ''}`}>
       {infoOpened &&
         <Modal onClose={() => setInfoOpened(false)} backdropColor="rgba(255,255,255,0.85)">
           <div className='modal-shop'>
