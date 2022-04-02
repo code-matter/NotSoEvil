@@ -24,7 +24,7 @@ div {
     box-shadow: 2px 4px 7px rgba($mauve, 0.3), 0px -1px 2px rgba($mauve, 0.3);
     color: darken($mauve, 40);
     max-height: 80vh;
-    overflow-y: scroll;
+    overflow-y: auto;
     min-height: 100vh;
     height: 100%;
     svg {
@@ -43,7 +43,7 @@ div {
         padding-top: 30px;
         span {
           max-height: 70%;
-          overflow-y: scroll;
+          overflow-y: auto;
           svg {
             &.exit {
               position: absolute;

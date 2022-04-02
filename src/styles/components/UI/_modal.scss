@@ -22,7 +22,7 @@ div {
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
         z-index: 30;
         max-height: 80vh;
-        overflow-y: scroll;
+        overflow-y: auto;
         div {
           &.construction-modal {
             display: flex;
