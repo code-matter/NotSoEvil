@@ -15,6 +15,7 @@ import { userInitialstate, userReducer } from './reducers/UserReducer';
 import Layout from './components/Layout/Layout';
 import Shop from './pages/Shop';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
+import OrderCompleted from './pages/OrderCompleted';
 
 export const routes = [
   {
@@ -34,6 +35,12 @@ export const routes = [
     label: 'general.shop',
     path: '/shop',
     element: Shop
+  },
+  {
+    id: 'orders',
+    label: 'general.orders',
+    path: '/order/:id',
+    element: OrderCompleted
   },
   {
     id: 'login',

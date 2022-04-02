@@ -1,0 +1,95 @@
+div {
+  &.shop {
+    width: 80%;
+    padding-top: 50px;
+    div {
+      &.shop-order-summary {
+        display: flex;
+        gap: 20px;
+        border: 1px solid #c183ff;
+        height: calc(100vh - $NAV_HEIGHT - 113px);
+        padding: $NAV_HEIGHT;
+        div {
+          &.left {
+            border: 2px solid pink;
+            width: 60%;
+            div {
+              &.order-items {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                max-height: 425px;
+                height: 100%;
+                overflow-y: auto;
+                div {
+                  &.shop-order-view {
+                    width: 100%;
+                    margin: 10px 0;
+                    display: flex;
+                    align-items: center;
+                    img {
+                      max-width: 60px;
+                      margin: 0 10px 0 0;
+                    }
+                    div {
+                      &.shop-order-infos {
+                        width: 100%;
+                        div {
+                          &.infos-title {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            width: 100%;
+                            h1 {
+                              overflow: hidden;
+                              white-space: nowrap;
+                              max-width: 400px;
+                              text-overflow: ellipsis;
+                              font-size: 18px;
+                              letter-spacing: 0.1em;
+                            }
+                          }
+                          &.description {
+                            display: grid;
+                            grid-template-columns: 1fr 1fr 1fr;
+                            justify-items: center;
+                            p {
+                              &:first-child {
+                                justify-self: left;
+                              }
+                              &:last-child {
+                                justify-self: right;
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          &.right {
+            border: 2px solid blue;
+            flex-grow: 1;
+            div {
+              &.order-items {
+                div {
+                  &.infos-title {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    border-top: 1px solid rgba(black, 0.2);
+                    margin: 10px 0;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
