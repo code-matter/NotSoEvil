@@ -1,0 +1,121 @@
+div {
+  &.shop {
+    width: 80%;
+    padding-top: 50px;
+    div {
+      &.shop-order-summary {
+        display: flex;
+        gap: 20px;
+        border: 1px solid #c183ff;
+        height: calc(100vh - $NAV_HEIGHT - 113px);
+        padding: $NAV_HEIGHT;
+        @include mobile {
+          flex-direction: column;
+          padding: 10px;
+        }
+        div {
+          &.left {
+            width: 60%;
+            overflow: hidden;
+            @include mobile {
+              width: 100%;
+            }
+            div {
+              &.order-items {
+                padding: 10px 0;
+                max-height: 425px;
+                overflow-y: auto;
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                // height: 100%;
+                div {
+                  &.shop-order-view {
+                    width: 100%;
+                    margin: 10px 0;
+                    display: flex;
+                    align-items: center;
+                    img {
+                      max-width: 60px;
+                      margin: 0 10px 0 0;
+                    }
+                    div {
+                      &.shop-order-infos {
+                        width: 100%;
+                        div {
+                          &.infos-title {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            width: 100%;
+                            p {
+                              overflow: hidden;
+                              white-space: nowrap;
+                              max-width: 200px;
+                              text-overflow: ellipsis;
+                              font-size: 12px;
+                              letter-spacing: 0.1em;
+                              @include mobile {
+                                max-width: 75px;
+                              }
+                            }
+                            h1 {
+                              overflow: hidden;
+                              white-space: nowrap;
+                              max-width: 400px;
+                              text-overflow: ellipsis;
+                              font-size: 18px;
+                              letter-spacing: 0.1em;
+                              @include mobile {
+                                max-width: 150px;
+                              }
+                            }
+                          }
+                          &.description {
+                            display: grid;
+                            grid-template-columns: 1fr 1fr 1fr;
+                            justify-items: center;
+                            p {
+                              &:first-child {
+                                justify-self: left;
+                              }
+                              &:last-child {
+                                justify-self: right;
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            h1 {
+              @include mobile {
+                font-size: 24px;
+              }
+            }
+          }
+          &.right {
+            flex-grow: 1;
+            div {
+              &.order-items {
+                div {
+                  &.infos-title {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    border-top: 1px solid rgba(black, 0.2);
+                    margin: 10px 0;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
