@@ -41,7 +41,7 @@ const Shop = ({ }: IShop) => {
   const userContext = useContext(UserContext)
 
   const fetchData = async () => {
-    const flashes: any = await ShopService.list('shop-items');
+    const flashes: any = await ShopService.list();
     if (flashes.empty) {
       console.error('No items!')
       return

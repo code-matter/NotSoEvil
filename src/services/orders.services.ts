@@ -10,14 +10,16 @@ import {
 import _ from "lodash";
 import { firebaseDB } from "../utils/firebase";
 
-const STORE_NAME = "shop-items";
-
 const list = async () => {
-  return await getDocs(collection(firebaseDB, STORE_NAME));
+  return await getDocs(collection(firebaseDB, "orders"));
 };
 
-const update = async (documentID: string, updatedObj: any) => {
-  const docRef = doc(firebaseDB, STORE_NAME, documentID);
+const update = async (
+  storeName: string,
+  documentName: string,
+  updatedObj: any
+) => {
+  const docRef = doc(firebaseDB, storeName, documentName);
   const currentDoc = await getDoc(docRef);
   if (currentDoc.exists()) {
     setDoc(docRef, { ...currentDoc.data(), ...updatedObj });

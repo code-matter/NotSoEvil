@@ -75,7 +75,8 @@ const CartAside = (props: any) => {
       return actions.order?.capture().then(function (details: any) {
         try {
           userContext.state.items.forEach(async (item: any) => {
-            await ShopService.update('shop-items', item.id, { available: false })
+            console.log('item', item)
+            await ShopService.update(item.id, { available: false })
           })
           navigate(`/order/${details.id}`, { state: { details: details, items: userContext.state.items } })
         } catch (error) {

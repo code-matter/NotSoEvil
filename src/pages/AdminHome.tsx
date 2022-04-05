@@ -34,6 +34,7 @@ const AdminHome = ({ }: IAdminHome) => {
 
 
   const handleFormChange = (event: FormEvent) => {
+    // event.preventDefault()
     setForm(
       {
         ...form,
@@ -71,6 +72,8 @@ const AdminHome = ({ }: IAdminHome) => {
             rarity: form.rarity || 'unique',
             size: form.size,
             color: form.color,
+            category: form.category,
+            available: true,
           })
           document.location.reload()
         } catch (error) {
@@ -83,8 +86,7 @@ const AdminHome = ({ }: IAdminHome) => {
   return (
     <div className="container" style={{ display: 'flex', flexDirection: 'column' }}>
       {showModal && <Modal
-        onClose={() => setShowModal(false)}
-        backdropClose={false}>
+      >
         <div className='construction-modal add-items-modal'>
           <COUCOU onClick={() => setShowModal(false)} />
           <form onSubmit={sendForm} onChange={handleFormChange}>
@@ -101,7 +103,8 @@ const AdminHome = ({ }: IAdminHome) => {
             <CustomInput
               id="price"
               label="Price"
-              darkTheme />
+              darkTheme
+              type="number" />
             <CustomSelect
               id="rarity"
               label="Rarity"

@@ -49,11 +49,11 @@ const OrderCompleted = ({ }: IOrderCompleted) => {
           <div className="order-items">
             <div className="infos-title">
               <h2>Subtotal</h2>
-              <h2>{order.items.reduce((prev: any, next: any) => prev + next.price, 0).toFixed(2)} $</h2>
+              <h2>{order.items.length > 1 ? order.items.reduce((prev: any, next: any) => prev + next.price, 0).toFixed(2) : order.items[0].price.toFixed(2)} $</h2>
             </div>
             <div className="infos-title">
               <h2>Taxes</h2>
-              <h2>{(order.items.reduce((prev: any, next: any) => prev + next.price, 0) * 0.15).toFixed(2)} $</h2>
+              <h2>{order.items.length > 1 ? (order.items.reduce((prev: any, next: any) => prev + next.price, 0) * 0.15).toFixed(2) : order.items[0].price.toFixed(2)} $</h2>
             </div>
             <div className="infos-title">
               <h2>Shipping</h2>
@@ -61,7 +61,7 @@ const OrderCompleted = ({ }: IOrderCompleted) => {
             </div>
             <div className="infos-title">
               <h2>Total</h2>
-              <h2>{(5 + order.items.reduce((prev: any, next: any) => prev + next.price, 0) + order.items.reduce((prev: any, next: any) => prev + next.price, 0) * 0.15).toFixed(2)} $</h2>
+              <h2>{order.items.length > 1 ? (5 + order.items.reduce((prev: any, next: any) => prev + next.price, 0) + order.items.reduce((prev: any, next: any) => prev + next.price, 0) * 0.15).toFixed(2) : 5 + order.items[0].price.toFixed(2)} $</h2>
             </div>
           </div>
         </div>
