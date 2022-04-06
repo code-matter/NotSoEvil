@@ -12,33 +12,29 @@ const OrderCompleted = ({ }: IOrderCompleted) => {
   // const { details, items } = location.state
   const [items, setItems] = useState<any>([])
   const [details, setDetails] = useState<any>({})
-
-  const fetchOrder = async () => {
-    if (id) {
-      const order: any = await OrdersService.get(id)
-      if (order && order.orderDetails) {
-        console.log('details', order.orderDetails.details)
-        setItems(order.orderDetails.items)
-        setDetails(order.orderDetails.details)
-      }
-    }
-  }
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    const fetchOrder = async () => {
+      if (id) {
+        const order: any = await OrdersService.get(id)
+        if (order && order.orderDetails) {
+          setItems(order.orderDetails.items)
+          setDetails(order.orderDetails.details)
+        }
+        setLoading(false)
+      }
+    }
     fetchOrder()
     return () => {
       setItems([])
       setDetails({})
     }
-  }, [])
-
-  useEffect(() => {
-    console.log('detailssssss', details)
-  }, [details])
+  }, [id])
 
   return (
     <div className="shop container">
-      {items.length && details && details.purchase_units &&
+      {!loading &&
         <div className="shop-order-summary">
           <div className="left">
             <p>Order Summary</p>

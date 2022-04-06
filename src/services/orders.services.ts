@@ -15,7 +15,6 @@ const list = async () => {
 };
 
 const get = async (id: string) => {
-  console.log("id", id);
   try {
     const d = await getDocs(
       query(
@@ -31,7 +30,6 @@ const get = async (id: string) => {
   } catch (error) {
     console.error(error);
   }
-  // console.log("d", d);
 };
 
 const update = async (
@@ -48,7 +46,6 @@ const update = async (
 };
 
 const create = async (details: any) => {
-  console.log("details", details);
   try {
     return await setDoc(doc(firebaseDB, "orders", details.details.id), {
       orderDetails: details,
