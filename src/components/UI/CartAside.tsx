@@ -105,7 +105,11 @@ const CartAside = (props: any) => {
           {props.shopItems && userContext.state.items.length &&
             <CartAsideOverlay>
               <span>
-                <HiX className="exit" size={24} onClick={() => userContext.dispatch({ type: USER_KEYS.TOGGLE_CART })} />
+                <HiX className="exit"
+                  size={24}
+                  onClick={() => userContext.dispatch(
+                    { type: USER_KEYS.TOGGLE_CART }
+                  )} />
                 {userContext.state.items.map((i: any, idx: number) =>
                   <div className="cart-item-view" key={i.id + idx}>
                     <img src={i.image} alt={i.image} />
@@ -119,13 +123,53 @@ const CartAside = (props: any) => {
                         <p>{i.type}</p>
                         <p>{i.size}</p>
                         <BiTrash onClick={() => {
-                          userContext.dispatch({ type: USER_KEYS.REMOVE_ITEMS, payload: i.id })
+                          userContext.dispatch(
+                            { type: USER_KEYS.REMOVE_ITEMS, payload: i.id }
+                          )
                         }} />
                       </div>
                     </div>
                   </div>
                 )}
               </span>
+              <div className="cartAside-total">
+                <div className="cart-item-view">
+                  <div className="cart-item-infos">
+                    <div className="infos-title">
+                      <h1>Details</h1>
+                    </div>
+                    <div className="infos-title description">
+                      <p>Subtotal</p>
+                      <p>{userContext.state.items.reduce(
+                        (prev: any, next: any) =>
+                          prev + Number(next.price), 0).toFixed(2)} $
+                      </p>
+                    </div>
+                    <div className="infos-title description">
+                      <p>Taxes</p>
+                      <p>{(userContext.state.items.reduce(
+                        (prev: any, next: any) =>
+                          prev + Number(next.price), 0) * 0.15)
+                        .toFixed(2)} $
+                      </p>
+                    </div>
+                    <div className="infos-title description">
+                      <p>Shipping</p>
+                      <p>{(5)
+                        .toFixed(2)} $
+                      </p>
+                    </div>
+                    <div className="infos-title description">
+                      <p>Total</p>
+                      <p>{(5 + userContext.state.items.reduce(
+                        (prev: any, next: any) =>
+                          prev + Number(next.price), 0) * 1.15)
+                        .toFixed(2)} $
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <PayPalButtons
                 forceReRender={[userContext.state.items]}
                 createOrder={async (data, actions) => {
@@ -135,7 +179,11 @@ const CartAside = (props: any) => {
                         {
                           amount: {
                             currency_code: 'CAD',
-                            value: userContext.state.items.reduce((prev: any, next: any) => { return prev + Number(next.price) }, 0).toString(),
+                            value: (5 + userContext.state.items.reduce(
+                              (prev: any, next: any) =>
+                                prev + Number(next.price), 0) * 1.15)
+                              .toFixed(2)
+                              .toString(),
                           },
                         },
                       ],
