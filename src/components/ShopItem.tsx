@@ -33,7 +33,6 @@ const ShopItem = ({
   const userContext = useContext(UserContext)
 
   const handleAddItem = () => {
-    console.log('userContext.state', userContext.state)
     userContext.dispatch({
       type: USER_KEYS.ADD_ITEMS, payload: {
         id,

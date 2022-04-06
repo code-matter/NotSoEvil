@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom";
 import { motion } from "framer-motion"
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../../context/UserContext";
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import { BiTrash } from "react-icons/bi";
@@ -101,7 +101,7 @@ const CartAside = (props: any) => {
               null} >
 
           </Backdrop>
-          {props.shopItems && userContext &&
+          {props.shopItems && userContext.state.items.length &&
             <CartAsideOverlay>
               <span>
                 <HiX className="exit" size={24} onClick={() => userContext.dispatch({ type: USER_KEYS.TOGGLE_CART })} />
@@ -117,14 +117,17 @@ const CartAside = (props: any) => {
                         <p>{i.rarity.toUpperCase()}</p>
                         <p>{i.type}</p>
                         <p>{i.size}</p>
-                        <BiTrash onClick={() => userContext.dispatch({ type: USER_KEYS.REMOVE_ITEMS, payload: i.id })} />
+                        <BiTrash onClick={() => {
+                          userContext.dispatch({ type: USER_KEYS.REMOVE_ITEMS, payload: i.id })
+                        }} />
                       </div>
                     </div>
                   </div>
                 )}
               </span>
               <PayPalButtons
-                createOrder={(data, actions) => {
+                forceReRender={[userContext.state.items]}
+                createOrder={async (data, actions) => {
                   return actions.order
                     .create({
                       purchase_units: [

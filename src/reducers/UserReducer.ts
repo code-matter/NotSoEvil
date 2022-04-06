@@ -6,6 +6,7 @@ interface IInitialState {
   items: any[];
   feedback: string | undefined;
   cartOpen: boolean;
+  cartTotal: number;
 }
 
 export const userInitialstate: IInitialState = {
@@ -15,6 +16,7 @@ export const userInitialstate: IInitialState = {
   items: [],
   feedback: undefined,
   cartOpen: false,
+  cartTotal: 0,
 };
 
 export const userReducer = (state: IInitialState, action: any) => {
@@ -25,7 +27,11 @@ export const userReducer = (state: IInitialState, action: any) => {
     case USER_KEYS.SET_LANGUAGE:
       return { ...state, language: action.payload };
     case USER_KEYS.ADD_ITEMS:
-      return { ...state, items: [...state.items, action.payload] };
+      return {
+        ...state,
+        items: [...state.items, action.payload],
+        cartTotal: (state.cartTotal += action.payload.price),
+      };
     case USER_KEYS.REMOVE_ITEMS:
       const tmpItems = [...state.items];
       const tmpIdx = state.items.indexOf(
@@ -36,6 +42,11 @@ export const userReducer = (state: IInitialState, action: any) => {
         ...state,
         items: tmpItems,
         cartOpen: tmpItems.length > 0 ? true : false,
+        cartTotal:
+          state.cartTotal > 0
+            ? state.cartTotal -
+              state.items.find((item) => item.id === action.payload).price
+            : 0,
       };
     case USER_KEYS.SET_FEEDBACK:
       return { ...state, feedback: action.payload };
