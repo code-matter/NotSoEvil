@@ -8,22 +8,26 @@ import SquareButton from './UI/SquareButton'
 
 export interface IShopItem {
   id: string,
+  name: string,
   image: string,
   size: string,
   price: number,
   type: string,
   rarity: string,
-  available: boolean
+  available: boolean,
+  description?: string,
 }
 
 const ShopItem = ({
   id,
+  name,
   image,
   size,
   price,
   rarity,
   available,
-  type
+  type,
+  description
 }: IShopItem) => {
   const [imgHovered, setImgHovered] = useState(false)
   const [btnHovered, setBtnHovered] = useState(false)
@@ -44,7 +48,7 @@ const ShopItem = ({
         type
       }
     })
-    userContext.dispatch({ type: USER_KEYS.SET_FEEDBACK, payload: id })
+    userContext.dispatch({ type: USER_KEYS.SET_FEEDBACK, payload: name })
     setTimeout(() => userContext.dispatch({ type: USER_KEYS.SET_FEEDBACK, payload: undefined }), 1500)
   }
 
@@ -57,10 +61,10 @@ const ShopItem = ({
               <img src={image} alt={image} />
             </div>
             <div className='modal-shop-info'>
-              <h1>{id}</h1>
+              <h1>{name}</h1>
               <div>
                 <p>{size}</p>
-                <p>Reprehenderit ea consectetur in commodo fugiat deserunt eu sint labore amet.</p>
+                <p>{description}</p>
               </div>
               <div>
                 <p>{rarity.toUpperCase()}</p>
@@ -92,7 +96,7 @@ const ShopItem = ({
       </div>
       <span>
         <div className="item-title">
-          <h1>{id}</h1>
+          <h1>{name}</h1>
           <h1>{price} $</h1>
         </div>
         <p className="item-info">{type} | {size}</p>

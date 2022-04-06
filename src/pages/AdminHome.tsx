@@ -11,6 +11,8 @@ import CustomSelect from "../components/CustomSelect";
 import { ReactComponent as COUCOU } from '../assets/Smiley.svg'
 import { onAuthStateChanged } from "firebase/auth";
 import SquareButton from "../components/UI/SquareButton";
+import { v4 as uuidv4 } from 'uuid';
+import CustomTextArea from "../components/CustomTextArea";
 
 export interface IAdminHome {
 
@@ -64,8 +66,11 @@ const AdminHome = ({ }: IAdminHome) => {
       const imgUrl = await getURL(`items/${form.name}`)
       if (imgUrl) {
         try {
-          const d = await setDoc(doc(firebaseDB, "shop-items", form.name), {
+          const thisId = uuidv4();
+          await setDoc(doc(firebaseDB, "shop-items", thisId), {
+            id: thisId,
             name: form.name,
+            description: form.description,
             type: form.type,
             price: form.price,
             image: imgUrl,
@@ -75,7 +80,7 @@ const AdminHome = ({ }: IAdminHome) => {
             category: form.category,
             available: true,
           })
-          document.location.reload()
+          // document.location.reload()
         } catch (error) {
           console.error(error)
         }
@@ -127,6 +132,10 @@ const AdminHome = ({ }: IAdminHome) => {
             <CustomInput
               id="category"
               label="Category"
+              darkTheme />
+            <CustomTextArea
+              id="description"
+              label="Description"
               darkTheme />
 
             <SquareButton

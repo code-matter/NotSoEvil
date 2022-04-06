@@ -44,7 +44,6 @@ const Shop = ({ }: IShop) => {
     const flashes: any = await ShopService.list();
     if (flashes.empty) {
       console.error('No items!')
-      return
     }
     const docs = await flashes.docs
     setShopItems(docs)
@@ -109,7 +108,7 @@ const Shop = ({ }: IShop) => {
           <CartAside shopItems={shopItems} onClose={() => userContext.dispatch({ type: USER_KEYS.TOGGLE_CART })} />}
       </AnimatePresence>
 
-      {!isLoading && shopItems.length > 0 &&
+      {!isLoading &&
         <div className="shop-container container">
           <div className="shop-ctas">
             <SquareButton
@@ -148,19 +147,25 @@ const Shop = ({ }: IShop) => {
             <h2>{t("shop.original_art")}</h2>
             <hr />
             <div className="shop-items-container">
-              {shopItems?.filter((si: any) => si.data().category === ITEM_CATEGORIES.OG_ART).map((item: any, idx: number) => {
-                return (
-                  <ShopItem
-                    key={idx}
-                    id={item.data().name}
-                    image={item.data().image}
-                    size={item.data().size}
-                    type={item.data().type}
-                    available={item.data().available}
-                    rarity={item.data().rarity}
-                    price={item.data().price} />
-                )
-              })}
+              {shopItems?.filter((si: any) =>
+                si.data().category === ITEM_CATEGORIES.OG_ART).length ?
+                shopItems?.filter((si: any) =>
+                  si.data().category === ITEM_CATEGORIES.OG_ART)
+                  .map((item: any, idx: number) => {
+                    return (
+                      <ShopItem
+                        key={idx}
+                        id={item.data().id}
+                        name={item.data().name}
+                        description={item.data().description}
+                        image={item.data().image}
+                        size={item.data().size}
+                        type={item.data().type}
+                        available={item.data().available}
+                        rarity={item.data().rarity}
+                        price={item.data().price} />
+                    )
+                  }) : <p>Pas d'items pour le moment!</p>}
             </div>
           </section>
           <section className="shop-section prints"
@@ -168,19 +173,25 @@ const Shop = ({ }: IShop) => {
             <h2>{t("shop.prints")}</h2>
             <hr />
             <div className="shop-items-container">
-              {shopItems?.filter((si: any) => si.data().category === ITEM_CATEGORIES.PRINTS).map((item: any, idx: number) => {
-                return (
-                  <ShopItem
-                    key={idx}
-                    id={item.data().name}
-                    image={item.data().image}
-                    size={item.data().size}
-                    type={item.data().type}
-                    available={item.data().available}
-                    rarity={item.data().rarity}
-                    price={item.data().price} />
-                )
-              })}
+              {shopItems?.filter((si: any) =>
+                si.data().category === ITEM_CATEGORIES.PRINTS).length ?
+                shopItems?.filter((si: any) =>
+                  si.data().category === ITEM_CATEGORIES.PRINTS)
+                  .map((item: any, idx: number) => {
+                    return (
+                      <ShopItem
+                        key={idx}
+                        id={item.data().id}
+                        name={item.data().name}
+                        description={item.data().description}
+                        image={item.data().image}
+                        size={item.data().size}
+                        type={item.data().type}
+                        available={item.data().available}
+                        rarity={item.data().rarity}
+                        price={item.data().price} />
+                    )
+                  }) : <p>Pas d'items pour le moment!</p>}
             </div>
           </section>
           <section className="shop-section merch"
@@ -188,19 +199,25 @@ const Shop = ({ }: IShop) => {
             <h2>{t("shop.merch")}</h2>
             <hr />
             <div className="shop-items-container">
-              {shopItems?.filter((si: any) => si.data().category === ITEM_CATEGORIES.MERCH).map((item: any, idx: number) => {
-                return (
-                  <ShopItem
-                    key={idx}
-                    id={item.data().name}
-                    image={item.data().image}
-                    type={item.data().type}
-                    available={item.data().available}
-                    rarity={item.data().rarity}
-                    size={item.data().size}
-                    price={item.data().price} />
-                )
-              })}
+              {shopItems?.filter((si: any) =>
+                si.data().category === ITEM_CATEGORIES.MERCH).length ?
+                shopItems?.filter((si: any) =>
+                  si.data().category === ITEM_CATEGORIES.MERCH)
+                  .map((item: any, idx: number) => {
+                    return (
+                      <ShopItem
+                        key={idx}
+                        id={item.data().id}
+                        name={item.data().name}
+                        description={item.data().description}
+                        image={item.data().image}
+                        type={item.data().type}
+                        available={item.data().available}
+                        rarity={item.data().rarity}
+                        size={item.data().size}
+                        price={item.data().price} />
+                    )
+                  }) : <p>Pas d'items pour le moment!</p>}
             </div>
           </section>
         </div>
