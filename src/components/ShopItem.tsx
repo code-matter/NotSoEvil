@@ -50,13 +50,16 @@ const ShopItem = ({
     })
     userContext.dispatch({ type: USER_KEYS.SET_FEEDBACK, payload: name })
     setTimeout(() => userContext.dispatch({ type: USER_KEYS.SET_FEEDBACK, payload: undefined }), 1500)
+    if (infoOpened) {
+      setInfoOpened(false)
+    }
   }
 
   return (
     <div className={`shop-items ${userContext.state.items.find((item: any) => item.id === id) || !available ? 'sold' : ''}`}>
       {infoOpened &&
-        <Modal onClose={() => setInfoOpened(false)} backdropColor="rgba(255,255,255,0.85)">
-          <div className='modal-shop'>
+        <Modal onClose={() => setInfoOpened(false)} backdropColor="rgba(255,255,255,0.85)" >
+          <div className='modal-shop' >
             <div className='modal-shop-img'>
               <img src={image} alt={image} />
             </div>

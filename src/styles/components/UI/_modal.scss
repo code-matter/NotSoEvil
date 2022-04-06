@@ -9,6 +9,7 @@ div {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 100;
     @include mobile {
       height: 100vh;
     }
@@ -20,7 +21,7 @@ div {
         padding: 1rem;
         border-radius: 2px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-        z-index: 30;
+        z-index: 500;
         max-height: 80vh;
         overflow-y: auto;
         div {
@@ -93,12 +94,20 @@ div {
                 img {
                   height: 100%;
                   aspect-ratio: 1;
+                  max-width: 400px;
+                  max-height: 400px;
+                  @include mobile {
+                    max-width: 100%;
+                    height: auto;
+                    max-height: unset;
+                  }
                 }
               }
               &.modal-shop-info {
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
+                max-height: 400px;
                 h1 {
                   font-size: 20px;
                   font-weight: 600;
@@ -118,12 +127,25 @@ div {
                 }
               }
             }
+            @include mobile {
+              flex-direction: column;
+            }
+          }
+        }
+        svg {
+          &.purple {
+            fill: $label-color;
+            margin-bottom: 5px;
+            &:hover {
+              cursor: pointer;
+              fill: $pink;
+            }
           }
         }
 
         @include mobile {
-          width: 80%;
-          top: 50%;
+          width: 90%;
+          height: 70vh;
         }
       }
     }

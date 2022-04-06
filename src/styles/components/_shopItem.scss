@@ -22,8 +22,13 @@ div {
         }
       }
       &.item-img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 100%;
+        aspect-ratio: 1;
         margin-bottom: 10px;
+        flex-grow: 1;
         img {
           &.item-img {
             width: 100%;
