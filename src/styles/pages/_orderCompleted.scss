@@ -100,15 +100,22 @@ div {
           &.right {
             flex-grow: 1;
             div {
-              &.order-items {
+              &.total-info {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
                 div {
-                  &.infos-title {
-                    width: 100%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    border-top: 1px solid rgba(black, 0.2);
-                    margin: 10px 0;
+                  &.order-items {
+                    div {
+                      &.infos-title {
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        border-top: 1px solid rgba(black, 0.2);
+                        margin: 10px 0;
+                      }
+                    }
                   }
                 }
               }

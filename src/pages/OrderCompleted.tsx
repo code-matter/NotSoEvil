@@ -8,22 +8,16 @@ export interface IOrderCompleted {
 
 const OrderCompleted = ({ }: IOrderCompleted) => {
   const location: any = useLocation()
-  const [order, setOrder] = useState<any>({})
-  useEffect(() => {
-    if (location) {
-      console.log('location.state', location.state)
-      setOrder(location.state)
-    }
-  }, [location])
+  const { details, items } = location.state
 
   return (
     <div className="shop container">
-      {order && order.details && <div className="shop-order-summary">
+      {items && details && <div className="shop-order-summary">
         <div className="left">
           <p>Order Summary</p>
-          <h1>{order.details.id}</h1>
+          <h1>{details.id}</h1>
           <div className="order-items">
-            {order.items.map((item: any, itemIdx: any) => {
+            {items.map((item: any, itemIdx: any) => {
               return (
                 <div className="shop-order-view" key={item.id + itemIdx}>
                   <img src={item.image} alt={item.image} />
@@ -45,40 +39,45 @@ const OrderCompleted = ({ }: IOrderCompleted) => {
         </div>
         <div className="right">
           <p>Details</p>
-          <h1>Total</h1>
-          <div className="order-items">
-            <div className="infos-title">
-              <h2>Subtotal</h2>
-              <h2>{order.items.length > 1 ?
-                order.items.reduce(
-                  (prev: any, next: any) => prev + next.price, 0).toFixed(2) :
-                order.items[0].price.toFixed(2)} $
-              </h2>
+          <div className="total-info">
+            <h1>Total</h1>
+            <div className="order-items">
+              <div className="infos-title">
+                <h2>Subtotal</h2>
+                <h2>{items.length > 1 ?
+                  items.reduce(
+                    (prev: any, next: any) => prev + Number(next.price), 0).toFixed(2) :
+                  items[0].price.toFixed(2)} $
+                </h2>
+              </div>
+              <div className="infos-title">
+                <h2>Taxes</h2>
+                <h2>{items.length > 1 ?
+                  (items.reduce(
+                    (prev: any, next: any) =>
+                      prev + Number(next.price), 0) * 0.15).toFixed(2) :
+                  items[0].price.toFixed(2)} $
+                </h2>
+              </div>
+              <div className="infos-title">
+                <h2>Shipping</h2>
+                <h2>5.00 $</h2>
+              </div>
+              <div className="infos-title">
+                <h2>Total</h2>
+                <h2>{items.length > 1 ?
+                  (5 + items.reduce(
+                    (prev: any, next: any) =>
+                      prev + Number(next.price), 0) + items.reduce(
+                        (prev: any, next: any) =>
+                          prev + Number(next.price), 0) * 0.15).toFixed(2) :
+                  5 + items[0].price.toFixed(2)} $
+                </h2>
+              </div>
             </div>
-            <div className="infos-title">
-              <h2>Taxes</h2>
-              <h2>{order.items.length > 1 ?
-                (order.items.reduce(
-                  (prev: any, next: any) =>
-                    prev + next.price, 0) * 0.15).toFixed(2) :
-                order.items[0].price.toFixed(2)} $
-              </h2>
-            </div>
-            <div className="infos-title">
-              <h2>Shipping</h2>
-              <h2>5.00 $</h2>
-            </div>
-            <div className="infos-title">
-              <h2>Total</h2>
-              <h2>{order.items.length > 1 ?
-                (5 + order.items.reduce(
-                  (prev: any, next: any) =>
-                    prev + next.price, 0) + order.items.reduce(
-                      (prev: any, next: any) =>
-                        prev + next.price, 0) * 0.15).toFixed(2) :
-                5 + order.items[0].price.toFixed(2)} $
-              </h2>
-            </div>
+          </div>
+          <div className="adress-info">
+            ADRESS STUFF HERE
           </div>
         </div>
       </div>}
