@@ -1,14 +1,35 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import ShopItem from '../components/ShopItem'
+import { OrdersService } from '../services/orders.services'
 
 export interface IOrderCompleted {
 
 }
 
 const OrderCompleted = ({ }: IOrderCompleted) => {
-  const location: any = useLocation()
-  const { details, items } = location.state
+  const { id } = useParams()
+  // const { details, items } = location.state
+  const [items, setItems] = useState<any>()
+  const [details, setDetails] = useState<any>({})
+
+  const fetchOrder = async () => {
+    if (id) {
+      const order: any = await OrdersService.get(id)
+      if (order && order.orderDetails) {
+        setItems(order.orderDetails.items)
+        setDetails(order.orderDetails.details)
+      }
+    }
+  }
+  useEffect(() => {
+    fetchOrder()
+
+    // return () => {
+    //   second
+    // }
+  }, [id])
+
 
   return (
     <div className="shop container">
@@ -47,7 +68,7 @@ const OrderCompleted = ({ }: IOrderCompleted) => {
                 <h2>{items.length > 1 ?
                   items.reduce(
                     (prev: any, next: any) => prev + Number(next.price), 0).toFixed(2) :
-                  items[0].price.toFixed(2)} $
+                  Number(items[0].price).toFixed(2)} $
                 </h2>
               </div>
               <div className="infos-title">
@@ -56,7 +77,7 @@ const OrderCompleted = ({ }: IOrderCompleted) => {
                   (items.reduce(
                     (prev: any, next: any) =>
                       prev + Number(next.price), 0) * 0.15).toFixed(2) :
-                  items[0].price.toFixed(2)} $
+                  (Number(items[0].price) * 0.15).toFixed(2)} $
                 </h2>
               </div>
               <div className="infos-title">
@@ -71,7 +92,7 @@ const OrderCompleted = ({ }: IOrderCompleted) => {
                       prev + Number(next.price), 0) + items.reduce(
                         (prev: any, next: any) =>
                           prev + Number(next.price), 0) * 0.15).toFixed(2) :
-                  5 + items[0].price.toFixed(2)} $
+                  (5 + (Number(items[0].price)) * 1.15).toFixed(2)} $
                 </h2>
               </div>
             </div>

@@ -37,7 +37,6 @@ const Header = ({ }: IHeader) => {
     userContext.dispatch({ type: USER_KEYS.TOGGLE_CART })
   }
 
-  console.log('isMobile', isMobile)
   useEffect(() => {
     setNavColor(getPastelColor())
     return () => {

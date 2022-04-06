@@ -14,6 +14,26 @@ const list = async () => {
   return await getDocs(collection(firebaseDB, "orders"));
 };
 
+const get = async (id: string) => {
+  console.log("id", id);
+  try {
+    const d = await getDocs(
+      query(
+        collection(firebaseDB, "orders"),
+        where("orderDetails.details.id", "==", id)
+      )
+    );
+    let order = {};
+    d.forEach((d) => {
+      if (d.data()) order = d.data();
+    });
+    return order;
+  } catch (error) {
+    console.error(error);
+  }
+  // console.log("d", d);
+};
+
 const update = async (
   storeName: string,
   documentName: string,
@@ -27,10 +47,21 @@ const update = async (
   return;
 };
 
-export const ShopService = {
+const create = async (details: any) => {
+  console.log("details", details);
+  try {
+    return await setDoc(doc(firebaseDB, "orders", details.details.id), {
+      orderDetails: details,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const OrdersService = {
   list,
-  // get,
+  get,
   update,
-  // create,
+  create,
   // del
 };

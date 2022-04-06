@@ -9,6 +9,7 @@ import useMobile from "../../hooks/useMobile";
 import { HiX } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import { ShopService } from "../../services/shop.services";
+import { OrdersService } from "../../services/orders.services";
 
 const Backdrop = (props: any) => {
   return <motion.div className="cartAside-backdrop"
@@ -69,18 +70,18 @@ const CartAside = (props: any) => {
 
   const onApproveHandler = (data: any, actions: any) => {
     // This function captures the funds from the transaction.
-    console.log('data: ', data)
-    console.log('actions: ', actions)
     if (actions.order)
-      return actions.order?.capture().then(function (details: any) {
+      return actions.order?.capture().then(async function (details: any) {
         try {
-          userContext.state.items.forEach(async (item: any) => {
-            console.log('item', item)
+          await userContext.state.items.forEach(async (item: any) => {
             await ShopService.update(item.id, { available: false })
           })
-          navigate(`/order/${details.id}`, { state: { details: details, items: userContext.state.items } })
+          await OrdersService.create({ details: details, items: userContext.state.items })
+          userContext.dispatch({ type: USER_KEYS.RESET_CART })
+          // Want to get rid of state and store to FB instead
+          navigate(`/order/${details.id}`)
         } catch (error) {
-
+          console.error(error)
         }
         // if details.status === "COMPLETED" => save info in user DB
         // Redirects to 'Complete Order Page' showing the info 
@@ -141,7 +142,6 @@ const CartAside = (props: any) => {
                     })
                     .then((orderId) => {
                       // Your code here after create the order. Good place to redirect to a order summary page
-                      console.log('orderId', orderId)
                       return orderId;
                     });
                 }}
