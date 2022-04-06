@@ -30,7 +30,6 @@ const Header = ({ }: IHeader) => {
   const isAdmin = useMatch('/admin/*')
   const { isMobile } = useMobile()
   const navRef = useRef(null)
-  const [isOpen, setIsOpen] = useState(false)
   const [navColor, setNavColor] = useState('')
 
   const handleOpenCart = () => {
@@ -42,7 +41,8 @@ const Header = ({ }: IHeader) => {
     return () => {
       setNavColor('')
     }
-  }, [isOpen])
+  }, [userContext.state.navOpen])
+
 
   const renderLinks = () => {
     return <>
@@ -97,13 +97,14 @@ const Header = ({ }: IHeader) => {
         , portalEl as HTMLElement)}
       {
         !isAdmin &&
-        <div className={`header-wrap ${isMobile ? 'mobile' : ''} ${isOpen ? 'opened' : ''}`} style={{ backgroundColor: getPastelColor() }}>
+        <div className={`header-wrap ${isMobile ? 'mobile' : ''} ${userContext.state.navOpen ? 'opened' : ''}`} style={{ backgroundColor: getPastelColor() }}>
 
-          <div className="header-content" onClick={isMobile ? () => setIsOpen(!isOpen) : undefined}>
-            {isOpen ? <HiArrowNarrowLeft color="#fbfbfd" size={30} onClick={() => navigate('/')} /> : <LOGO className="logo" onClick={isMobile ? undefined : () => navigate('/')} />}
-            {isMobile && <Turn toggled={isOpen} size={isOpen ? 30 : 20} color="#fbfbfd" />}
+          <div className="header-content" onClick={isMobile ? () => userContext.dispatch({ type: USER_KEYS.TOGGLE_NAV })
+            : undefined}>
+            {userContext.state.navOpen ? <HiArrowNarrowLeft color="#fbfbfd" size={30} onClick={() => navigate('/')} /> : <LOGO className="logo" onClick={isMobile ? undefined : () => navigate('/')} />}
+            {isMobile && <Turn toggled={userContext.state.navOpen} size={userContext.state.navOpen ? 30 : 20} color="#fbfbfd" />}
           </div>
-          {isMobile && isOpen && renderLinks()}
+          {isMobile && userContext.state.navOpen && renderLinks()}
           {!isMobile && renderLinks()}
         </div>
       }
