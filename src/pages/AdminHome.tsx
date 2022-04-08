@@ -13,6 +13,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import SquareButton from "../components/UI/SquareButton";
 import { v4 as uuidv4 } from 'uuid';
 import CustomTextArea from "../components/CustomTextArea";
+import { USER_KEYS } from "../constants/reducerKeys";
 
 export interface IAdminHome {
 
@@ -24,16 +25,6 @@ const AdminHome = ({ }: IAdminHome) => {
   const [file, setFile] = useState<any>()
   const [showModal, setShowModal] = useState(false)
   const [form, setForm] = useState<any>({})
-
-  useEffect(() => {
-    const onChangeUser = onAuthStateChanged(firebaseAuth, (user) => {
-      if (!user) {
-        navigate('/admin/login')
-      }
-    })
-    return () => onChangeUser()
-  }, [navigate])
-
 
   const handleFormChange = (event: FormEvent) => {
     // event.preventDefault()
@@ -86,6 +77,10 @@ const AdminHome = ({ }: IAdminHome) => {
         }
       }
     }
+  }
+  const logoutHandle = () => {
+    userContext.dispatch({ type: USER_KEYS.REMOVE_USER })
+    UsersService.logout()
   }
 
   return (
@@ -152,7 +147,7 @@ const AdminHome = ({ }: IAdminHome) => {
 
       <button
         type="button"
-        onClick={() => UsersService.logout()}>LOG OUT
+        onClick={logoutHandle}>LOG OUT
       </button>
       <button onClick={() => navigate('/shop')}>GO TO SHOP</button>
     </div>

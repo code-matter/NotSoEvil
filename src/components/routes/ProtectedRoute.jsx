@@ -1,11 +1,18 @@
-import { Navigate } from "react-router-dom";
+import { onAuthStateChanged } from "firebase/auth";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { firebaseAuth } from "../../utils/firebase";
 
 const ProtectedRoute = ({ children }) => {
-  const user = localStorage.getItem("@user");
-
-  if (!user) {
-    return <Navigate to="/admin/login" replace />;
-  }
+  const navigate = useNavigate();
+  useEffect(() => {
+    const onChangeUser = onAuthStateChanged(firebaseAuth, (user) => {
+      if (!user) {
+        navigate("/admin/login");
+      }
+    });
+    return () => onChangeUser();
+  }, [navigate]);
 
   return children;
 };

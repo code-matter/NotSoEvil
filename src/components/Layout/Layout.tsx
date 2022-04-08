@@ -1,6 +1,7 @@
+import { onAuthStateChanged } from 'firebase/auth'
 import { AnimatePresence } from 'framer-motion'
 import { useEffect, useContext, ReactNode, useReducer } from 'react'
-import { useMatch } from 'react-router-dom'
+import { useMatch, useNavigate } from 'react-router-dom'
 import { USER_KEYS } from '../../constants/reducerKeys'
 import { UserContext } from '../../context/UserContext'
 import { userInitialstate, userReducer } from '../../reducers/UserReducer'
@@ -14,6 +15,7 @@ export interface ILayout {
 const Layout = ({ children }: ILayout) => {
   const isHome = useMatch('/')
   const isRDV = useMatch('/form')
+  const navigate = useNavigate()
   const [state, dispatch] = useReducer<any>(userReducer, userInitialstate);
   useEffect(() => {
     console.log(`
@@ -25,6 +27,7 @@ const Layout = ({ children }: ILayout) => {
     💻 See you soon! 💻
   `)
   }, [])
+
 
   return (
     <div className="App" id="App">

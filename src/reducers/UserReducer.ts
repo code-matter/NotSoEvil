@@ -22,8 +22,9 @@ export const userInitialstate: IInitialState = {
 export const userReducer = (state: IInitialState, action: any) => {
   switch (action.type) {
     case USER_KEYS.SET_USER:
-      // localStorage.setItem('@user',)
-      return { ...state, user: action.payload };
+      return { ...state, user: action.payload.reloadUserInfo };
+    case USER_KEYS.REMOVE_USER:
+      return { ...state, user: null };
     case USER_KEYS.SET_LANGUAGE:
       return { ...state, language: action.payload };
     case USER_KEYS.ADD_ITEMS:
