@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next"
+
 export interface ICustomSelect {
   id: string,
   label: string,
@@ -18,6 +20,7 @@ const CustomSelect = ({
   selects,
   hide = false,
   ...props }: ICustomSelect) => {
+  const { t } = useTranslation()
   return (
     <div className={`custom-intput-container ${darkTheme ? 'dark' : ''}`} style={{ margin: '5px 0' }}>
       <h3 className={`${isRequired ? 'required' : ''}`}>
@@ -28,7 +31,7 @@ const CustomSelect = ({
         <select id={id} {...props}>
           {selects.map((select) => {
             return (
-              <option key={select.id} value={select.id}>{select.label}</option>
+              <option key={select.id} value={select.id}>{t(select.label)}</option>
             )
           })}
         </select></>}

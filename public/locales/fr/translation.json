@@ -84,7 +84,9 @@
     "text10": "Le rendez-vous n'est pas confirmé tant que le dépôt ne sera pas envoyé!",
     "text11": "Merci pour votre intérêt envers mon art, sachez que c'est grandement apprécié.",
     "text12": "Au plaisir de créer avec vous!",
-    "alert": "YOUPII!! Ta demande de rendez-vous est belle et bien partie, assures-toi de vérifier tes courriels. À BIENTÔT !!"
+    "alert": "YOUPII!! Ta demande de rendez-vous est belle et bien partie, assures-toi de vérifier tes courriels. À BIENTÔT !!",
+    "unique": "UNIQUE",
+    "multiples": "MULTIPLES"
   },
   "modal": {
     "hey": "Coucou",

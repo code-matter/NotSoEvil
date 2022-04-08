@@ -5,7 +5,6 @@ import { ShopService } from '../services/shop.services';
 import SquareButton from '../components/UI/SquareButton';
 import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
-import { ITEM_CATEGORIES } from '../utils/constants';
 import CartAside from '../components/UI/CartAside';
 import { UserContext } from '../context/UserContext';
 import { AnimatePresence } from 'framer-motion';
@@ -148,9 +147,9 @@ const Shop = ({ }: IShop) => {
             <hr />
             <div className="shop-items-container">
               {shopItems?.filter((si: any) =>
-                si.data().category === ITEM_CATEGORIES.OG_ART).length ?
+                si.data().category === 1).length ?
                 shopItems?.filter((si: any) =>
-                  si.data().category === ITEM_CATEGORIES.OG_ART)
+                  si.data().category === 1)
                   .map((item: any, idx: number) => {
                     return (
                       <ShopItem
@@ -174,9 +173,9 @@ const Shop = ({ }: IShop) => {
             <hr />
             <div className="shop-items-container">
               {shopItems?.filter((si: any) =>
-                si.data().category === ITEM_CATEGORIES.PRINTS).length ?
+                si.data().category === 2).length ?
                 shopItems?.filter((si: any) =>
-                  si.data().category === ITEM_CATEGORIES.PRINTS)
+                  si.data().category === 2)
                   .map((item: any, idx: number) => {
                     return (
                       <ShopItem
@@ -200,9 +199,9 @@ const Shop = ({ }: IShop) => {
             <hr />
             <div className="shop-items-container">
               {shopItems?.filter((si: any) =>
-                si.data().category === ITEM_CATEGORIES.MERCH).length ?
+                si.data().category === 3).length ?
                 shopItems?.filter((si: any) =>
-                  si.data().category === ITEM_CATEGORIES.MERCH)
+                  si.data().category === 3)
                   .map((item: any, idx: number) => {
                     return (
                       <ShopItem

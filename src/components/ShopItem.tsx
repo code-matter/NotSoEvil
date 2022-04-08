@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { USER_KEYS } from '../constants/reducerKeys'
+import { ADMIN } from '../constants/selects'
 import { UserContext } from '../context/UserContext'
 import { accentColor } from '../utils/colors'
 import Modal from './UI/Modal'
@@ -10,10 +11,10 @@ export interface IShopItem {
   id: string,
   name: string,
   image: string,
-  size: string,
+  size: number,
   price: number,
   type: string,
-  rarity: string,
+  rarity: number,
   available: boolean,
   description?: string,
 }
@@ -67,11 +68,11 @@ const ShopItem = ({
             <div className='modal-shop-info'>
               <h1>{name}</h1>
               <div>
-                <p>{size}</p>
+                <p>{ADMIN.SIZE.find(s => s.id === size)?.label}</p>
                 <p>{description}</p>
               </div>
               <div>
-                <p>{rarity.toUpperCase()}</p>
+                <p>{t(ADMIN.RARITY.find(r => r.id === rarity)?.label as string).toUpperCase()}</p>
                 <p>Collection Hiver</p>
               </div>
               <p className='price'>{price} $</p>
@@ -103,9 +104,9 @@ const ShopItem = ({
           <h1>{name}</h1>
           <h1>{price} $</h1>
         </div>
-        <p className="item-info">{type} | {size}</p>
+        <p className="item-info">{type} | {ADMIN.SIZE.find(s => s.id === size)?.label}</p>
         <p className="item-rarity">
-          <span>{rarity.toUpperCase()}</span>
+          <span>{t(ADMIN.RARITY.find(r => r.id === rarity)?.label as string).toUpperCase()}</span>
           <span
             className='buy-btn'
             onClick={available ? handleAddItem : undefined}

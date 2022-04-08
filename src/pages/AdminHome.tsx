@@ -14,6 +14,7 @@ import SquareButton from "../components/UI/SquareButton";
 import { v4 as uuidv4 } from 'uuid';
 import CustomTextArea from "../components/CustomTextArea";
 import { USER_KEYS } from "../constants/reducerKeys";
+import { ADMIN } from "../constants/selects";
 
 export interface IAdminHome {
 
@@ -63,12 +64,12 @@ const AdminHome = ({ }: IAdminHome) => {
             name: form.name,
             description: form.description || '',
             type: form.type,
-            price: form.price,
+            price: Number(form.price),
             image: imgUrl,
-            rarity: form.rarity || 'unique',
-            size: form.size,
+            rarity: Number(form.rarity) || 1,
+            size: Number(form.size) || 1,
             color: form.color,
-            category: form.category,
+            category: Number(form.category) || 1,
             available: true,
           })
           // document.location.reload()
@@ -109,13 +110,12 @@ const AdminHome = ({ }: IAdminHome) => {
               id="rarity"
               label="Rarity"
               darkTheme
-              selects={
-                [{ id: 'unique', label: 'UNIQUE' },
-                { id: 'multiples', label: 'MULTIPLES' }]} />
-            <CustomInput
+              selects={ADMIN.RARITY} />
+            <CustomSelect
               id="size"
               label="Size"
-              darkTheme />
+              darkTheme
+              selects={ADMIN.SIZE} />
             <CustomInput
               id="type"
               label="Type"
@@ -124,9 +124,10 @@ const AdminHome = ({ }: IAdminHome) => {
               id="color"
               label="Color"
               darkTheme />
-            <CustomInput
+            <CustomSelect
               id="category"
               label="Category"
+              selects={ADMIN.CATEGORY}
               darkTheme />
             <CustomTextArea
               id="description"
