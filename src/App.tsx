@@ -16,6 +16,7 @@ import Layout from './components/Layout/Layout';
 import Shop from './pages/Shop';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import OrderCompleted from './pages/OrderCompleted';
+import AppRouter from './router';
 
 export const routes = [
   {
@@ -57,30 +58,25 @@ export const routes = [
 ]
 
 function App() {
-  const { t } = useTranslation()
+  // const { t } = useTranslation()
 
 
-  const AppRouter = () => {
-    return (
-      <Routes>
-        {routes.map(route =>
-          <Route
-            key={route.id}
-            path={route.path}
-            element={<route.element />} />
-        )}
-        <Route path="*" element={
-          <div className='construction-zone'>
-            <div className='construction-text'>
-              <h2>{t('construction.curious')}</h2>
-              <p>{t('construction.come_back')}</p>
-            </div>
-            <CONSTRUCTION />
-          </div>
-        } />
-      </Routes>
-    )
-  }
+  // const AppRouter = () => {
+  //   return (
+  //     <Routes>
+  //       <AppRouter />
+  //       <Route path="*" element={
+  //         <div className='construction-zone'>
+  //           <div className='construction-text'>
+  //             <h2>{t('construction.curious')}</h2>
+  //             <p>{t('construction.come_back')}</p>
+  //           </div>
+  //           <CONSTRUCTION />
+  //         </div>
+  //       } />
+  //     </Routes>
+  //   )
+  // }
 
   // need to store in env
   return (
