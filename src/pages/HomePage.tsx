@@ -53,7 +53,7 @@ const HomePage: React.FC = () => {
         <Modal onClose={() => {
           setShowModal(false)
           sessionStorage.setItem('hasRead', '1')
-        }} backdropClose>
+        }} backdropClose smiley>
           <div className="construction-modal">
             <COUCOU onClick={() => setShowModal(false)} />
             <h2>{t('modal.hey')}</h2>

@@ -61,7 +61,7 @@ const AdminHome = ({ }: IAdminHome) => {
           await setDoc(doc(firebaseDB, "shop-items", thisId), {
             id: thisId,
             name: form.name,
-            description: form.description,
+            description: form.description || '',
             type: form.type,
             price: form.price,
             image: imgUrl,
@@ -85,7 +85,7 @@ const AdminHome = ({ }: IAdminHome) => {
 
   return (
     <div className="container" style={{ display: 'flex', flexDirection: 'column' }}>
-      {showModal && <Modal
+      {showModal && <Modal smiley
       >
         <div className='construction-modal add-items-modal'>
           <COUCOU onClick={() => setShowModal(false)} />

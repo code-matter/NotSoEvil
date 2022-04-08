@@ -115,7 +115,7 @@ const CartAside = (props: any) => {
                     <img src={i.image} alt={i.image} />
                     <div className="cart-item-infos">
                       <div className="infos-title">
-                        <h1>{i.id}</h1>
+                        <h1>{i.name}</h1>
                         <h1>{i.price} $</h1>
                       </div>
                       <div className="infos-title description">

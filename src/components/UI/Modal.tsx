@@ -10,7 +10,6 @@ const Backdrop = (props: any) => {
 };
 
 const ModalOverlay = (props: any) => {
-  console.log(props.onClick)
   return (
     <motion.div className="modal"
       initial={{ y: 250, opacity: 0 }}
@@ -24,7 +23,7 @@ const ModalOverlay = (props: any) => {
       style={{ backgroundColor: props.backdropColor, marginBottom: navigator.userAgent.includes('iPhone') ? '10%' : 0 }}
     >
       <div className="modal-content">
-        <HiX className="purple" size={24} onClick={props.onClose} />
+        {!props.smiley && <HiX className="purple" size={24} onClick={props.onClose} />}
         {props.children}
       </div>
     </motion.div>
@@ -41,7 +40,7 @@ const Modal = (props: any) => {
           onClose={props.onClose ?
             props.onClose :
             null} >
-          <ModalOverlay backdropColor={props.backdropColor} onClose={props.onClose ?
+          <ModalOverlay backdropColor={props.backdropColor} smiley={props.smiley} onClose={props.onClose ?
             props.onClose :
             null}>{props.children}</ModalOverlay>
         </Backdrop>, portalEl as HTMLElement)}

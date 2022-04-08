@@ -40,6 +40,7 @@ const ShopItem = ({
     userContext.dispatch({
       type: USER_KEYS.ADD_ITEMS, payload: {
         id,
+        name,
         image,
         size,
         price,
