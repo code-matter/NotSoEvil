@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useLocation, useParams } from 'react-router-dom'
 import ShopItem from '../components/ShopItem'
+import { ADMIN } from '../constants/selects'
 import { OrdersService } from '../services/orders.services'
 
 export interface IOrderCompleted {
@@ -13,6 +15,7 @@ const OrderCompleted = ({ }: IOrderCompleted) => {
   const [items, setItems] = useState<any>([])
   const [details, setDetails] = useState<any>({})
   const [loading, setLoading] = useState(true)
+  const { t } = useTranslation()
 
   useEffect(() => {
     const fetchOrder = async () => {
@@ -50,9 +53,9 @@ const OrderCompleted = ({ }: IOrderCompleted) => {
                         <h1>{item.price} $</h1>
                       </div>
                       <div className="infos-title description">
-                        <p>{item.rarity.toUpperCase()}</p>
+                        <p>{t(ADMIN.RARITY.find(r => r.id === item.rarity)?.label as string).toUpperCase()}</p>
                         <p>{item.type}</p>
-                        <p>{item.size}</p>
+                        <p>{t(ADMIN.SIZE.find(s => s.id === item.size)?.label as string)}</p>
                       </div>
                     </div>
                   </div>

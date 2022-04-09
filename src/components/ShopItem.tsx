@@ -121,7 +121,8 @@ const ShopItem = ({
             }}
             style={{
               color: color && btnHovered ? color : ''
-            }}>{t('shop.want_it')}
+            }}>
+            {available ? t('shop.want_it') : t('shop.sold')}
           </span>
         </p>
       </span>

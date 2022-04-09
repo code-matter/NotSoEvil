@@ -10,6 +10,8 @@ import { HiX } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import { ShopService } from "../../services/shop.services";
 import { OrdersService } from "../../services/orders.services";
+import { ADMIN } from "../../constants/selects";
+import { useTranslation } from "react-i18next";
 
 const Backdrop = (props: any) => {
   return <motion.div className="cartAside-backdrop"
@@ -67,6 +69,7 @@ const portalEl = document.getElementById("overlays");
 const CartAside = (props: any) => {
   const userContext = useContext(UserContext);
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   const onApproveHandler = (data: any, actions: any) => {
     // This function captures the funds from the transaction.
@@ -119,9 +122,9 @@ const CartAside = (props: any) => {
                         <h1>{i.price} $</h1>
                       </div>
                       <div className="infos-title description">
-                        <p>{i.rarity.toUpperCase()}</p>
+                        <p>{t(ADMIN.RARITY.find(r => r.id === i.rarity)?.label as string).toUpperCase()}</p>
                         <p>{i.type}</p>
-                        <p>{i.size}</p>
+                        <p>{ADMIN.SIZE.find(s => s.id === i.size)?.label}</p>
                         <BiTrash onClick={() => {
                           userContext.dispatch(
                             { type: USER_KEYS.REMOVE_ITEMS, payload: i.id }
