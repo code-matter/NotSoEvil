@@ -6,11 +6,19 @@ export const ADMIN = {
   ],
   RARITY: [
     { id: 1, label: "form.unique" },
-    { id: 2, label: "form.multiples" },
+    { id: 2, label: "form.series" },
+    { id: 3, label: "form.unlimited" },
   ],
   SIZE: [
     { id: 1, label: "8x10" },
     { id: 2, label: "11x14" },
-    { id: 3, label: "12x12" },
+  ],
+  TYPE: [
+    { id: 1, label: "form.pastels" },
+    { id: 2, label: "form.acrylic" },
+  ],
+  COLOR: [
+    { id: 1, label: "form.color" },
+    { id: 2, label: "form.bw" },
   ],
 };

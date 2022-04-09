@@ -63,12 +63,12 @@ const AdminHome = ({ }: IAdminHome) => {
             id: thisId,
             name: form.name,
             description: form.description || '',
-            type: form.type,
+            type: form.type || 1,
             price: Number(form.price),
             image: imgUrl,
             rarity: Number(form.rarity) || 1,
             size: Number(form.size) || 1,
-            color: form.color,
+            color: form.color || 1,
             category: Number(form.category) || 1,
             available: true,
           })
@@ -116,14 +116,16 @@ const AdminHome = ({ }: IAdminHome) => {
               label="Size"
               darkTheme
               selects={ADMIN.SIZE} />
-            <CustomInput
+            <CustomSelect
               id="type"
               label="Type"
-              darkTheme />
-            <CustomInput
+              darkTheme
+              selects={ADMIN.TYPE} />
+            <CustomSelect
               id="color"
               label="Color"
-              darkTheme />
+              darkTheme
+              selects={ADMIN.COLOR} />
             <CustomSelect
               id="category"
               label="Category"
@@ -137,7 +139,7 @@ const AdminHome = ({ }: IAdminHome) => {
             <SquareButton
               label="Add Item"
               type="submit"
-              disabled={!form.name || !form.image} />
+              disabled={!form.name || !form.image || !form.price} />
           </form>
         </div>
       </Modal>}

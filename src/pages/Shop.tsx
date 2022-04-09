@@ -164,7 +164,7 @@ const Shop = ({ }: IShop) => {
                         rarity={item.data().rarity}
                         price={item.data().price} />
                     )
-                  }) : <p>Pas d'items pour le moment!</p>}
+                  }) : <p>{t('shop.no_items')}</p>}
             </div>
           </section>
           <section className="shop-section prints"
@@ -190,7 +190,7 @@ const Shop = ({ }: IShop) => {
                         rarity={item.data().rarity}
                         price={item.data().price} />
                     )
-                  }) : <p>Pas d'items pour le moment!</p>}
+                  }) : <p>{t('shop.no_items')}</p>}
             </div>
           </section>
           <section className="shop-section merch"
@@ -216,7 +216,7 @@ const Shop = ({ }: IShop) => {
                         size={item.data().size}
                         price={item.data().price} />
                     )
-                  }) : <p>Pas d'items pour le moment!</p>}
+                  }) : <p>{t('shop.no_items')}</p>}
             </div>
           </section>
         </div>

@@ -86,7 +86,11 @@
     "text12": "Au plaisir de créer avec vous!",
     "alert": "YOUPII!! Ta demande de rendez-vous est belle et bien partie, assures-toi de vérifier tes courriels. À BIENTÔT !!",
     "unique": "UNIQUE",
-    "multiples": "MULTIPLES"
+    "series": "SÉRIE LIMITÉE",
+    "unlimited": "ILLIMITÉ",
+    "pastels": "PASTELS",
+    "acrylic": "ACRYLIQUE",
+    "bw": "NOIR & BLANC"
   },
   "modal": {
     "hey": "Coucou",
@@ -105,6 +109,7 @@
     "see_more": "EN VOIR D'AVANTAGE",
     "want_it": "JE LE VEUX !",
     "added": "ajouté au panier!",
-    "sold": "VENDU!"
+    "sold": "VENDU!",
+    "no_items": "Pas d'items pour le moment."
   }
 }
