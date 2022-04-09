@@ -105,7 +105,7 @@ const RDV = () => {
   const sendForm = () => {
     setIsDisabled(false)
     setIsModalOpened(true)
-    if (process.env.NODE_ENV === 'production' || true) {
+    if (process.env.NODE_ENV === 'production') {
       let finalForm = { ...initForm, ...form }
       _.forEach(finalForm, (value, key) => {
         if (!value) {

@@ -3,6 +3,14 @@ div {
     display: flex;
     justify-content: center;
     align-items: center;
+    a.login {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      z-index: 99999;
+      opacity: 0;
+      cursor: default;
+    }
     @include mobile {
       border-right: none;
       margin-top: 45px;

@@ -49,6 +49,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div className='homepage'>
+      <Link className="login" to='/admin/home'>TEST</Link>
       {showModal &&
         <Modal onClose={() => {
           setShowModal(false)

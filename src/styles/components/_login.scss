@@ -1,5 +1,6 @@
 div {
   &.login-container {
+    position: relative;
     width: 30%;
     @include mobile {
       width: 70%;

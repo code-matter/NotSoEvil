@@ -1,11 +1,13 @@
 import { FormEvent, useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import CustomInput from '../components/CustomInput'
 import SquareButton from '../components/UI/SquareButton'
 import { USER_KEYS } from '../constants/reducerKeys'
 import { UserContext } from '../context/UserContext'
 import { UsersService } from '../services/users.services'
+import { HiArrowNarrowLeft } from "react-icons/hi";
+
 export interface ILogin {
 
 }
@@ -43,6 +45,9 @@ const Login = ({ }: ILogin) => {
 
   return (
     <div className="login-container container">
+      <Link to='/'>
+        <HiArrowNarrowLeft size={32} />
+      </Link>
       <form onSubmit={sendForm} onChange={handleFormChange}>
         <CustomInput id="username" label={t('general.username')} />
         <CustomInput id="password" label={t('general.password')} />
