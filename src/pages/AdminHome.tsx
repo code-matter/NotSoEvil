@@ -86,7 +86,7 @@ const AdminHome = ({ }: IAdminHome) => {
 
   return (
     <div className="container" style={{ display: 'flex', flexDirection: 'column' }}>
-      {showModal && <Modal smiley
+      {/* {showModal && <Modal smiley
       >
         <div className='construction-modal add-items-modal'>
           <COUCOU onClick={() => setShowModal(false)} />
@@ -143,16 +143,12 @@ const AdminHome = ({ }: IAdminHome) => {
           </form>
         </div>
       </Modal>}
-
-      HELLO {userContext?.state?.user?.email}
-
       <SquareButton label="Add Item" onClick={() => setShowModal(true)} />
-
       <button
         type="button"
         onClick={logoutHandle}>LOG OUT
       </button>
-      <button onClick={() => navigate('/shop')}>GO TO SHOP</button>
+      <button onClick={() => navigate('/shop')}>GO TO SHOP</button> */}
     </div>
   )
 }

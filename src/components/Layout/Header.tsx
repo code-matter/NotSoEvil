@@ -27,7 +27,6 @@ const Header = ({ }: IHeader) => {
   const userContext = useContext(UserContext)
   const { t } = useTranslation()
   const { pathname } = useLocation()
-  const isAdmin = useMatch('/admin/*')
   const { isMobile } = useMobile()
   const navRef = useRef(null)
   const [navColor, setNavColor] = useState('')
@@ -96,7 +95,6 @@ const Header = ({ }: IHeader) => {
         </AnimatePresence>
         , portalEl as HTMLElement)}
       {
-        !isAdmin &&
         <div className={`header-wrap ${isMobile ? 'mobile' : ''} ${userContext.state.navOpen ? 'opened' : ''}`} style={{ backgroundColor: getPastelColor() }}>
 
           <div className="header-content" onClick={isMobile ? () => userContext.dispatch({ type: USER_KEYS.TOGGLE_NAV })
