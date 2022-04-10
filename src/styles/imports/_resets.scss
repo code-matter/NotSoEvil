@@ -4,10 +4,14 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  height: 100%;
   font-family: "Asap", BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
+}
+html,
+body {
+  height: 100%;
+  min-height: 100%;
 }
 @include not-mobile {
   // ::-webkit-scrollbar {

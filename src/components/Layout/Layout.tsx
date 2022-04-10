@@ -6,6 +6,7 @@ import { USER_KEYS } from '../../constants/reducerKeys'
 import { UserContext } from '../../context/UserContext'
 import { userInitialstate, userReducer } from '../../reducers/UserReducer'
 import { firebaseAuth } from '../../utils/firebase'
+import AdminHeader from './AdminHeader'
 import Header from './Header'
 
 export interface ILayout {
@@ -14,7 +15,8 @@ export interface ILayout {
 
 const Layout = ({ children }: ILayout) => {
   const isHome = useMatch('/')
-  const isAdminLogin = useMatch('/admin/login')
+  const isAdmin = useMatch("/admin/*")
+  // const isAdminLogin = useMatch('/admin/login')
   const isRDV = useMatch('/form')
   const navigate = useNavigate()
   const [state, dispatch] = useReducer<any>(userReducer, userInitialstate);
@@ -31,9 +33,10 @@ const Layout = ({ children }: ILayout) => {
 
 
   return (
-    <div className="App" id="App">
+    <div className={`App${isAdmin ? ' admin' : ''}`} id="App">
       <UserContext.Provider value={{ state, dispatch }}>
-        {!isHome && !isAdminLogin && <Header />}
+        {!isHome && !isAdmin && <Header />}
+        {isAdmin && <AdminHeader />}
         {children}
       </UserContext.Provider>
     </div>
