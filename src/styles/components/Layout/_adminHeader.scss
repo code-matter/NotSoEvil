@@ -1,7 +1,48 @@
-div.admin-header {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 100px;
-  background-color: $mauve;
+div {
+  &.admin-header {
+    padding-top: 13px;
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 5%;
+    max-width: 60px;
+    background-color: $mauve;
+    transition: width ease-in-out 0.3s;
+    div.admin-links {
+      display: flex;
+      height: 100%;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      flex-grow: 1;
+      a {
+        display: flex;
+        align-items: center;
+        margin: 20px 0;
+      }
+      p {
+        &.link-label {
+          animation: fade-in 0.75s forwards;
+        }
+      }
+    }
+  }
+  &.navOpened {
+    width: 20%;
+    max-width: 300px;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    line-height: 0;
+  }
+  100% {
+    opacity: 1;
+    line-height: auto;
+  }
 }

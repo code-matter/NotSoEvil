@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { MdDashboard, MdShoppingCart, MdPaid } from "react-icons/md";
+import { Link } from 'react-router-dom';
 
 export interface IAdminHeader {
 
@@ -28,15 +29,24 @@ export const LINKS = [
 
 const AdminHeader = ({ }: IAdminHeader) => {
 
-
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className="admin-header ">
-      {LINKS.map((link: any) => {
-        return (
-          <link.icon />
-        )
-      })}
+    <div className={`admin-header${isOpen ? ' navOpened' : ''}`}>
+      <p onClick={() => setIsOpen(!isOpen)} >X</p>
+      <div className="admin-links">
+        {LINKS.map((link: any) => {
+          return (
+            <Link to={link.to}>
+              <link.icon />
+              {isOpen &&
+                <p className="link-label">
+                  {link.label}
+                </p>}
+            </Link>
+          )
+        })}
+      </div>
     </div>
   )
 }

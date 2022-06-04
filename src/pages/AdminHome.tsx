@@ -86,7 +86,7 @@ const AdminHome = ({ }: IAdminHome) => {
 
   return (
     <div className="container" style={{ display: 'flex', flexDirection: 'column' }}>
-      {/* {showModal && <Modal smiley
+      {showModal && <Modal smiley
       >
         <div className='construction-modal add-items-modal'>
           <COUCOU onClick={() => setShowModal(false)} />
@@ -148,7 +148,7 @@ const AdminHome = ({ }: IAdminHome) => {
         type="button"
         onClick={logoutHandle}>LOG OUT
       </button>
-      <button onClick={() => navigate('/shop')}>GO TO SHOP</button> */}
+      <button onClick={() => navigate('/shop')}>GO TO SHOP</button>
     </div>
   )
 }

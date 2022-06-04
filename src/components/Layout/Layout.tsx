@@ -16,7 +16,7 @@ export interface ILayout {
 const Layout = ({ children }: ILayout) => {
   const isHome = useMatch('/')
   const isAdmin = useMatch("/admin/*")
-  // const isAdminLogin = useMatch('/admin/login')
+  const isAdminLogin = useMatch('/admin/login')
   const isRDV = useMatch('/form')
   const navigate = useNavigate()
   const [state, dispatch] = useReducer<any>(userReducer, userInitialstate);
@@ -36,7 +36,7 @@ const Layout = ({ children }: ILayout) => {
     <div className={`App${isAdmin ? ' admin' : ''}`} id="App">
       <UserContext.Provider value={{ state, dispatch }}>
         {!isHome && !isAdmin && <Header />}
-        {isAdmin && <AdminHeader />}
+        {isAdmin && !isAdminLogin && <AdminHeader />}
         {children}
       </UserContext.Provider>
     </div>
