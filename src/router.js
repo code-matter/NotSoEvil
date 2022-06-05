@@ -8,6 +8,7 @@ import OrderCompleted from "./pages/OrderCompleted";
 import RDV from "./pages/RDV";
 import Shop from "./pages/Shop";
 import { ReactComponent as CONSTRUCTION } from "./assets/construction.svg";
+import Flash from "./pages/Flash";
 
 export const routes = [
   {
@@ -29,6 +30,13 @@ export const routes = [
     label: "general.shop",
     path: "/shop",
     element: Shop,
+    protected: false,
+  },
+  {
+    id: "flash",
+    label: "general.flash",
+    path: "/flash",
+    element: Flash,
     protected: false,
   },
   {
