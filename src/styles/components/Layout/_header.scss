@@ -8,10 +8,12 @@ div {
     align-items: center;
     height: $NAV_HEIGHT;
     position: fixed;
+
     .disabled {
       pointer-events: none;
       opacity: 0.5;
     }
+
     div {
       &.languages-container {
         display: flex;
@@ -20,15 +22,18 @@ div {
         height: 100%;
         margin-left: 40px;
         position: relative;
+
         div {
           &.languages {
             display: flex;
             margin-right: 40px;
+
             p {
               margin: 0 4px;
             }
           }
         }
+
         span {
           &.spacer {
             width: 3px;
@@ -38,10 +43,12 @@ div {
           }
         }
       }
+
       &.links {
         width: 60%;
         display: flex;
         justify-content: space-around;
+
         svg {
           fill: $white;
           transition: all ease-in-out 0.3s;
@@ -62,22 +69,27 @@ div {
         color: $white;
         font-weight: 900;
       }
+
       font-weight: normal;
       line-height: 28px;
       font-size: 1.3em;
       letter-spacing: 0.2em;
       transition: all ease-in-out 0.2s;
+
       &.active {
         font-weight: 900;
         text-decoration: underline;
       }
+
       &.inactive {
         // color: darken($white, 5);
         font-weight: 400;
       }
+
       &:hover {
         cursor: pointer;
       }
+
       &.cart-qty {
         position: absolute;
         top: 15px;
@@ -102,23 +114,27 @@ div {
   }
 
   &.header-content {
-    display: flex;
     justify-content: space-between;
     align-items: center;
     padding-left: 14px;
+    height: auto;
+
     svg {
       fill: $white;
       transition: all ease-in-out 0.3s;
+
       &.logo {
         width: 16%;
-        max-height: 60%;
+        height: 60%;
         margin-right: 15%;
       }
+
       &:hover {
         cursor: pointer;
         animation: shake 0.3s forwards;
       }
     }
+
     @include mobile {
       width: 100%;
     }
@@ -134,12 +150,14 @@ div {
     box-shadow: 2px 4px 7px rgba($lighter-blue, 0.3),
       0px -1px 2px rgba($lighter-blue, 0.3);
     transition: all ease-in-out 0.2s;
+
     div {
       &.links {
         margin-top: 20px;
         padding: 0 1rem;
         flex-direction: column;
         width: 100%;
+
         a {
           margin: 10px 0;
           font-size: 18px;
@@ -161,17 +179,20 @@ div {
     flex-direction: column;
     width: 80%;
     padding: 20px 20px 30px 20px;
+
     svg {
       &.logo {
         width: 25%;
         // margin: 10px;
       }
     }
+
     div {
       &.languages-container {
         // width: 80%;
         margin-left: 0;
         justify-content: flex-end;
+
         div {
           &.languages {
             width: 30%;
@@ -180,6 +201,7 @@ div {
             justify-content: space-between;
             margin-right: 20px;
             margin-top: 5px;
+
             p {
               font-size: 14px;
               margin: 0;
