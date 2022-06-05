@@ -1,4 +1,3 @@
-import './styles/App.scss';
 import HomePage from './pages/HomePage';
 import RDV from './pages/RDV';
 import Login from './pages/Login';
@@ -9,6 +8,7 @@ import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import OrderCompleted from './pages/OrderCompleted';
 import AppRouter from './router';
 import 'antd/dist/antd.min.css'
+import './styles/App.scss';
 
 export const routes = [
   {
