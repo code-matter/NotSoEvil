@@ -104,7 +104,7 @@ const ShopItem = ({
           <h1>{name}</h1>
           <h1>{price} $</h1>
         </div>
-        <p className="item-info">{type} | {ADMIN.SIZE.find(s => s.id === size)?.label}</p>
+        <p className="item-info">{t(`${ADMIN.TYPE.find(s => s.id === Number(type))?.label}`)} | {ADMIN.SIZE.find(s => s.id === size)?.label}</p>
         <p className="item-rarity">
           <span>{t(ADMIN.RARITY.find(r => r.id === rarity)?.label as string).toUpperCase()}</span>
           <span
