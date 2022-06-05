@@ -6,19 +6,23 @@ div {
     flex-direction: column;
     color: #c183ff;
     margin-bottom: 100px;
+
     div {
       &.shop-ctas {
         display: flex;
         width: 100%;
         margin: 5% 0 2% 0;
+
         button {
           min-height: 65px;
           width: calc(100% / 3);
         }
+
         @include mobile {
           display: flex;
           flex-direction: column;
           gap: 12px;
+
           button {
             min-height: unset;
             height: fit-content;
@@ -26,6 +30,7 @@ div {
           }
         }
       }
+
       &.shop-filters {
         div {
           &.filters {
@@ -35,6 +40,7 @@ div {
             border: none;
             transition: all 1s ease-in-out;
           }
+
           &.opened {
             height: 100%;
             border: 1px solid #c183ff;
@@ -48,6 +54,7 @@ div {
         }
       }
     }
+
     section {
       &.shop-section {
         width: 100%;
@@ -55,10 +62,12 @@ div {
         display: flex;
         flex-direction: column;
         margin: 20px 0;
+
         h2 {
           margin: 4px 0;
           letter-spacing: 0.2em;
         }
+
         hr {
           margin-bottom: 24px;
           display: block;
@@ -66,37 +75,45 @@ div {
           border: 0;
           padding: 0;
         }
+
         div {
           &.shop-items-container {
             gap: 32px;
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
+
             @include mobile {
               grid-template-columns: 1fr;
             }
           }
         }
       }
+
       &.oeuvres {
         h2 {
           color: $pink;
         }
+
         hr {
           border-top: 1px solid $pink;
         }
       }
+
       &.prints {
         h2 {
           color: $cyan;
         }
+
         hr {
           border-top: 1px solid $cyan;
         }
       }
+
       &.merch {
         h2 {
           color: $light-blue;
         }
+
         hr {
           border-top: 1px solid $light-blue;
         }
@@ -109,12 +126,15 @@ div {
   0% {
     transform: rotate(0deg);
   }
+
   25% {
     transform: rotate(10deg);
   }
+
   75% {
     transform: rotate(-10deg);
   }
+
   100% {
     transform: rotate(0deg);
   }
@@ -124,6 +144,7 @@ div {
   0% {
     max-height: 0;
   }
+
   100% {
     max-height: 100vh;
   }
@@ -133,6 +154,7 @@ div {
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }

@@ -119,6 +119,10 @@ div {
     padding-left: 14px;
     height: auto;
 
+    @include mobile {
+      display: flex;
+    }
+
     svg {
       fill: $white;
       transition: all ease-in-out 0.3s;

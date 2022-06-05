@@ -99,7 +99,7 @@ const ShopItem = ({
               color + '67' : '',
           }}>{t('shop.see_more')}</p>}
       </div>
-      <span>
+      <>
         <div className="item-title">
           <h1>{name}</h1>
           <h1>{price} $</h1>
@@ -125,7 +125,7 @@ const ShopItem = ({
             {available ? t('shop.want_it') : t('shop.sold')}
           </span>
         </p>
-      </span>
+      </>
     </div>
   )
 }

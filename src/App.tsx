@@ -8,6 +8,7 @@ import Shop from './pages/Shop';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import OrderCompleted from './pages/OrderCompleted';
 import AppRouter from './router';
+import 'antd/dist/antd.min.css'
 
 export const routes = [
   {

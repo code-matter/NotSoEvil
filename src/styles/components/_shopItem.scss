@@ -1,18 +1,22 @@
 div {
   &.shop-items {
     width: 100%;
+
     &.sold {
       opacity: 0.3;
       pointer-events: none;
       position: relative;
     }
+
     position: relative;
     color: $blue;
+
     div {
       &.item-title {
         width: 100%;
         display: flex;
         justify-content: space-between;
+
         h1 {
           overflow: hidden;
           white-space: nowrap;
@@ -20,8 +24,11 @@ div {
           text-overflow: ellipsis;
           font-size: 18px;
           letter-spacing: 0.1em;
+          color: $blue;
+          text-transform: uppercase;
         }
       }
+
       &.item-img {
         display: flex;
         justify-content: center;
@@ -30,11 +37,13 @@ div {
         aspect-ratio: 1;
         margin-bottom: 10px;
         flex-grow: 1;
+
         img {
           &.item-img {
             width: 100%;
           }
         }
+
         p {
           &.shop-seemore {
             position: absolute;
@@ -55,14 +64,17 @@ div {
         }
       }
     }
+
     p {
       letter-spacing: 0.1em;
       margin: 4px 0;
+
       &.item-title {
         font-weight: 600;
         display: flex;
         align-items: center;
         justify-content: space-between;
+
         span {
           &:last-child {
             border-left: 3px solid $mauve;
@@ -70,11 +82,13 @@ div {
           }
         }
       }
+
       &.item-rarity {
         width: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
+
         span {
           &.buy-btn {
             color: $mauve;
@@ -88,6 +102,7 @@ div {
           }
         }
       }
+
       &.sold-tag {
         position: absolute;
         width: 100%;
@@ -97,6 +112,7 @@ div {
         transform: translate(-50%, -50%);
       }
     }
+
     &:hover {
       cursor: pointer;
       // &::before {
