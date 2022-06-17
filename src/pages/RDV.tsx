@@ -115,14 +115,14 @@ const RDV = () => {
                     finalForm[key] = "YES BÉBÉ 🌈"
                 }
             })
-            if (finalForm.firstTimeYes === "OUI" && finalForm.firstTimeNo === "OUI") {
-                finalForm.firstTimeYes = "OUI"
+            if (finalForm.firstTimeYes === "YES BÉBÉ 🌈" && finalForm.firstTimeNo === "YES BÉBÉ 🌈") {
+                finalForm.firstTimeYes = "YES BÉBÉ 🌈"
                 finalForm.firstTimeNo = ""
-            } else if (finalForm.firstTimeNo === "OUI") {
+            } else if (finalForm.firstTimeNo === "YES BÉBÉ 🌈") {
                 finalForm.firstTimeYes = "NON"
                 finalForm.firstTimeNo = ""
             } else {
-                finalForm.firstTimeYes = "OUI"
+                finalForm.firstTimeYes = "YES BÉBÉ 🌈"
                 finalForm.firstTimeNo = ""
             }
             emailjs.send(
