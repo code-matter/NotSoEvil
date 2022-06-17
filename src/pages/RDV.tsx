@@ -26,8 +26,8 @@ import {
 import _ from 'lodash'
 import Modal from '../components/UI/Modal'
 
-const FIRST_MONTH = 'april'
-const SECOND_MONTH = 'june'
+const FIRST_MONTH = 'july'
+const SECOND_MONTH = 'september'
 
 const initForm = {
     "firstName": "",
@@ -49,13 +49,13 @@ const initForm = {
     "monday-14": false,
     "tuesday-10": false,
     "tuesday-12": false,
-    "tuesday-14": false,
+    "tuesday-13": false,
     "wednesday-10": false,
     "wednesday-12": false,
-    "wednesday-14": false,
+    "wednesday-13": false,
     "thursday-10": false,
     "thursday-12": false,
-    "thursday-14": false,
+    "thursday-13": false,
     "friday-10": false,
     "friday-12": false,
     "friday-14": false,
@@ -208,6 +208,9 @@ const RDV = () => {
                             <span className='blue'> FORM</span></h3>}
                         <p className='paragraph'>
                             {t('form.text1')}
+                            <br />
+                            <br />
+                            {t('form.text13')}
                             <br /><br />
                             {t('form.text2')}<strong>{t('form.text3')}</strong> {t('form.text4')}<strong>{t('form.text5')}</strong>
                             {t('form.text6')}<strong>{t('form.text7')}</strong> {t('form.text8')} <strong>{t('form.text9')}</strong>.
@@ -230,6 +233,9 @@ const RDV = () => {
                         id='lastName'
                         label={t('form.lastName')}
                         isRequired />
+                    <CustomInput
+                        id='pronouns'
+                        label={t('form.pronouns')} />
                     <CustomInput
                         id='email'
                         label={t('form.email')}
@@ -268,15 +274,14 @@ const RDV = () => {
           setChoices={setStyles} /> */}
                     <CustomTextArea
                         id='description'
-                        label={t('form.description')}
-                        subLabel={t('form.description-notes')} />
+                        label={t('form.description')} />
                     <br />
                     <CustomInput
                         id='availabilities'
                         label={t('form.availabilities')}
                         hide
                         isRequired />
-                    <CustomAvailabilities
+                    {/* <CustomAvailabilities
                         id='mon'
                         label={t('form.monday')}
                         choices={monday}
@@ -284,7 +289,7 @@ const RDV = () => {
                         arrowColor='rgba(193,131,255,1)'
                         setDay={setMonday}
                         openedAvailabilities={openedAvailabilities}
-                        setOpenedAvailabilities={setOpenedAvailabilities} />
+                        setOpenedAvailabilities={setOpenedAvailabilities} /> */}
                     <CustomAvailabilities
                         id='tue'
                         label={t('form.tuesday')}
@@ -312,7 +317,7 @@ const RDV = () => {
                         setDay={setThursday}
                         openedAvailabilities={openedAvailabilities}
                         setOpenedAvailabilities={setOpenedAvailabilities} />
-                    <CustomAvailabilities
+                    {/* <CustomAvailabilities
                         id='fri'
                         label={t('form.friday')}
                         choices={friday}
@@ -320,7 +325,7 @@ const RDV = () => {
                         arrowColor='rgba(43,215,197,1)'
                         setDay={setFriday}
                         openedAvailabilities={openedAvailabilities}
-                        setOpenedAvailabilities={setOpenedAvailabilities} />
+                        setOpenedAvailabilities={setOpenedAvailabilities} /> */}
                     <br />
                     {/* <CustomInput
           id='reference'

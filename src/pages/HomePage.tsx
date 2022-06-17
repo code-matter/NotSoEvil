@@ -60,12 +60,12 @@ const HomePage: React.FC = () => {
                         <h2>{t('modal.hey')}</h2>
 
                         <p>{t('modal.1st_para')}</p>
-                        <p>{t('modal.2nd_para')}{' '}
-                        </p>
-                        <a
+                        {/* <p>{t('modal.2nd_para')}{' '}
+                        </p> */}
+                        {/* <a
                             href="mailto: notsoevil.ink@gmail.com?subject=[DEMANDE D'INFO]">
                             notsoevil.ink@gmail.com
-                        </a>
+                        </a> */}
                     </div>
                 </Modal>}
 

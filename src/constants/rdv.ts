@@ -11,21 +11,21 @@ export const MONDAY: BoolChoice[] = [
 ];
 
 export const TUESDAY: BoolChoice[] = [
-  { id: "tuesday-10", label: "10h", value: false },
-  { id: "tuesday-12", label: "12h", value: false },
-  { id: "tuesday-14", label: "14h", value: false },
+  { id: "tuesday-10", label: "10h30", value: false },
+//   { id: "tuesday-12", label: "12h", value: false },
+  { id: "tuesday-13", label: "13h", value: false },
 ];
 
 export const WEDNESDAY: BoolChoice[] = [
-  { id: "wednesday-10", label: "10h", value: false },
-  { id: "wednesday-12", label: "12h", value: false },
-  { id: "wednesday-14", label: "14h", value: false },
+  { id: "wednesday-10", label: "10h30", value: false },
+//   { id: "wednesday-12", label: "12h", value: false },
+  { id: "wednesday-13", label: "13h", value: false },
 ];
 
 export const THURSDAY: BoolChoice[] = [
-  { id: "thursday-10", label: "10h", value: false },
-  { id: "thursday-12", label: "12h", value: false },
-  { id: "thursday-14", label: "14h", value: false },
+  { id: "thursday-10", label: "10h30", value: false },
+//   { id: "thursday-12", label: "12h", value: false },
+  { id: "thursday-13", label: "13h", value: false },
 ];
 
 export const FRIDAY: BoolChoice[] = [
