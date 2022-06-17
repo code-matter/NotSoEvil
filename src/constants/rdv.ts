@@ -48,6 +48,6 @@ export const STYLES: BoolChoice[] = [
 ];
 
 export const FIRST_TIME: BoolChoice[] = [
-  { id: "firstTimeyYes", label: "yes", value: false },
+  { id: "firstTimeYes", label: "yes", value: false },
   { id: "firstTimeNo", label: "no", value: false },
 ];
