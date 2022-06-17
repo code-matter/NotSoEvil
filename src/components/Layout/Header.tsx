@@ -23,91 +23,91 @@ const portalEl = document.getElementById("overlays");
 
 
 const Header = ({ }: IHeader) => {
-  const navigate = useNavigate()
-  const userContext = useContext(UserContext)
-  const { t } = useTranslation()
-  const { pathname } = useLocation()
-  const { isMobile } = useMobile()
-  const navRef = useRef(null)
-  const [navColor, setNavColor] = useState('')
+    const navigate = useNavigate()
+    const userContext = useContext(UserContext)
+    const { t } = useTranslation()
+    const { pathname } = useLocation()
+    const { isMobile } = useMobile()
+    const navRef = useRef(null)
+    const [navColor, setNavColor] = useState('')
 
-  const handleOpenCart = () => {
-    userContext.dispatch({ type: USER_KEYS.TOGGLE_CART })
-  }
-
-  useEffect(() => {
-    setNavColor(getPastelColor())
-    return () => {
-      setNavColor('')
+    const handleOpenCart = () => {
+        userContext.dispatch({ type: USER_KEYS.TOGGLE_CART })
     }
-  }, [userContext.state.navOpen])
+
+    useEffect(() => {
+        setNavColor(getPastelColor())
+        return () => {
+            setNavColor('')
+        }
+    }, [userContext.state.navOpen])
 
 
-  const renderLinks = () => {
-    return <>
-      <div className='links'>
-        <Link className={`${pathname === "/form" ? 'on-page' : ''} `}
-          to="/form">
-          {t('general.rdv')}
-        </Link>
-        <Link className={`${pathname === "/flash" ? 'on-page' : ''}`}
-          to="/flash">
-          FLASH
-        </Link>
-        <Link className={`${pathname === "/shop" ? 'on-page' : ''} `}
-          to="/shop">
-          {t('general.shop')}
-        </Link>
-        <Link className={`${pathname === "/more" ? 'on-page' : ''}`}
-          to="/more">
-          {t('general.moremoremore')}
-        </Link>
-        <div className="languages-container">
-          <div className='languages'>
-            <p className={userContext?.state?.language === "fr" ? 'active' : 'inactive'}
-              onClick={() => {
-                i18next.changeLanguage('fr')
-                userContext.dispatch({ type: USER_KEYS.SET_LANGUAGE, payload: 'fr' })
-              }}>FR</p>
-            <p>|</p>
-            <p className={userContext?.state?.language === "en" ? 'active' : 'inactive'}
-              onClick={() => {
-                i18next.changeLanguage('en')
-                userContext.dispatch({ type: USER_KEYS.SET_LANGUAGE, payload: 'en' })
-              }}>EN</p>
-          </div>
-          <CART className={`cart ${userContext.state.items.length === 0 ? 'disabled' : ''}`} onClick={userContext.state.items.length > 0 ? handleOpenCart : undefined} />
-          <p className='cart-qty' onClick={userContext.state.items.length > 0 ? handleOpenCart : undefined}>{userContext?.state.items?.length}</p>
-        </div>
-      </div></>
-  }
+    const renderLinks = () => {
+        return <>
+            <div className='links'>
+                <Link className={`${pathname === "/form" ? 'on-page' : ''} `}
+                    to="/form">
+                    {t('general.rdv')}
+                </Link>
+                <Link className={`${pathname === "/flash" ? 'on-page' : ''} disabled`}
+                    to="/flash">
+                    FLASH
+                </Link>
+                <Link className={`${pathname === "/shop" ? 'on-page' : ''} disabled`}
+                    to="/shop">
+                    {t('general.shop')}
+                </Link>
+                <Link className={`${pathname === "/more" ? 'on-page' : ''} disabled`}
+                    to="/more">
+                    {t('general.moremoremore')}
+                </Link>
+                <div className="languages-container">
+                    <div className='languages'>
+                        <p className={userContext?.state?.language === "fr" ? 'active' : 'inactive'}
+                            onClick={() => {
+                                i18next.changeLanguage('fr')
+                                userContext.dispatch({ type: USER_KEYS.SET_LANGUAGE, payload: 'fr' })
+                            }}>FR</p>
+                        <p>|</p>
+                        <p className={userContext?.state?.language === "en" ? 'active' : 'inactive'}
+                            onClick={() => {
+                                i18next.changeLanguage('en')
+                                userContext.dispatch({ type: USER_KEYS.SET_LANGUAGE, payload: 'en' })
+                            }}>EN</p>
+                    </div>
+                    {/* <CART className={`cart ${userContext.state.items.length === 0 ? 'disabled' : ''}`} onClick={userContext.state.items.length > 0 ? handleOpenCart : undefined} /> */}
+                    {/* <p className='cart-qty' onClick={userContext.state.items.length > 0 ? handleOpenCart : undefined}>{userContext?.state.items?.length}</p> */}
+                </div>
+            </div></>
+    }
 
-  return (
-    <>
-      {ReactDOM.createPortal(
-        <AnimatePresence>
-          {userContext?.state?.feedback &&
-            <Feedback>
-              <h1>
-                {userContext?.state?.feedback} {t('shop.added')}
-              </h1>
-            </Feedback>}
-        </AnimatePresence>
-        , portalEl as HTMLElement)}
-      {
-        <div className={`header-wrap ${isMobile ? 'mobile' : ''} ${userContext.state.navOpen ? 'opened' : ''}`} style={{ backgroundColor: getPastelColor() }}>
+    return (
+        <>
+            {ReactDOM.createPortal(
+                <AnimatePresence>
+                    {userContext?.state?.feedback &&
+                        <Feedback>
+                            <h1>
+                                {userContext?.state?.feedback} {t('shop.added')}
+                            </h1>
+                        </Feedback>}
+                </AnimatePresence>
+                , portalEl as HTMLElement)}
+            {
+                <div className={`header-wrap ${isMobile ? 'mobile' : ''} ${userContext.state.navOpen ? 'opened' : ''}`} style={{ backgroundColor: getPastelColor() }}>
 
-          <div className="header-content" onClick={isMobile ? () => userContext.dispatch({ type: USER_KEYS.TOGGLE_NAV })
-            : undefined}>
-            {userContext.state.navOpen ? <HiArrowNarrowLeft color="#fbfbfd" size={30} onClick={() => navigate('/')} /> : <LOGO className="logo" onClick={isMobile ? undefined : () => navigate('/')} />}
-            {isMobile && <Turn toggled={userContext.state.navOpen} size={userContext.state.navOpen ? 30 : 20} color="#fbfbfd" />}
-          </div>
-          {isMobile && userContext.state.navOpen && renderLinks()}
-          {!isMobile && renderLinks()}
-        </div>
-      }
-    </>
-  )
+                    <div className="header-content" onClick={isMobile ? () => userContext.dispatch({ type: USER_KEYS.TOGGLE_NAV })
+                        : undefined}>
+                        {userContext.state.navOpen ? <HiArrowNarrowLeft color="#fbfbfd" size={30} onClick={() => navigate('/')} /> : <LOGO className="logo" onClick={isMobile ? undefined : () => navigate('/')} />}
+                        {isMobile && <Turn toggled={userContext.state.navOpen} size={userContext.state.navOpen ? 30 : 20} color="#fbfbfd" />}
+                    </div>
+                    {isMobile && userContext.state.navOpen && renderLinks()}
+                    {!isMobile && renderLinks()}
+                </div>
+            }
+        </>
+    )
 }
 
 export default Header
