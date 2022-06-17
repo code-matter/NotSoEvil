@@ -1,7 +1,6 @@
 import { useContext, useEffect, useRef, useState } from 'react'
 import ShopItem from '../components/ShopItem'
 import { useNavigate } from 'react-router-dom';
-import { ShopService } from '../services/shop.services';
 import SquareButton from '../components/UI/SquareButton';
 import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
@@ -9,38 +8,28 @@ import CartAside from '../components/UI/CartAside';
 import { UserContext } from '../context/UserContext';
 import { AnimatePresence } from 'framer-motion';
 import { USER_KEYS } from '../constants/reducerKeys';
+import { FlashService } from '../services/flash.services';
+import { scrollInView } from './Shop';
 
 export interface IFlash {
 }
 
-export const scrollInView = (where: any) => {
-  if (where) {
-    where.current.scrollIntoView({ behavior: 'smooth', block: 'center' })
-  }
-}
+const PRICE = 50
 
 /*THIS WILL NEED A MAJOR REFACTOR. IM JUST PLAYING AROUND NOW */
 
 const Flash = ({ }: IFlash) => {
+
   const [shopItems, setShopItems] = useState<any>()
-  const [isLoading, setIsLoading] = useState(true);
-  const [filtersOpened, setFiltersOpened] = useState(false)
-  const [currentFilters, setCurrentFilters] = useState<any>({
-    color: [],
-    minPrice: 0,
-    maxPrice: undefined,
-    rarity: [],
-    size: [],
-    type: []
-  })
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
   const { t } = useTranslation()
   const OEUVRES = useRef<HTMLElement>(null)
-  const PRINTS = useRef<HTMLElement>(null)
-  const MERCH = useRef<HTMLElement>(null)
+
   const userContext = useContext(UserContext)
 
   const fetchData = async () => {
-    const flashes: any = await ShopService.list();
+    const flashes: any = await FlashService.list();
     if (flashes.empty) {
       console.error('No items!')
     }
@@ -57,47 +46,6 @@ const Flash = ({ }: IFlash) => {
     }
   }, [])
 
-  const handleFilters = (e: any) => {
-    const target = e.target;
-    const value = target.type === 'checkbox' ? e.target.checked : target.value;
-    const type = target.type;
-    const name = target.name;
-    const id = target.id;
-    let tmpFilters;
-    switch (type) {
-      case 'checkbox':
-        tmpFilters = { ...currentFilters };
-        if (tmpFilters[name].includes(id)) {
-          const tmpIdx = tmpFilters[name].indexOf(id)
-          tmpFilters[name].splice(tmpIdx, 1)
-        } else {
-          tmpFilters[name].push(id)
-        }
-        setCurrentFilters(tmpFilters)
-        break;
-
-      default:
-        break;
-    }
-  }
-
-  const isFiltering =
-    currentFilters.color.length !== 0 ||
-    currentFilters.rarity.length !== 0 ||
-    currentFilters.type.length !== 0 ||
-    currentFilters.size.length !== 0 ||
-    currentFilters.minPrice > 0 ||
-    currentFilters.maxPrice > 0
-
-  useEffect(() => {
-    const tmpShopItems = { ...shopItems }
-    if (isFiltering && tmpShopItems) {
-      const filters = { ...currentFilters }
-      _.forEach(tmpShopItems, (iValue: any, iKey: string) => {
-      })
-    }
-  }, [currentFilters, shopItems, isFiltering])
-
 
   return (
     <>
@@ -113,12 +61,6 @@ const Flash = ({ }: IFlash) => {
             <SquareButton
               label={t("shop.original_art")}
               onClick={() => scrollInView(OEUVRES)} />
-            <SquareButton
-              label={t("shop.prints")}
-              onClick={() => scrollInView(PRINTS)} />
-            <SquareButton
-              label={t("shop.merch")}
-              onClick={() => scrollInView(MERCH)} />
           </div>
           <section className="shop-section oeuvres"
             ref={OEUVRES}>
@@ -141,59 +83,7 @@ const Flash = ({ }: IFlash) => {
                         type={item.data().type}
                         available={item.data().available}
                         rarity={item.data().rarity}
-                        price={item.data().price} />
-                    )
-                  }) : <p>{t('shop.no_items')}</p>}
-            </div>
-          </section>
-          <section className="shop-section prints"
-            ref={PRINTS}>
-            <h2>{t("shop.prints")}</h2>
-            <hr />
-            <div className="shop-items-container">
-              {shopItems?.filter((si: any) =>
-                si.data().category === 2).length ?
-                shopItems?.filter((si: any) =>
-                  si.data().category === 2)
-                  .map((item: any, idx: number) => {
-                    return (
-                      <ShopItem
-                        key={idx}
-                        id={item.data().id}
-                        name={item.data().name}
-                        description={item.data().description}
-                        image={item.data().image}
-                        size={item.data().size}
-                        type={item.data().type}
-                        available={item.data().available}
-                        rarity={item.data().rarity}
-                        price={item.data().price} />
-                    )
-                  }) : <p>{t('shop.no_items')}</p>}
-            </div>
-          </section>
-          <section className="shop-section merch"
-            ref={MERCH}>
-            <h2>{t("shop.merch")}</h2>
-            <hr />
-            <div className="shop-items-container">
-              {shopItems?.filter((si: any) =>
-                si.data().category === 3).length ?
-                shopItems?.filter((si: any) =>
-                  si.data().category === 3)
-                  .map((item: any, idx: number) => {
-                    return (
-                      <ShopItem
-                        key={idx}
-                        id={item.data().id}
-                        name={item.data().name}
-                        description={item.data().description}
-                        image={item.data().image}
-                        type={item.data().type}
-                        available={item.data().available}
-                        rarity={item.data().rarity}
-                        size={item.data().size}
-                        price={item.data().price} />
+                        price={PRICE} />
                     )
                   }) : <p>{t('shop.no_items')}</p>}
             </div>
