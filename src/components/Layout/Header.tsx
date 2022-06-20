@@ -46,7 +46,7 @@ const Header = ({ }: IHeader) => {
     const renderLinks = () => {
         return <>
             <div className='links'>
-                <Link className={`${pathname === "/form" ? 'on-page' : ''} `}
+                <Link className={`${pathname === "/form" ? 'on-page' : ''} disabled`}
                     to="/form">
                     {t('general.rdv')}
                 </Link>

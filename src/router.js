@@ -17,13 +17,13 @@ export const routes = [
     element: HomePage,
     protected: false,
   },
-  {
-    id: "form",
-    label: "general.form",
-    path: "/form",
-    element: RDV,
-    protected: false,
-  },
+//   {
+//     id: "form",
+//     label: "general.form",
+//     path: "/form",
+//     element: RDV,
+//     protected: false,
+//   },
 //   {
 //     id: "shop",
 //     label: "general.shop",
